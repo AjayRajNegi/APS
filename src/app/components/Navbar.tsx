@@ -10,7 +10,7 @@ const navLinks = [
 
 export default function Navbar() {
   return (
-    <nav className="bg-aps-500 fixed left-1/2 mx-auto mt-4 flex h-[70px] w-[95%] max-w-[1540px] -translate-x-1/2 items-center justify-between rounded-full px-4">
+    <nav className="bg-aps-500 fixed left-1/2 z-10 mx-auto mt-4 flex h-[70px] w-[95%] max-w-[1540px] -translate-x-1/2 items-center justify-between rounded-full px-4">
       <Link href="/" className="rounded-full bg-white px-2 py-1 shadow-2xl">
         <Image
           src="/apsLogo.png"
@@ -27,7 +27,7 @@ export default function Navbar() {
           </Link>
         ))}
       </div>
-      <div className="rounded-full bg-white p-2 text-lg text-black shadow-2xl text-shadow-xs">
+      <div className="rounded-full bg-white p-2 px-3 text-lg text-black shadow-2xl text-shadow-xs">
         <Link href="/manageBookings">Manage Bookings</Link>
       </div>
     </nav>
