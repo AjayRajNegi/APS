@@ -41,7 +41,7 @@ export default function Home() {
       </main>
 
       {/* Flight Details */}
-      <article className="mt-[80px]">
+      <article className="mt-[90px]">
         {/* Section 1 */}
         <div className="flex flex-col items-center">
           <p className="w-fit rounded-full border-[1px] border-gray-300 bg-gray-100 px-2 py-1 text-sm">
@@ -98,13 +98,17 @@ export default function Home() {
               <div className="h-10 w-10 rounded-full bg-gray-300"></div>
             </div>
           </div>
-          <div className="bg-aps-200 col-span-1 h-[400px] rounded-4xl"></div>
-          <div className="bg-aps-300 col-span-1 h-[400px] rounded-4xl"></div>
+          <div className="bg-aps-200 relative col-span-1 h-[400px] overflow-hidden rounded-4xl [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)]">
+            <Image src="/mainImage.png" alt="1" fill objectFit="cover" />
+          </div>
+          <div className="bg-aps-300 relative col-span-1 h-[400px] overflow-hidden rounded-4xl [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)]">
+            <Image src="/mainImage.png" alt="1" fill objectFit="cover" />
+          </div>
         </div>
       </article>
 
       {/* Blogs Section */}
-      <article className="mt-[70px]">
+      <article className="mt-[80px]">
         <h1 className="mx-auto mb-[50px] w-fit text-center text-6xl font-semibold tracking-tight text-shadow-xs">
           Our tour package guarantees a <br /> smooth and unforgettable
           adventure.
@@ -115,7 +119,7 @@ export default function Home() {
       </article>
 
       {/* Airport Section */}
-      <article className="mt-[70px]">
+      <article className="mt-[80px]">
         <h1 className="mx-auto mb-[50px] w-fit text-center text-6xl font-semibold tracking-tight text-shadow-xs">
           Top Airports.
         </h1>

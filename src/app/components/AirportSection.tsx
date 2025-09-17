@@ -5,7 +5,7 @@ import { ArrowDownRight } from "lucide-react";
 import Link from "next/link";
 
 const Country = ["Canada", "India", "UAE", "USA"];
-const blogs = [
+const airport = [
   {
     id: 1,
     title: "Indira Gandhi International Airport",
@@ -41,7 +41,7 @@ const blogs = [
 export function AirportSection() {
   const [cat, setCat] = useState("Canada");
   return (
-    <div>
+    <div className="mb-[100px]">
       {/* Country Section */}
       <div className="flex justify-center gap-5">
         {Country.map((Country) => (
@@ -58,32 +58,46 @@ export function AirportSection() {
         ))}
       </div>
       {/* Blogs Section */}
-      <div className="scrollbar-hide mt-[50px] flex gap-[20px] overflow-x-auto">
-        {blogs.map((blog, idx) => (
-          <Link
-            href={`/blogs/${blog.id}`}
-            key={idx}
-            className="flex h-[450px] w-[350px] cursor-pointer items-end justify-end rounded-2xl"
-            style={{
-              backgroundImage: `url('${blog.imageUrl}')`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div className="m-4 flex w-[90%] items-center justify-between rounded-2xl bg-white px-3 py-1">
-              <div className="w-[80%]">
-                <h3 className="w-[80%] truncate text-lg font-semibold">
-                  {blog.title}
-                </h3>
-                <p className="truncate text-gray-600">{blog.location}</p>
+      <div className="mt-[50px] grid h-[400px] grid-cols-4 grid-rows-2 gap-4">
+        {airport.map((airport, idx) =>
+          idx === 0 ? (
+            <div
+              key={airport.id}
+              className="bg-aps-100 col-span-2 row-span-2 flex items-end justify-between rounded-2xl p-4"
+              style={{ backgroundImage: `url('${airport.imageUrl}')` }}
+            >
+              <div>
+                <p className="text-4xl font-bold text-white">
+                  {airport.location}
+                </p>
+                <p className="font-bold text-gray-300">{airport.title}</p>
               </div>
               <ArrowDownRight
                 className="bg-aps-secondary-300 -z-0 -rotate-90 rounded-full p-1 text-white"
                 size={40}
               />
             </div>
-          </Link>
-        ))}
+          ) : (
+            <div
+              key={airport.id}
+              className="bg-aps-100 col-span-1 flex items-end justify-between rounded-2xl p-4"
+              style={{ backgroundImage: `url('${airport.imageUrl}')` }}
+            >
+              <div>
+                <p className="text-2xl font-bold text-white">
+                  {airport.location}
+                </p>
+                <p className="text-sm font-bold text-gray-300">
+                  {airport.title}
+                </p>
+              </div>
+              <ArrowDownRight
+                className="bg-aps-secondary-300 -z-0 -rotate-90 rounded-full p-1 text-white"
+                size={30}
+              />
+            </div>
+          ),
+        )}
       </div>
     </div>
   );

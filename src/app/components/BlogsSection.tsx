@@ -4,12 +4,7 @@ import { cn } from "../lib/cn";
 import { ArrowDownRight } from "lucide-react";
 import Link from "next/link";
 
-const Category = [
-  "Trekking Adventure",
-  "Air Exploration",
-  "Cultural Insights Tour",
-  "Sunrise View",
-];
+const Category = ["Blogs", "Articles", "UGC", "Case Studies"];
 const blogs = [
   {
     id: 1,
@@ -49,7 +44,7 @@ const blogs = [
 ];
 
 export function BlogsSection() {
-  const [cat, setCat] = useState("Trekking Adventure");
+  const [cat, setCat] = useState("Blogs");
   return (
     <div>
       {/* Category Section */}
