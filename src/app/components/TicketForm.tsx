@@ -17,8 +17,8 @@ export function TicketForm() {
               onClick={() => setActiveTab(tab)}
               className={`rounded-full px-4 py-2 text-sm font-medium ${
                 activeTab === tab
-                  ? "bg-aps-400 text-white"
-                  : "bg-aps-200 text-gray-700"
+                  ? "bg-aps-secondary-400 text-white"
+                  : "bg-aps-secondary-200 text-gray-700"
               }`}
             >
               {tab}
@@ -62,7 +62,7 @@ export function TicketForm() {
 
           <button
             type="submit"
-            className="bg-aps-200 hover:bg-aps-400 rounded-full py-3 font-medium transition md:col-span-2"
+            className="bg-aps-secondary-200 hover:bg-aps-secondary-400 rounded-full py-3 font-medium transition md:col-span-2"
           >
             Book Now
           </button>
