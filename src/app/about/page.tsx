@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { ArrowDownRight } from "lucide-react";
 import { FAQ } from "../components/FAQ";
-import { TextEffect } from "../components/TextEffect";
 import { Save } from "../components/Save";
+import { ArrowDownRight } from "lucide-react";
+import { TextEffect } from "../components/TextEffect";
 
 export default function About() {
   return (
