@@ -1,6 +1,7 @@
-import { ArrowDownRight } from "lucide-react";
 import Image from "next/image";
-import { AccordionIcons } from "../components/Accordian";
+import { ArrowDownRight } from "lucide-react";
+import { FAQ } from "../components/FAQ";
+import { TextEffect } from "../components/TextEffect";
 
 export default function About() {
   return (
@@ -13,14 +14,15 @@ export default function About() {
           </h1>
         </article>
         <article className="flex w-full gap-8">
-          <div className="relative h-[calc(100vh/1.15)] w-[70%] overflow-hidden rounded-4xl">
+          <div className="relative h-[calc(100vh/1.15)] w-[70%] overflow-hidden rounded-4xl border-[1px] border-black transition-shadow duration-300 hover:shadow-[5px_5px_0px_0px_rgba(1,1,1)]">
             <Image src="/mainImage.png" fill alt="asdaf" objectFit="cover" />
-            <div className="absolute -bottom-[2px] -left-[2px] h-fit w-[45%] max-w-[500px] rounded-4xl bg-white p-4 text-justify">
-              <p>
+            <div className="absolute bottom-[0] left-0 h-fit w-[45%] max-w-[500px] rounded-4xl bg-white p-4 text-justify">
+              <TextEffect per="char" preset="fade" className="text-justify">
                 The company operates at airports in Toronto, Vancouver,
                 Montreal, Calgary, Edmonton, Ottawa, Winnipeg, and Halifax,
                 ensuring a smooth beginning and end for travelers.
-              </p>
+              </TextEffect>
+
               <p className="mt-4 flex items-center gap-1 text-lg font-medium underline underline-offset-8">
                 <span>All Airports</span>
                 <ArrowDownRight className="-rotate-90" size={20} />
@@ -28,7 +30,12 @@ export default function About() {
             </div>
           </div>
           <div className="flex h-[calc(100vh/1.15)] w-[30%] flex-col justify-between">
-            <p className="text-justify">
+            <TextEffect
+              per="word"
+              as="h3"
+              preset="blur"
+              className="text-justify"
+            >
               Airport Porter Service Canada was founded to provide a reliable
               and efficient solution for travelers, families, seniors,
               businesspeople, and passengers with disabilities at Canada&apos;s
@@ -36,14 +43,15 @@ export default function About() {
               thousands of Canadians, with a trained staff of porters who are
               thoroughly screened and equipped with excellent customer service
               and airport safety standards training.
-            </p>
-            <div className="bg-aps-200 mt-8 h-full w-full rounded-4xl"></div>
+            </TextEffect>
+
+            <div className="bg-aps-200 mt-8 h-full w-full rounded-4xl transition-shadow duration-300 hover:shadow-[5px_5px_0px_0px_rgba(1,1,1)]"></div>
           </div>
         </article>
       </section>
 
       {/* Section 1 */}
-      <section className="mt-[150px] flex">
+      <section className="mt-[120px] flex">
         <article className="w-[30%]">Our Story</article>
         <article className="w-[70%]">
           <div>
@@ -73,9 +81,7 @@ export default function About() {
       </section>
 
       {/* Section 2 */}
-      <div className="text-black">
-        <AccordionIcons />
-      </div>
+      <FAQ />
     </div>
   );
 }
