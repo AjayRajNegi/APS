@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowDownRight } from "lucide-react";
 import { FAQ } from "../components/FAQ";
 import { TextEffect } from "../components/TextEffect";
+import { Save } from "../components/Save";
 
 export default function About() {
   return (
@@ -9,9 +10,12 @@ export default function About() {
       {/* Hero section */}
       <section className="my-[40px] w-full">
         <article>
-          <h1 className="mb-10 text-7xl font-semibold tracking-tight text-shadow-2xs">
-            OUR <br /> STORY
-          </h1>
+          <div className="mb-10 flex items-end text-7xl font-semibold tracking-tight text-shadow-2xs">
+            <p>
+              OUR <br /> STORY
+              <span className="ml-1 inline-block h-3 w-3 animate-pulse rounded-full bg-black"></span>
+            </p>
+          </div>
         </article>
         <article className="flex w-full gap-8">
           <div className="relative h-[calc(100vh/1.15)] w-[70%] overflow-hidden rounded-4xl border-[1px] border-black transition-shadow duration-300 hover:shadow-[5px_5px_0px_0px_rgba(1,1,1)]">
@@ -25,7 +29,10 @@ export default function About() {
 
               <p className="mt-4 flex items-center gap-1 text-lg font-medium underline underline-offset-8">
                 <span>All Airports</span>
-                <ArrowDownRight className="-rotate-90" size={20} />
+                <ArrowDownRight
+                  className="animate-bounce-x -rotate-90"
+                  size={20}
+                />
               </p>
             </div>
           </div>
@@ -82,6 +89,9 @@ export default function About() {
 
       {/* Section 2 */}
       <FAQ />
+
+      {/* Save Section */}
+      <Save />
     </div>
   );
 }

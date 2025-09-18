@@ -12,7 +12,7 @@ export function Footer() {
   return (
     <footer className="mx-auto mb-[30px] w-[95%] rounded-4xl bg-[#141414] p-8 text-white">
       <div>
-        <h1 className="text-6xl font-semibold">
+        <h1 className="text-6xl font-semibold text-shadow-2xs">
           Popular with travelers all over the WORLD
         </h1>
         <p className="mt-4 mb-[50px] text-lg text-[#a3a3a3]">
@@ -37,7 +37,9 @@ export function Footer() {
               More About us
             </p>
           </div>
-          <p>2025 AirportPorterService copyright All Reserved</p>
+          <p className="text-sm text-[#a3a3a3]">
+            2025 AirportPorterService copyright All Reserved
+          </p>
         </div>
         {/* Right */}
         <div className="max-h-[300px] w-[50%]">
@@ -64,7 +66,7 @@ export function Footer() {
             </div>
           </div>
           <div>
-            <p className="mb-4">Location</p>
+            <p className="mt-4 mb-4">Location</p>
             <p className="text-sm text-[#a3a3a3]">
               Elite Estate, Sudhowala, Dehradun
             </p>
