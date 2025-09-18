@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { cn } from "../lib/cn";
 import { ArrowDownRight } from "lucide-react";
-import Link from "next/link";
 
 const Country = ["Canada", "India", "UAE", "USA"];
 const airport = [
