@@ -1,13 +1,13 @@
-import { ArrowDownRight } from "lucide-react";
 import Link from "next/link";
-import { TicketForm } from "./components/TicketForm";
 import Image from "next/image";
+import { ArrowDownRight } from "lucide-react";
+import { TicketForm } from "./components/TicketForm";
 import { BlogsSection } from "./components/BlogsSection";
 import { AirportSection } from "./components/AirportSection";
 
 export default function Home() {
   return (
-    <div>
+    <div className="font-poppins">
       {/* Main Section */}
       <main
         className="bg-aps-200 flex h-[85vh] w-full items-end rounded-4xl"
