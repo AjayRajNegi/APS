@@ -9,7 +9,7 @@ import {
   useSpring,
 } from "framer-motion";
 import type { SpringOptions, Transition, Variant } from "framer-motion";
-import { cn } from "../lib/cn";
+import { cn } from "@/lib/utils";
 
 export type CursorProps = {
   children: React.ReactNode;

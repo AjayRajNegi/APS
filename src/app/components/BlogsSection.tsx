@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
-import { cn } from "../lib/cn";
+import { cn } from "@/lib/utils";
 import { ArrowDownRight } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 const Category = ["Blogs", "Articles", "UGC", "Case Studies"];
 const blogs = [
