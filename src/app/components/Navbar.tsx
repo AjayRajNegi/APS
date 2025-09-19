@@ -28,7 +28,7 @@ export default function Navbar() {
         ))}
       </div>
       <div className="rounded-full bg-white p-2 px-3 text-lg text-black shadow-2xl text-shadow-xs">
-        <Link href="/manageBookings">Manage Bookings</Link>
+        <Link href="/managebookings">Manage Bookings</Link>
       </div>
     </nav>
   );
