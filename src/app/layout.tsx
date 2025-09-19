@@ -31,7 +31,7 @@ export default function RootLayout({
       <body
         className={cn(
           `${geistSans.variable} ${geistMono.variable} antialiased`,
-          "relative",
+          "relative overflow-x-hidden",
           "font-poppins",
         )}
       >

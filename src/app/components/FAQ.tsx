@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import { ArrowDownRight } from "lucide-react";
+import { ArrowDownRight, ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
 
 const data = [
@@ -107,6 +107,7 @@ export function FAQ() {
             >
               <AccordionTrigger className="text-xl">
                 {data.question}
+                <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" />
               </AccordionTrigger>
               <AccordionContent className="flex flex-col gap-4 text-balance">
                 {data.answer}
