@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ChevronDownIcon } from "lucide-react";
 
 const services = [
   {
@@ -34,53 +35,34 @@ const services = [
 
 export function Collapsible() {
   return (
-    <div className="mb-[50px] rounded-4xl border-[10px] border-white">
+    <div className="mb-[50px] box-border w-full rounded-4xl border-[10px] border-white">
       <Accordion
         type="single"
         collapsible
         defaultValue="item-1"
-        className="rounded-4xl"
+        className="w-full rounded-4xl"
       >
         {services.map((service, idx) => (
           <div key={idx}>
-            {idx === 0 ? (
-              <AccordionItem
-                value="item-1"
-                className="rounded-t-4xl border-none p-4 pl-16"
-                style={{
-                  backgroundImage: `${service.imageUrl}`,
-                  backgroundPosition: `${service.imagePosition}`,
-                }}
-              >
-                <AccordionTrigger className="flex h-[200px] items-center justify-between text-6xl text-white text-shadow-2xs">
-                  {service.title}
-                </AccordionTrigger>
-                <AccordionContent className="text-xl text-white">
-                  {service.desc}
-                </AccordionContent>
-              </AccordionItem>
-            ) : (
-              <AccordionItem
-                key={idx}
-                value={`item-${idx + 1}`}
-                className={
-                  services.length - 1 === idx
-                    ? "rounded-b-4xl border-none p-4 pl-16"
-                    : "border-none p-4 pl-16"
-                }
-                style={{
-                  backgroundImage: `${service.imageUrl}`,
-                  backgroundPosition: `${service.imagePosition}`,
-                }}
-              >
-                <AccordionTrigger className="flex h-[200px] items-center justify-between text-5xl text-white text-shadow-2xs">
-                  {service.title}
-                </AccordionTrigger>
-                <AccordionContent className="text-xl text-white">
-                  {service.desc}
-                </AccordionContent>
-              </AccordionItem>
-            )}
+            <AccordionItem
+              value={`item-${idx + 1}`}
+              className={`${idx === 0 ? "rounded-t-4xl" : ""} ${idx === services.length - 1 ? "rounded-b-4xl" : ""} w-full border-none p-4 pl-16`}
+              style={{
+                backgroundImage: `${service.imageUrl}`,
+                backgroundPosition: `${service.imagePosition}`,
+              }}
+            >
+              <AccordionTrigger className="flex h-[200px] items-center justify-between text-5xl text-white text-shadow-2xs">
+                {service.title}
+                <ChevronDownIcon
+                  className="pointer-events-none shrink-0 translate-y-0.5 rounded-full bg-white p-1 text-black transition-transform duration-200"
+                  size={40}
+                />
+              </AccordionTrigger>
+              <AccordionContent className="text-xl text-white">
+                {service.desc}
+              </AccordionContent>
+            </AccordionItem>
           </div>
         ))}
       </Accordion>
