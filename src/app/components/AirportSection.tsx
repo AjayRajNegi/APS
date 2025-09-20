@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { ArrowDownRight } from "lucide-react";
+import Link from "next/link";
 
 const Country = ["Canada", "India", "UAE", "USA"];
 const airport = [
@@ -10,30 +11,35 @@ const airport = [
     title: "Indira Gandhi International Airport",
     location: "Delhi",
     imageUrl: "/mainImage.png",
+    slug: "1",
   },
   {
     id: 2,
     title: "Chhatrapati Shivaji Maharaj Airport",
     location: "Mumbai",
     imageUrl: "/mainImage.png",
+    slug: "2",
   },
   {
     id: 3,
     title: "Rajiv Gandhi International Airport",
     location: "Hyderabad",
     imageUrl: "/mainImage.png",
+    slug: "3",
   },
   {
     id: 4,
     title: "Cochin International Airport",
     location: "Cochin",
     imageUrl: "/mainImage.png",
+    slug: "4",
   },
   {
     id: 5,
     title: "Chennai International Airport",
     location: "Chennai",
     imageUrl: "/mainImage.png",
+    slug: "5",
   },
 ];
 
@@ -60,7 +66,8 @@ export function AirportSection() {
       <div className="mt-[50px] grid h-[400px] grid-cols-4 grid-rows-2 gap-4">
         {airport.map((airport, idx) =>
           idx === 0 ? (
-            <div
+            <Link
+              href={`/airports/${airport.slug}`}
               key={airport.id}
               className="bg-aps-100 col-span-2 row-span-2 flex items-end justify-between rounded-2xl p-4"
               style={{ backgroundImage: `url('${airport.imageUrl}')` }}
@@ -75,9 +82,10 @@ export function AirportSection() {
                 className="bg-aps-secondary-300 -z-0 -rotate-90 rounded-full p-1 text-white"
                 size={40}
               />
-            </div>
+            </Link>
           ) : (
-            <div
+            <Link
+              href={`/airports/${airport.slug}`}
               key={airport.id}
               className="bg-aps-100 col-span-1 flex items-end justify-between rounded-2xl p-4"
               style={{ backgroundImage: `url('${airport.imageUrl}')` }}
@@ -94,7 +102,7 @@ export function AirportSection() {
                 className="bg-aps-secondary-300 -z-0 -rotate-90 rounded-full p-1 text-white"
                 size={30}
               />
-            </div>
+            </Link>
           ),
         )}
       </div>
