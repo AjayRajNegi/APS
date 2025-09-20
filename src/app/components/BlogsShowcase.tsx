@@ -54,7 +54,7 @@ const blogs = [
   },
 ];
 
-export function BlogsShowcase() {
+export function BlogsShowcase({ href }: { href: string }) {
   const [cat, setCat] = useState<string>("Articles");
   return (
     <section className="mx-8">
@@ -106,7 +106,7 @@ export function BlogsShowcase() {
               </h4>
               <p className="line-clamp-3 text-black/60">{blog.description}</p>
               <Link
-                href={`blog/${blog.slug}`}
+                href={`${href}${blog.slug}`}
                 className="text-aps-secondary-400 mt-3 mb-1 flex items-center gap-1 text-lg font-semibold text-shadow-2xs"
               >
                 Learn More <ArrowRight size={20} />

@@ -17,7 +17,7 @@ export default function BlogPage() {
           honest advice to navigate our ecosystem.
         </p>
       </article>
-      <BlogsShowcase />
+      <BlogsShowcase href="blog/" />
     </>
   );
 }
