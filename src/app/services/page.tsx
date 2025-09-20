@@ -1,8 +1,6 @@
-import Link from "next/link";
 import { FAQ } from "../components/FAQ";
-import { ArrowDownRight } from "lucide-react";
 import { FullWidthComponent } from "../components/FullWidthComponent";
-import { Collapsible } from "../components/Collapsible";
+
 import { Cursor1 } from "../components/Cursor1";
 
 export default function ServicesPage() {

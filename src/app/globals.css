@@ -31,6 +31,7 @@
   --font-poppins: "Poppins", sans-serif;
 
   --animate-bounce-x: bounce-x 1s infinite;
+  --animate-bounce-y: bounce-y 1s infinite;
 
   @keyframes bounce-x {
     0%,
@@ -40,6 +41,17 @@
     }
     50% {
       transform: translate(-25%);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+  @keyframes bounce-y {
+    0%,
+    100% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(30%);
       animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
     }
   }

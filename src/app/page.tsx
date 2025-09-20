@@ -65,8 +65,8 @@ export default function Home() {
           backgroundSize: "cover",
         }}
       >
-        <div className="flex w-full justify-between p-4">
-          <div className="flex w-1/5 flex-col justify-end">
+        <div className="flex w-full flex-col justify-between p-4 md:flex-row">
+          <div className="flex flex-col justify-end pb-5 md:w-1/5 md:pb-0">
             <p className="leading-tight text-white">
               Find and book the best flights quickly. Compare prices, select
               your airline, and book with confidence-all in one place.
@@ -93,13 +93,13 @@ export default function Home() {
       <article className="mt-[90px]">
         {/* Section 1 */}
         <div className="flex flex-col items-center">
-          <p className="w-fit rounded-full border-[1px] border-gray-300 bg-gray-100 px-2 py-1 text-sm">
+          <p className="w-fit rounded-full border-[1px] border-gray-300 bg-gray-100 px-2 py-1 text-xs md:text-sm">
             Cheap Flights of APS
           </p>
-          <h1 className="mt-[30px] w-[55%] max-w-[1000px] text-center text-4xl font-semibold">
+          <h1 className="mt-[30px] w-[85%] max-w-[1000px] text-center text-3xl font-semibold md:w-[55%] md:text-4xl">
             APS makes finding and booking cheap, premium porters simple and
             fast. We offer great{" "}
-            <span className="bg-aps-600 inline-block -rotate-6 rounded-full px-3 py-1 text-2xl">
+            <span className="bg-aps-600 inline-block -rotate-6 rounded-full px-3 py-1 text-xl md:text-2xl">
               Discounts
             </span>{" "}
             on
@@ -110,12 +110,12 @@ export default function Home() {
           </h1>
         </div>
         {/* Section 2 */}
-        <div className="mt-[60px] flex justify-between">
-          <p className="text-6xl font-[500]">
+        <div className="mt-[60px] flex flex-col justify-between md:flex-row">
+          <p className="text-5xl font-[500] md:text-6xl">
             Your primary flight deals <br /> begin to feel left out.
           </p>
-          <div>
-            <div className="mt-4 mb-[10px] flex w-fit items-center">
+          <div className="mt-5 flex flex-col-reverse md:mt-0 md:flex-row">
+            <div className="mt-2 mb-[10px] flex w-fit items-center md:mt-4">
               <Link
                 href="/"
                 className="bg-aps-secondary-300 rounded-full px-3 py-2 text-white shadow-2xl"
@@ -124,7 +124,7 @@ export default function Home() {
               </Link>
 
               <ArrowDownRight
-                className="bg-aps-secondary-300 -z-0 -rotate-90 rounded-full p-1 text-white"
+                className="bg-aps-secondary-300 animate-bounce-y -z-0 -rotate-90 rounded-full p-1 text-white"
                 size={30}
               />
             </div>
@@ -135,8 +135,8 @@ export default function Home() {
           </div>
         </div>
         {/* Section 3 */}
-        <div className="mt-[50px] grid grid-cols-4 gap-[10px] tracking-tight">
-          <div className="relative col-span-2 h-[400px] overflow-hidden rounded-4xl bg-white [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)]">
+        <div className="mt-[20px] grid grid-cols-1 gap-[10px] tracking-tight md:mt-[50px] md:grid-cols-4">
+          <div className="relative order-2 col-span-1 h-[400px] overflow-hidden rounded-4xl bg-white [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)] md:order-3 md:col-span-2">
             <Image src="/mainImage.png" alt="1" fill />
             <div className="absolute top-[11%] left-[2%] flex -translate-y-1/2 gap-2 rounded-full bg-white px-4 py-2">
               <div className="h-10 w-10 rounded-full bg-gray-300"></div>
@@ -147,10 +147,10 @@ export default function Home() {
               <div className="h-10 w-10 rounded-full bg-gray-300"></div>
             </div>
           </div>
-          <div className="bg-aps-200 relative col-span-1 h-[400px] overflow-hidden rounded-4xl [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)]">
+          <div className="relative order-1 col-span-1 h-[400px] overflow-hidden rounded-4xl [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)] md:order-2">
             <Image src="/mainImage.png" alt="1" fill objectFit="cover" />
           </div>
-          <div className="bg-aps-300 relative col-span-1 h-[400px] overflow-hidden rounded-4xl [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)]">
+          <div className="relative order-3 col-span-1 h-[400px] overflow-hidden rounded-4xl [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)]">
             <Image src="/mainImage.png" alt="1" fill objectFit="cover" />
           </div>
         </div>
@@ -158,7 +158,7 @@ export default function Home() {
 
       {/* Blogs Section */}
       <article className="mt-[80px]">
-        <h1 className="mx-auto mb-[50px] w-fit text-center text-6xl font-semibold tracking-tight text-shadow-xs">
+        <h1 className="mx-auto mb-[50px] w-fit px-4 text-center text-4xl font-semibold tracking-tight text-shadow-xs md:text-6xl">
           Our tour package guarantees a <br /> smooth and unforgettable
           adventure.
         </h1>
@@ -170,18 +170,17 @@ export default function Home() {
 
       {/* Airport Section */}
       <article className="mt-[80px]">
-        <h1 className="mx-auto mb-[50px] w-fit text-center text-6xl font-semibold tracking-tight text-shadow-xs">
+        <h1 className="mx-auto mb-[40px] w-fit text-center text-6xl font-bold tracking-tight text-shadow-xs">
           Top Airports.
         </h1>
-
         <AirportSection />
       </article>
       {/* All Airports Section */}
       <article className="mb-[50px] flex gap-4 rounded-4xl p-8 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
-        <div className="bg-aps-300 flex w-[20%] items-center rounded-4xl border-[1px] border-black p-4 text-4xl font-semibold text-white shadow-[5px_5px_0px_0px_rgba(1,1,1)] transition-shadow duration-300 hover:shadow-none">
+        <div className="bg-aps-300 hidden w-[20%] items-center rounded-4xl border-[1px] border-black p-4 text-4xl font-semibold text-white shadow-[5px_5px_0px_0px_rgba(1,1,1)] transition-shadow duration-300 hover:shadow-none">
           AIRPORT PORTER SERVICES AVAILABLE IN:
         </div>
-        <div className="grid w-[80%] grid-cols-3 gap-4 text-sm">
+        <div className="mx-auto flex w-[100%] flex-wrap gap-4 text-sm lg:grid lg:grid-cols-4">
           <div>
             {airports1.map((airport, index) => (
               <div

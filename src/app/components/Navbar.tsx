@@ -23,7 +23,7 @@ export default function Navbar() {
           className=""
         />
       </Link>
-      <div className="flex gap-4 text-lg text-white text-shadow-xs">
+      <div className="hidden gap-4 text-lg text-white text-shadow-xs md:flex">
         {navLinks.map((link) => (
           <Link href={link.href} key={link.title}>
             {link.title}
@@ -31,7 +31,9 @@ export default function Navbar() {
         ))}
       </div>
       <div className="rounded-full bg-white p-2 px-3 text-lg text-black shadow-2xl transition-transform duration-300 text-shadow-xs hover:scale-105">
-        <Link href="/managebookings">Manage Bookings</Link>
+        <Link href="/managebookings " className="hidden md:flex">
+          Manage Bookings
+        </Link>
       </div>
     </nav>
   );

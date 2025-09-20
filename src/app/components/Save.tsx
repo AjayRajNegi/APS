@@ -30,20 +30,38 @@ export function Save() {
         </div>
       </article>
       <article className="grid w-[50%] grid-cols-2 gap-3">
-        <div className="col-span-1 flex h-[300px] flex-col justify-center gap-2 rounded-4xl bg-stone-200 p-5">
+        <div
+          className="col-span-1 flex h-[300px] flex-col justify-center gap-2 rounded-4xl bg-stone-200 p-5"
+          style={{
+            boxShadow:
+              "0 10px 30px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), inset 0 -2px 5px 0 rgba(0, 0, 0, 0.1)",
+          }}
+        >
           <CalendarHeart size={60} className="text-aps-400" />
           <p className="text-xl font-semibold text-shadow-2xs">
             Book your service now for <br /> hassle-free travelling
           </p>
         </div>
-        <div className="col-span-1 flex h-[300px] flex-col justify-center gap-2 rounded-4xl bg-stone-200 p-5">
+        <div
+          className="col-span-1 flex h-[300px] flex-col justify-center gap-2 rounded-4xl bg-stone-200 p-5"
+          style={{
+            boxShadow:
+              "0 10px 30px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), inset 0 -2px 5px 0 rgba(0, 0, 0, 0.1)",
+          }}
+        >
           <Plane size={60} className="text-aps-400" />
           <p className="mt-4 text-xl font-semibold text-shadow-2xs">
             15k+ successful services.
           </p>
           <p className="text-black/60">Happy customers throughout the world.</p>
         </div>
-        <div className="bg-aps-200 col-span-2 flex h-[200px] items-center justify-center gap-[30%] rounded-4xl">
+        <div
+          className="bg-aps-200 col-span-2 flex h-[200px] items-center justify-center gap-[30%] rounded-4xl"
+          style={{
+            boxShadow:
+              "0 10px 30px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), inset 0 -2px 5px 0 rgba(0, 0, 0, 0.1)",
+          }}
+        >
           <p className="text-2xl font-semibold">
             Trusted <span className="font-extrabold">24/7</span>{" "}
             <span className="text-gray-300">

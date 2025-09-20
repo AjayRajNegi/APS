@@ -9,25 +9,25 @@ import { ChevronDownIcon } from "lucide-react";
 const services = [
   {
     title: "TROLLEY",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, obcaecati? Maiores totam porro facere, quam explicabo recusandae vero? Enim, aspernatur accusamus expedita laborum quam sapiente dolore fuga labore rerum debitis.",
-    imageUrl: `url('/mainImage.png')`,
-    imagePosition: "top",
-  },
-  {
-    title: "MEET & ASSIST",
-    desc: "First Desc",
-    imageUrl: `url('/mainImage.png')`,
-    imagePosition: "center",
-  },
-  {
-    title: "LUGGAGE",
-    desc: "First Desc",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, obcaecati? Maiores totam porro facere, quam explicabo recusandae vero? Enim, aspernatur accusamus expedita laborum quam sapiente dolore fuga labore rerum debitis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores fuga necessitatibus maxime quod consectetur rem, officia quas harum dignissimos, ut ducimus cumque quos nesciunt consequuntur cupiditate nemo minus itaque soluta?",
     imageUrl: `url('/mainImage.png')`,
     imagePosition: "bottom",
   },
   {
+    title: "MEET & ASSIST",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, obcaecati? Maiores totam porro facere, quam explicabo recusandae vero? Enim, aspernatur accusamus expedita laborum quam sapiente dolore fuga labore rerum debitis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores fuga necessitatibus maxime quod consectetur rem, officia quas harum dignissimos, ut ducimus cumque quos nesciunt consequuntur cupiditate nemo minus itaque soluta?",
+    imageUrl: `url('/mainImage.png')`,
+    imagePosition: "top",
+  },
+  {
+    title: "LUGGAGE",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, obcaecati? Maiores totam porro facere, quam explicabo recusandae vero? Enim, aspernatur accusamus expedita laborum quam sapiente dolore fuga labore rerum debitis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores fuga necessitatibus maxime quod consectetur rem, officia quas harum dignissimos, ut ducimus cumque quos nesciunt consequuntur cupiditate nemo minus itaque soluta?",
+    imageUrl: `url('/mainImage.png')`,
+    imagePosition: "center",
+  },
+  {
     title: "LAUNGE",
-    desc: "First Desc",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, obcaecati? Maiores totam porro facere, quam explicabo recusandae vero? Enim, aspernatur accusamus expedita laborum quam sapiente dolore fuga labore rerum debitis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores fuga necessitatibus maxime quod consectetur rem, officia quas harum dignissimos, ut ducimus cumque quos nesciunt consequuntur cupiditate nemo minus itaque soluta?",
     imageUrl: `url('/mainImage.png')`,
     imagePosition: "top",
   },

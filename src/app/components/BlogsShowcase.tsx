@@ -57,21 +57,21 @@ const blogs = [
 export function BlogsShowcase({ href }: { href: string }) {
   const [cat, setCat] = useState<string>("Articles");
   return (
-    <section className="mx-8">
+    <section className="md:mx-8">
       {/* Category */}
       <article>
-        <h2 className="text-4xl font-semibold">{cat}</h2>
-        <p className="my-2.5 w-1/2 text-black/60">
+        <h2 className="text-3xl font-semibold md:text-4xl">{cat}</h2>
+        <p className="my-2.5 w-[90%] text-black/60 md:w-1/2">
           Find or list tools that will help designers build to last. Simplify
           design with our comprehensive and carefully vetted library from the
           start.
         </p>
-        <div className="flex justify-start gap-5">
+        <div className="flex justify-between gap-0 md:justify-start md:gap-5">
           {Category.map((category) => (
             <p
               key={category}
               className={cn(
-                "w-fit cursor-pointer rounded-lg px-3 py-2 text-base",
+                "w-fit cursor-pointer rounded-lg px-3 py-2 text-sm md:text-base",
                 `${cat === category ? "bg-aps-secondary-300 text-white" : "bg-gray-100"}`,
               )}
               onClick={() => setCat(category)}
@@ -82,7 +82,7 @@ export function BlogsShowcase({ href }: { href: string }) {
         </div>
       </article>
       <article className="scrollbar-hide mx-auto my-[30px] w-full max-w-[1400px] overflow-x-auto">
-        <div className="scrollbar-hide flex gap-6 px-4 pb-4">
+        <div className="scrollbar-hide flex gap-6 px-4 py-4">
           {blogs.map((blog, idx) => (
             <div
               className="h-[450px] w-[90%] flex-shrink-0 rounded-2xl p-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)] md:w-[45%] lg:w-[42%] xl:w-[32%]"

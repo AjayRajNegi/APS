@@ -48,7 +48,7 @@ export function AirportSection() {
   return (
     <div className="mb-[100px]">
       {/* Country Section */}
-      <div className="flex justify-center gap-5">
+      <div className="flex justify-center gap-4 md:gap-5">
         {Country.map((Country) => (
           <p
             key={Country}
@@ -62,15 +62,17 @@ export function AirportSection() {
           </p>
         ))}
       </div>
-      {/* Blogs Section */}
-      <div className="mt-[50px] grid h-[400px] grid-cols-4 grid-rows-2 gap-4">
+      {/* Airport Section */}
+      <div className="mt-[20px] grid h-[600px] grid-cols-4 grid-rows-4 gap-1 md:mt-[50px] md:h-[400px] md:grid-rows-2 md:gap-4">
         {airport.map((airport, idx) =>
           idx === 0 ? (
             <Link
               href={`/airports/${airport.slug}`}
               key={airport.id}
-              className="bg-aps-100 col-span-2 row-span-2 flex items-end justify-between rounded-2xl p-4"
-              style={{ backgroundImage: `url('${airport.imageUrl}')` }}
+              className="bg-aps-100 col-span-4 row-span-3 flex items-end justify-between rounded-2xl p-4 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] md:col-span-2 md:row-span-2"
+              style={{
+                backgroundImage: `url('${airport.imageUrl}')`,
+              }}
             >
               <div>
                 <p className="text-4xl font-bold text-white">
@@ -87,20 +89,22 @@ export function AirportSection() {
             <Link
               href={`/airports/${airport.slug}`}
               key={airport.id}
-              className="bg-aps-100 col-span-1 flex items-end justify-between rounded-2xl p-4"
-              style={{ backgroundImage: `url('${airport.imageUrl}')` }}
+              className="bg-aps-100 col-span-2 row-span-1 flex items-end justify-between rounded-2xl p-2 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] md:col-span-1 md:row-span-1 md:p-4"
+              style={{
+                backgroundImage: `url('${airport.imageUrl}')`,
+              }}
             >
               <div>
-                <p className="text-2xl font-bold text-white">
+                <p className="text-lg font-bold text-white md:text-2xl">
                   {airport.location}
                 </p>
-                <p className="text-sm font-bold text-gray-300">
+                <p className="w-[80%] text-xs font-bold text-gray-300 md:text-lg">
                   {airport.title}
                 </p>
               </div>
               <ArrowDownRight
                 className="bg-aps-secondary-300 -z-0 -rotate-90 rounded-full p-1 text-white"
-                size={30}
+                size={25}
               />
             </Link>
           ),
