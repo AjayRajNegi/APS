@@ -81,8 +81,43 @@ export function BlogsShowcase({ href }: { href: string }) {
           ))}
         </div>
       </article>
+      <article className="scrollbar-hide mx-auto my-[30px] w-full max-w-[1400px] overflow-x-auto">
+        <div className="scrollbar-hide flex gap-6 px-4 pb-4">
+          {blogs.map((blog, idx) => (
+            <div
+              className="h-[450px] w-[90%] flex-shrink-0 rounded-2xl p-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)] md:w-[45%] lg:w-[42%] xl:w-[32%]"
+              key={idx}
+            >
+              <div className="relative h-1/2 w-full overflow-hidden rounded-2xl">
+                <Image src={blog.imageUrl} objectFit="cover" alt="asda" fill />
+              </div>
+              <div className="py-4">
+                <p>
+                  <span className="text-aps-secondary-400 border-r-2 border-gray-300 pr-1.5 text-sm">
+                    {blog.category}
+                  </span>
+                  <span className="pl-1.5 text-sm text-black/80">
+                    Sep 20, 2025
+                  </span>
+                </p>
 
-      <article className="mx-auto my-[30px] flex w-full max-w-[1400px] flex-wrap justify-between gap-6">
+                <h4 className="my-2 text-lg leading-6 font-semibold">
+                  {blog.title}
+                </h4>
+                <p className="line-clamp-3 text-black/60">{blog.description}</p>
+                <Link
+                  href={`${href}${blog.slug}`}
+                  className="text-aps-secondary-400 mt-3 mb-1 flex items-center gap-1 text-lg font-semibold text-shadow-2xs"
+                >
+                  Learn More <ArrowRight size={20} />
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </article>
+
+      {/* <article className="mx-auto my-[30px] flex w-full max-w-[1400px] flex-wrap justify-between gap-6">
         {blogs.map((blog, idx) => (
           <div
             className="mx-auto h-[450px] w-[90%] rounded-2xl p-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)] md:w-[45%] lg:w-[42%] xl:w-[32%]"
@@ -114,7 +149,7 @@ export function BlogsShowcase({ href }: { href: string }) {
             </div>
           </div>
         ))}
-      </article>
+      </article> */}
     </section>
   );
 }

@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { TicketForm } from "./components/TicketForm";
-import { BlogsSection } from "./components/BlogsSection";
 import { AirportSection } from "./components/AirportSection";
+import { BlogsShowcase } from "./components/BlogsShowcase";
 const airports1: string[] = [
   "Indira Gandhi International Airport (DEL)",
   "Chhatrapati Shivaji Maharaj International Airport (BOM)",
@@ -163,7 +163,8 @@ export default function Home() {
           adventure.
         </h1>
         <div>
-          <BlogsSection />
+          {/* <BlogsSection /> */}
+          <BlogsShowcase href="blog/" />
         </div>
       </article>
 
