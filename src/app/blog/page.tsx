@@ -9,7 +9,7 @@ export default function BlogPage() {
         <p className="flex w-fit items-center gap-0.5 rounded-lg border-[1px] border-gray-300 bg-gray-100 px-2 py-1 text-sm">
           <NotepadText size={15} /> Blog
         </p>
-        <h1 className="my-[30px] text-6xl font-semibold tracking-tight">
+        <h1 className="my-[30px] text-center text-6xl font-semibold tracking-tight">
           Insight and Updates
         </h1>
         <p className="text-center text-black/60">
