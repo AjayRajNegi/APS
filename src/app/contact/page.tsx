@@ -1,37 +1,54 @@
 import { MoveRight } from "lucide-react";
+import { TextEffect } from "../components/TextEffect";
 
 export default function Contact() {
   return (
-    <section className="my-[50px] flex px-[150px]">
+    <section className="mx-auto my-8 flex max-w-7xl flex-col-reverse gap-12 px-6 md:flex-row md:gap-16 lg:px-12">
       {/* Left */}
-      <article className="flex w-1/2 flex-col items-start">
-        <h1 className="text-sha text-8xl font-bold tracking-tighter">
+      <article className="flex w-full flex-col items-start md:w-1/2">
+        <h1 className="text-5xl font-bold tracking-tighter lg:text-7xl">
           Let&apos;s get <br /> in touch
         </h1>
-        <p className="my-[50px] text-2xl font-semibold tracking-tighter">
+
+        <p className="my-8 text-lg font-semibold tracking-tight sm:my-12 sm:text-xl lg:text-2xl">
           Don&apos;t be afraid to <br /> say hello with us!
         </p>
-        <p className="text-sm text-gray-400">Phone</p>
-        <p className="font-semibold">+91 9824688721</p>
-        <p className="mt-[30px] text-sm text-gray-400">Email</p>
-        <p className="font-semibold">hello@aps.com</p>
-        <p className="mt-[30px] text-sm text-gray-400">Office</p>
-        <p className="font-semibold">Elite Estates</p>
-        <p className="flex items-center gap-1 font-semibold underline">
-          See on Google Map <MoveRight className="-rotate-45" size={20} />
-        </p>
-      </article>
-      {/* Right */}
-      <article className="flex w-1/2 flex-col justify-between text-white">
-        <div className="ml-auto w-1/2 text-justify text-black">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-          autem corporis quo illo aperiam consequuntur eveniet ipsam, .
+
+        <div className="space-y-6 text-base sm:text-lg">
+          <div>
+            <p className="text-sm text-gray-400">Phone</p>
+            <p className="font-semibold">+91 9824688721</p>
+          </div>
+
+          <div>
+            <p className="text-sm text-gray-400">Email</p>
+            <p className="font-semibold">hello@aps.com</p>
+          </div>
+
+          <div>
+            <p className="text-sm text-gray-400">Office</p>
+            <p className="font-semibold">Elite Estates</p>
+            <p className="flex items-center gap-1 font-semibold underline">
+              See on Google Map <MoveRight className="-rotate-45" size={18} />
+            </p>
+          </div>
         </div>
-        <div className="mx-auto h-fit max-w-5xl rounded-4xl bg-[#141414] p-8 shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)]">
-          <h2 className="mb-8 text-2xl font-semibold">Contact</h2>
+      </article>
+
+      {/* Right */}
+      <article className="flex w-full flex-col md:w-1/2">
+        <div className="mb-8 text-sm text-gray-600 md:ml-auto md:w-3/4 lg:w-2/3">
+          <TextEffect>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
+            autem corporis quo illo aperiam consequuntur eveniet ipsam.
+          </TextEffect>
+        </div>
+
+        <div className="rounded-3xl bg-[#141414] p-6 text-white shadow-lg sm:p-8">
+          <h2 className="mb-6 text-xl font-semibold sm:text-2xl">Contact</h2>
 
           {/* Form */}
-          <form className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <form className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {/* Name */}
             <div className="flex flex-col">
               <label htmlFor="name" className="text-sm text-[#a3a3a3]">
@@ -40,7 +57,7 @@ export default function Contact() {
               <input
                 type="text"
                 id="name"
-                className="p border-b border-gray-500 bg-transparent focus:border-white focus:outline-none"
+                className="border-b border-gray-500 bg-transparent py-2 focus:border-white focus:outline-none"
               />
             </div>
 
@@ -52,7 +69,7 @@ export default function Contact() {
               <input
                 type="email"
                 id="email"
-                className="border-b border-gray-500 bg-transparent focus:border-white focus:outline-none"
+                className="border-b border-gray-500 bg-transparent py-2 focus:border-white focus:outline-none"
               />
             </div>
 
@@ -64,7 +81,7 @@ export default function Contact() {
               <input
                 type="tel"
                 id="phone"
-                className="border-b border-gray-500 bg-transparent focus:border-white focus:outline-none"
+                className="border-b border-gray-500 bg-transparent py-2 focus:border-white focus:outline-none"
               />
             </div>
 
@@ -76,22 +93,23 @@ export default function Contact() {
               <input
                 type="text"
                 id="subject"
-                className="border-b border-gray-500 bg-transparent focus:border-white focus:outline-none"
+                className="border-b border-gray-500 bg-transparent py-2 focus:border-white focus:outline-none"
               />
             </div>
 
-            <div className="flex flex-col md:col-span-2">
+            {/* Message */}
+            <div className="flex flex-col sm:col-span-2">
               <label htmlFor="message" className="text-sm text-[#a3a3a3]">
-                Tell us about your interested in
+                Tell us about your interest
               </label>
               <textarea
                 id="message"
-                rows={3}
+                rows={4}
                 className="resize-none border-b border-gray-500 bg-transparent py-2 focus:border-white focus:outline-none"
               />
             </div>
 
-            <div className="md:col-span-2">
+            <div className="sm:col-span-2">
               <button
                 type="submit"
                 className="w-full rounded-2xl bg-yellow-300 py-4 font-medium text-black transition hover:bg-yellow-400"
