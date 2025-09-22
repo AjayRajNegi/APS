@@ -9,8 +9,8 @@ export function TicketForm() {
 
   return (
     <div className="w-full max-w-5xl text-black">
-      <div className="flex flex-col gap-6 rounded-2xl bg-gray-100 p-6 shadow-xl">
-        <div className="flex gap-2">
+      <div className="flex flex-col gap-6 rounded-2xl bg-gray-100 p-4 shadow-xl md:p-6">
+        <div className="flex flex-wrap gap-2">
           {tabs.map((tab) => (
             <button
               key={tab}

@@ -4,6 +4,8 @@ import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { TicketForm } from "./components/TicketForm";
 import { AirportSection } from "./components/AirportSection";
 import { BlogsShowcase } from "./components/BlogsShowcase";
+import Pricing from "./components/Pricing";
+import { FullWidthComponent } from "./components/FullWidthComponent";
 const airports1: string[] = [
   "Indira Gandhi International Airport (DEL)",
   "Chhatrapati Shivaji Maharaj International Airport (BOM)",
@@ -59,14 +61,14 @@ export default function Home() {
     <div className="font-poppins">
       {/* Main Section */}
       <main
-        className="bg-aps-200 flex h-[85vh] w-full items-end rounded-4xl"
+        className="bg-aps-200 flex h-[calc(max(85vh,650px))] w-full items-end rounded-4xl"
         style={{
           backgroundImage: `url('/mainImage.png')`,
           backgroundSize: "cover",
         }}
       >
-        <div className="flex w-full flex-col justify-between p-4 md:flex-row">
-          <div className="flex flex-col justify-end pb-5 md:w-1/5 md:pb-0">
+        <div className="flex w-full flex-col justify-between p-4 lg:flex-row">
+          <div className="flex flex-col justify-end pb-5 lg:w-1/5 lg:pb-0">
             <p className="leading-tight text-white">
               Find and book the best flights quickly. Compare prices, select
               your airline, and book with confidence-all in one place.
@@ -90,7 +92,7 @@ export default function Home() {
       </main>
 
       {/* Flight Details */}
-      <article className="mt-[90px]">
+      <article className="mt-[100px]">
         {/* Section 1 */}
         <div className="flex flex-col items-center">
           <p className="w-fit rounded-full border-[1px] border-gray-300 bg-gray-100 px-2 py-1 text-xs md:text-sm">
@@ -110,11 +112,11 @@ export default function Home() {
           </h1>
         </div>
         {/* Section 2 */}
-        <div className="mt-[60px] flex flex-col justify-between md:flex-row">
+        {/* <div className="mt-[100px] flex flex-col justify-between md:flex-row">
           <p className="text-5xl font-[500] md:text-6xl">
             Your primary flight deals <br /> begin to feel left out.
           </p>
-          <div className="mt-5 flex flex-col-reverse md:mt-0 md:flex-row">
+          <div className="mt-5 flex flex-col-reverse md:mt-0 md:block">
             <div className="mt-2 mb-[10px] flex w-fit items-center md:mt-4">
               <Link
                 href="/"
@@ -133,10 +135,10 @@ export default function Home() {
               unbeatable prices.
             </p>
           </div>
-        </div>
+        </div> */}
         {/* Section 3 */}
-        <div className="mt-[20px] grid grid-cols-1 gap-[10px] tracking-tight md:mt-[50px] md:grid-cols-4">
-          <div className="relative order-2 col-span-1 h-[400px] overflow-hidden rounded-4xl bg-white [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)] md:order-3 md:col-span-2">
+        {/* <div className="mx-auto mt-[20px] grid grid-cols-1 gap-[10px] tracking-tight md:mt-[50px] lg:grid-cols-4">
+          <div className="relative order-2 col-span-1 h-[400px] max-w-[500px] overflow-hidden rounded-4xl bg-white [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)] md:order-3 md:col-span-2">
             <Image src="/mainImage.png" alt="1" fill />
             <div className="absolute top-[11%] left-[2%] flex -translate-y-1/2 gap-2 rounded-full bg-white px-4 py-2">
               <div className="h-10 w-10 rounded-full bg-gray-300"></div>
@@ -147,18 +149,21 @@ export default function Home() {
               <div className="h-10 w-10 rounded-full bg-gray-300"></div>
             </div>
           </div>
-          <div className="relative order-1 col-span-1 h-[400px] overflow-hidden rounded-4xl [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)] md:order-2">
+          <div className="relative order-1 col-span-1 h-[400px] max-w-[400px] overflow-hidden rounded-4xl [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)] md:order-2">
             <Image src="/mainImage.png" alt="1" fill objectFit="cover" />
           </div>
-          <div className="relative order-3 col-span-1 h-[400px] overflow-hidden rounded-4xl [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)]">
+          <div className="relative order-3 col-span-1 h-[400px] max-w-[400px] overflow-hidden rounded-4xl [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)]">
             <Image src="/mainImage.png" alt="1" fill objectFit="cover" />
           </div>
-        </div>
+        </div> */}
+        <FullWidthComponent>
+          <Pricing />
+        </FullWidthComponent>
       </article>
 
       {/* Blogs Section */}
-      <article className="mt-[80px]">
-        <h1 className="mx-auto mb-[50px] w-fit px-4 text-center text-4xl font-semibold tracking-tight text-shadow-xs md:text-6xl">
+      <article className="mt-[100px]">
+        <h1 className="mx-auto mb-[80px] w-fit px-4 text-center text-4xl font-semibold tracking-tight text-shadow-xs md:text-6xl">
           Our tour package guarantees a <br /> smooth and unforgettable
           adventure.
         </h1>
