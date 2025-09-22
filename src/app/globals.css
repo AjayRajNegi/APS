@@ -186,3 +186,31 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Navbar  */
+.underlineAnimationLinks {
+  display: block;
+  position: relative;
+  padding: 0.2em 0;
+  overflow: hidden;
+}
+
+.underlineAnimationLinks::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.1em;
+  background-color: white;
+  opacity: 1;
+  transform: translate3d(-100%, 0, 0);
+  transition:
+    opacity 300ms,
+    transform 300ms;
+}
+
+.underlineAnimationLinks:hover::after,
+.underlineAnimationLinks:focus::after {
+  transform: translate3d(0, 0, 0);
+}

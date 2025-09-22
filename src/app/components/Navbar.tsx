@@ -21,23 +21,29 @@ export default function Navbar() {
     setMenuOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    if (menuOpen) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   return (
     <nav className="fixed left-1/2 z-20 mx-auto mt-4 flex h-[70px] w-[95%] max-w-[1540px] -translate-x-1/2 items-center justify-between rounded-full bg-[#C1121F] px-4 shadow-2xl">
-      {/* Logo */}
       <Link
         href="/"
         className="rounded-full bg-white px-2 py-1 shadow-2xl transition-transform duration-300 hover:scale-105"
       >
-        <Image src="/apsLogo.png" height={60} width={100} alt="logo" />
+        <Image src="/apsLogo.png" height={60} width={120} alt="logo" />
       </Link>
 
-      {/* Desktop Nav */}
       <div className="hidden gap-6 text-lg text-white md:flex">
         {navLinks.map((link) => (
           <Link
             href={link.href}
             key={link.title}
-            className="underline-offset-4 hover:underline"
+            className="underlineAnimationLinks"
           >
             {link.title}
           </Link>
@@ -45,11 +51,10 @@ export default function Navbar() {
       </div>
 
       {/* Desktop Button */}
-      <div className="hidden rounded-full bg-white px-4 py-2 text-sm font-medium text-black shadow-2xl transition-transform duration-300 hover:scale-105 md:flex">
+      <div className="text-md hidden rounded-full bg-white px-4 py-2 font-medium text-black shadow-2xl transition-transform duration-300 hover:scale-105 md:flex">
         <Link href="/managebookings">Manage Bookings</Link>
       </div>
 
-      {/* Mobile Hamburger */}
       <button
         className="rounded-full bg-white p-2 shadow-2xl md:hidden"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -57,9 +62,9 @@ export default function Navbar() {
         {menuOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      {/* Mobile Menu */}
+      {/* Mobile Nav */}
       {menuOpen && (
-        <div className="absolute top-[80px] left-0 z-10 w-full rounded-2xl bg-[#C1121F] p-6 shadow-lg md:hidden">
+        <div className="absolute top-[75px] left-0 z-10 mb-10 h-[90vh] w-full rounded-2xl bg-[#C1121F] p-6 shadow-lg md:hidden">
           <ul className="flex flex-col gap-4 text-lg text-white">
             {navLinks.map((link) => (
               <li key={link.title}>
