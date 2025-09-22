@@ -30,7 +30,7 @@ export default function Navbar() {
   }, [menuOpen]);
 
   return (
-    <nav className="fixed left-1/2 z-20 mx-auto mt-4 flex h-[70px] w-[95%] max-w-[1540px] -translate-x-1/2 items-center justify-between rounded-full bg-[#C1121F] px-4 shadow-2xl">
+    <nav className="fixed left-1/2 z-20 mx-auto mt-1 flex h-[70px] w-[98%] max-w-[1540px] -translate-x-1/2 items-center justify-between rounded-full bg-[#C1121F] px-4 shadow-2xl md:mt-4 md:w-[95%]">
       <Link
         href="/"
         className="rounded-full bg-white px-2 py-1 shadow-2xl transition-transform duration-300 hover:scale-105"

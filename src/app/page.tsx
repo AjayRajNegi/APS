@@ -5,6 +5,7 @@ import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { BlogsShowcase } from "./components/BlogsShowcase";
 import { AirportSection } from "./components/AirportSection";
 import { FullWidthComponent } from "./components/FullWidthComponent";
+import { CarRental } from "./components/CarRental";
 
 const airports1: string[] = [
   "Indira Gandhi International Airport (DEL)",
@@ -91,32 +92,37 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Flight Details */}
-      <article className="mt-[100px]">
-        {/* Section 1 */}
-        <div className="flex flex-col items-center">
-          <p className="w-fit rounded-full border-[1px] border-gray-300 bg-gray-100 px-2 py-1 text-xs md:text-sm">
-            Cheap Flights of APS
-          </p>
-          <h1 className="mt-[30px] w-[85%] max-w-[1000px] text-center text-3xl font-semibold md:w-[55%] md:text-4xl">
-            APS makes finding and booking cheap, premium porters simple and
-            fast. We offer great{" "}
-            <span className="bg-aps-600 inline-block -rotate-6 rounded-full px-3 py-1 text-xl md:text-2xl">
-              Discounts
-            </span>{" "}
-            on
-            <span className="text-aps-400">
-              {" "}
-              one-way, return, International, and multi-city trips.
-            </span>
-          </h1>
-        </div>
-        {/* Section 2 */}
+      {/* Pricing Section */}
+      <FullWidthComponent>
+        <article className="mt-[100px]">
+          {/* Section 1 */}
+          <div className="flex flex-col items-center">
+            <p className="w-fit rounded-full border-[1px] border-gray-300 bg-gray-100 px-2 py-1 text-xs md:text-sm">
+              Cheap Flights of APS
+            </p>
+            <h1 className="mt-[30px] w-[85%] max-w-[1000px] text-center text-3xl font-semibold md:w-[55%] md:text-4xl">
+              APS makes finding and booking cheap, premium porters simple and
+              fast. We offer great{" "}
+              <span className="bg-aps-600 inline-block -rotate-6 rounded-full px-3 py-1 text-xl md:text-2xl">
+                Discounts
+              </span>{" "}
+              on
+              <span className="text-aps-400">
+                {" "}
+                one-way, return, International, and multi-city trips.
+              </span>
+            </h1>
+          </div>
+          {/* Section 2 */}
 
-        <FullWidthComponent>
-          <Pricing />
-        </FullWidthComponent>
-      </article>
+          <FullWidthComponent>
+            <Pricing />
+          </FullWidthComponent>
+        </article>
+      </FullWidthComponent>
+
+      {/* Car Rental Section */}
+      <CarRental />
 
       {/* Blogs Section */}
       <article className="mt-[100px]">
