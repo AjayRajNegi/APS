@@ -63,7 +63,7 @@ export function AirportSection() {
         ))}
       </div>
       {/* Airport Section */}
-      <div className="mt-[20px] grid h-[600px] grid-cols-4 grid-rows-4 gap-1 md:mt-[50px] md:h-[400px] md:grid-rows-2 md:gap-4">
+      <div className="mt-[20px] grid h-[600px] grid-cols-4 grid-rows-4 gap-1 md:mt-[50px] md:h-[400px] md:grid-rows-2 md:gap-2 lg:gap-4">
         {airport.map((airport, idx) =>
           idx === 0 ? (
             <Link
@@ -89,16 +89,16 @@ export function AirportSection() {
             <Link
               href={`/airports/${airport.slug}`}
               key={airport.id}
-              className="bg-aps-100 col-span-2 row-span-1 flex items-end justify-between rounded-2xl p-2 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] md:col-span-1 md:row-span-1 md:p-4"
+              className="bg-aps-100 col-span-2 row-span-1 flex items-end justify-between rounded-2xl p-2 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] md:col-span-1 md:row-span-1 lg:p-4"
               style={{
                 backgroundImage: `url('${airport.imageUrl}')`,
               }}
             >
               <div>
-                <p className="text-lg font-bold text-white md:text-2xl">
+                <p className="text-lg font-bold text-white lg:text-2xl">
                   {airport.location}
                 </p>
-                <p className="w-[80%] text-xs font-bold text-gray-300 md:text-lg">
+                <p className="w-[80%] text-xs font-bold text-gray-300 lg:text-lg">
                   {airport.title}
                 </p>
               </div>

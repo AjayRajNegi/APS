@@ -112,50 +112,7 @@ export default function Home() {
           </h1>
         </div>
         {/* Section 2 */}
-        {/* <div className="mt-[100px] flex flex-col justify-between md:flex-row">
-          <p className="text-5xl font-[500] md:text-6xl">
-            Your primary flight deals <br /> begin to feel left out.
-          </p>
-          <div className="mt-5 flex flex-col-reverse md:mt-0 md:block">
-            <div className="mt-2 mb-[10px] flex w-fit items-center md:mt-4">
-              <Link
-                href="/"
-                className="bg-aps-secondary-300 rounded-full px-3 py-2 text-white shadow-2xl"
-              >
-                Booking Now
-              </Link>
 
-              <ArrowDownRight
-                className="bg-aps-secondary-300 animate-bounce-y -z-0 -rotate-90 rounded-full p-1 text-white"
-                size={30}
-              />
-            </div>
-            <p className="w-fit">
-              FInd the best porter deals and travel <br /> experiences at
-              unbeatable prices.
-            </p>
-          </div>
-        </div> */}
-        {/* Section 3 */}
-        {/* <div className="mx-auto mt-[20px] grid grid-cols-1 gap-[10px] tracking-tight md:mt-[50px] lg:grid-cols-4">
-          <div className="relative order-2 col-span-1 h-[400px] max-w-[500px] overflow-hidden rounded-4xl bg-white [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)] md:order-3 md:col-span-2">
-            <Image src="/mainImage.png" alt="1" fill />
-            <div className="absolute top-[11%] left-[2%] flex -translate-y-1/2 gap-2 rounded-full bg-white px-4 py-2">
-              <div className="h-10 w-10 rounded-full bg-gray-300"></div>
-              <ArrowDownRight
-                className="bg-aps-secondary-300 -z-0 -rotate-90 rounded-full p-1 text-white"
-                size={40}
-              />
-              <div className="h-10 w-10 rounded-full bg-gray-300"></div>
-            </div>
-          </div>
-          <div className="relative order-1 col-span-1 h-[400px] max-w-[400px] overflow-hidden rounded-4xl [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)] md:order-2">
-            <Image src="/mainImage.png" alt="1" fill objectFit="cover" />
-          </div>
-          <div className="relative order-3 col-span-1 h-[400px] max-w-[400px] overflow-hidden rounded-4xl [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)]">
-            <Image src="/mainImage.png" alt="1" fill objectFit="cover" />
-          </div>
-        </div> */}
         <FullWidthComponent>
           <Pricing />
         </FullWidthComponent>

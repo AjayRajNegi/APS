@@ -56,7 +56,7 @@ export function Footer() {
           {/* Navigation */}
           <div>
             <p className="mb-4 font-semibold text-white">Navigation</p>
-            <ul className="flex justify-between space-y-2 text-sm text-[#a3a3a3] lg:block">
+            <ul className="flex justify-between space-y-2 text-sm text-[#a3a3a3] md:block">
               {navLinks.map((link) => (
                 <li key={link.title}>
                   <Link href={link.href} className="hover:text-white">
@@ -66,12 +66,11 @@ export function Footer() {
               ))}
             </ul>
           </div>
-
           {/* Contact & Company Info */}
           <div>
             <p className="mb-4 font-semibold text-white">Contact Us</p>
             <p className="text-sm text-[#a3a3a3]">+91 93472944830</p>
-            <p className="text-sm text-[#a3a3a3]">
+            <p className="text-sm break-words text-[#a3a3a3]">
               airportporterservice123@gmail.com
             </p>
 
