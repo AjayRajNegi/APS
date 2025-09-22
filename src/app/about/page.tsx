@@ -17,17 +17,21 @@ export default function About() {
             </p>
           </div>
         </article>
-        <article className="flex w-full gap-8">
-          <div className="relative h-[calc(100vh/1.15)] w-[70%] overflow-hidden rounded-4xl border-[1px] border-black transition-shadow duration-300 hover:shadow-[5px_5px_0px_0px_rgba(1,1,1)]">
+        <article className="flex w-full flex-col-reverse gap-4 lg:flex-row lg:gap-8">
+          <div className="relative h-[50vh] w-full overflow-hidden rounded-4xl border-[1px] border-black transition-shadow duration-300 hover:shadow-[5px_5px_0px_0px_rgba(1,1,1)] lg:h-[min(calc(100vh/1.15),700px)] lg:w-[70%]">
             <Image src="/mainImage.png" fill alt="asdaf" objectFit="cover" />
-            <div className="absolute bottom-[0] left-0 h-fit w-[45%] max-w-[500px] rounded-4xl bg-white p-4 text-justify">
-              <TextEffect per="char" preset="fade" className="text-justify">
+            <div className="absolute bottom-[0] left-0 h-fit w-[80%] rounded-4xl bg-white p-4 text-justify lg:w-[45%] lg:max-w-[500px]">
+              <TextEffect
+                per="char"
+                preset="fade"
+                className="text-justify text-sm lg:text-base"
+              >
                 The company operates at airports in Toronto, Vancouver,
                 Montreal, Calgary, Edmonton, Ottawa, Winnipeg, and Halifax,
                 ensuring a smooth beginning and end for travelers.
               </TextEffect>
 
-              <p className="mt-4 flex items-center gap-1 text-lg font-medium underline underline-offset-8">
+              <p className="mt-2 flex items-center gap-1 text-base font-medium underline underline-offset-8 lg:mt-4 lg:text-lg">
                 <span>All Airports</span>
                 <ArrowDownRight
                   className="animate-bounce-x -rotate-90"
@@ -36,7 +40,7 @@ export default function About() {
               </p>
             </div>
           </div>
-          <div className="flex h-[calc(100vh/1.15)] w-[30%] flex-col justify-between">
+          <div className="flex w-full flex-col justify-between lg:h-[min(calc(100vh/1.15),700px)] lg:w-[30%]">
             <TextEffect
               per="word"
               as="h3"
@@ -52,15 +56,15 @@ export default function About() {
               and airport safety standards training.
             </TextEffect>
 
-            <div className="bg-aps-200 mt-8 h-full w-full rounded-4xl transition-shadow duration-300 hover:shadow-[5px_5px_0px_0px_rgba(1,1,1)]"></div>
+            <div className="bg-aps-200 mt-8 hidden h-full w-full rounded-4xl transition-shadow duration-300 hover:shadow-[5px_5px_0px_0px_rgba(1,1,1)] lg:block"></div>
           </div>
         </article>
       </section>
 
       {/* Section 1 */}
       <section className="mt-[120px] flex">
-        <article className="w-[30%]">Our Story</article>
-        <article className="w-[70%]">
+        <article className="hidden w-[30%] md:block">Our Story</article>
+        <article className="w-[100%] md:w-[70%]">
           <div>
             <h1 className="text-6xl font-medium tracking-tight">
               From the Coastline to the <br /> World - Our Journey Begins

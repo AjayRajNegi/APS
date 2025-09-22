@@ -11,7 +11,7 @@ const navLinks = [
 
 export function Footer() {
   return (
-    <footer className="mx-auto mb-8 w-[95%] rounded-3xl bg-[#141414] p-8 text-white">
+    <footer className="mx-auto mb-8 w-[95%] max-w-[1540px] rounded-3xl bg-[#141414] p-8 text-white">
       {/* Top Heading */}
       <div className="text-center md:text-left">
         <h1 className="text-3xl leading-snug font-semibold md:text-5xl">

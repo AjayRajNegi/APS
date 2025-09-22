@@ -68,12 +68,12 @@ export function FAQ() {
     <section>
       {/* Section 1 */}
       <article>
-        <div className="mt-[0px] flex justify-between">
+        <div className="mt-[0px] flex flex-col justify-between md:flex-row">
           <p className="text-6xl font-[500]">
             Frequently <br /> Asked Questions
           </p>
-          <div>
-            <div className="mt-4 mb-[10px] flex w-fit items-center">
+          <div className="mt-4 flex flex-col-reverse md:mt-0 md:block">
+            <div className="mt-1 mb-[10px] flex w-fit items-center md:mt-4">
               <Link
                 href="/"
                 className="bg-aps-secondary-300 rounded-full px-3 py-2 text-white shadow-2xl"
@@ -82,7 +82,7 @@ export function FAQ() {
               </Link>
 
               <ArrowDownRight
-                className="bg-aps-secondary-300 -z-0 -rotate-90 rounded-full p-1 text-white"
+                className="bg-aps-secondary-300 animate-bounce-y -z-0 -rotate-90 rounded-full p-1 text-white"
                 size={30}
               />
             </div>
@@ -93,7 +93,7 @@ export function FAQ() {
         </div>
       </article>
       {/* Accordian */}
-      <article className="mx-auto my-[40px] w-[40%]">
+      <article className="mx-auto my-[40px] w-[85%] md:w-[70%] lg:w-[50%]">
         <Accordion
           type="single"
           collapsible

@@ -3,19 +3,23 @@ import Link from "next/link";
 
 export function Save() {
   return (
-    <section className="my-[80px] flex">
-      <article className="flex w-[50%] flex-col justify-center">
+    <section className="my-[80px] flex flex-col gap-10 lg:flex-row lg:gap-0">
+      <article className="flex w-full flex-col items-center justify-center text-center lg:w-[50%] lg:items-start lg:text-start">
         <p className="w-fit rounded-full border-[1px] border-gray-300 bg-gray-100 px-2 py-1 text-sm">
           Cheap Flights of APS
         </p>
-        <p className="mt-[40px] mb-[10px] text-6xl font-medium">
+        <p className="mt-[40px] mb-[10px] hidden text-6xl font-medium lg:block">
           Sign in, <br />
+          <span className="text-aps-400">save</span> money
+        </p>
+        <p className="mt-[40px] mb-[10px] text-6xl font-medium lg:hidden">
+          Sign in,
           <span className="text-aps-400">save</span> money
         </p>
         <p className="font-medium text-[#a3a3a3]">
           Save money along with best - <br /> flight experiences.
         </p>
-        <div className="mt-[40px] mb-[10px] flex w-fit items-center">
+        <div className="mt-[10px] mb-[10px] flex w-fit items-center lg:mt-[40px]">
           <Link
             href="/"
             className="bg-aps-secondary-300 rounded-full px-3 py-2 text-white shadow-2xl"
@@ -24,52 +28,38 @@ export function Save() {
           </Link>
 
           <ArrowDownRight
-            className="bg-aps-secondary-300 -z-0 -rotate-90 rounded-full p-1 text-white"
+            className="bg-aps-secondary-300 animate-bounce-y -z-0 -rotate-90 rounded-full p-1 text-white"
             size={30}
           />
         </div>
       </article>
-      <article className="grid w-[50%] grid-cols-2 gap-3">
-        <div
-          className="col-span-1 flex h-[300px] flex-col justify-center gap-2 rounded-4xl bg-stone-200 p-5"
-          style={{
-            boxShadow:
-              "0 10px 30px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), inset 0 -2px 5px 0 rgba(0, 0, 0, 0.1)",
-          }}
-        >
-          <CalendarHeart size={60} className="text-aps-400" />
-          <p className="text-xl font-semibold text-shadow-2xs">
-            Book your service now for <br /> hassle-free travelling
+      <article className="grid w-full gap-2 sm:grid-cols-2 lg:w-1/2 lg:gap-6">
+        <div className="flex flex-col justify-center gap-3 rounded-3xl bg-stone-100 p-6 shadow-md transition hover:shadow-xl">
+          <CalendarHeart size={56} className="text-aps-400" />
+          <p className="text-lg font-semibold sm:text-xl">
+            Book your service now for hassle-free travelling
           </p>
         </div>
-        <div
-          className="col-span-1 flex h-[300px] flex-col justify-center gap-2 rounded-4xl bg-stone-200 p-5"
-          style={{
-            boxShadow:
-              "0 10px 30px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), inset 0 -2px 5px 0 rgba(0, 0, 0, 0.1)",
-          }}
-        >
-          <Plane size={60} className="text-aps-400" />
-          <p className="mt-4 text-xl font-semibold text-shadow-2xs">
+
+        <div className="flex flex-col justify-center gap-3 rounded-3xl bg-stone-100 p-6 shadow-md transition hover:shadow-xl">
+          <Plane size={56} className="text-aps-400" />
+          <p className="text-lg font-semibold sm:text-xl">
             15k+ successful services.
           </p>
-          <p className="text-black/60">Happy customers throughout the world.</p>
+          <p className="text-sm text-gray-600">
+            Happy customers throughout the world.
+          </p>
         </div>
-        <div
-          className="bg-aps-200 col-span-2 flex h-[200px] items-center justify-center gap-[30%] rounded-4xl"
-          style={{
-            boxShadow:
-              "0 10px 30px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), inset 0 -2px 5px 0 rgba(0, 0, 0, 0.1)",
-          }}
-        >
-          <p className="text-2xl font-semibold">
+
+        <div className="bg-aps-200 col-span-1 flex flex-col items-center justify-between gap-6 rounded-3xl p-6 text-center shadow-md transition hover:shadow-xl sm:col-span-2 sm:flex-row sm:text-left">
+          <p className="text-xl leading-snug font-semibold sm:text-2xl">
             Trusted <span className="font-extrabold">24/7</span>{" "}
-            <span className="text-gray-300">
-              customer <br /> service
+            <span className="text-aps-400">
+              customer <br className="hidden sm:block" /> service
             </span>{" "}
             you can rely on.
           </p>
-          <Headset className="text-gray-300" size={80} />
+          <Headset className="text-aps-400" size={72} />
         </div>
       </article>
     </section>

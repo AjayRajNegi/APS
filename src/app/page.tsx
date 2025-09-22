@@ -61,7 +61,7 @@ export default function Home() {
     <div className="font-poppins">
       {/* Main Section */}
       <main
-        className="bg-aps-200 flex h-[calc(max(85vh,650px))] w-full items-end rounded-4xl"
+        className="bg-aps-200 flex h-[min(calc(max(85vh,650px)),800px)] w-full items-end rounded-4xl"
         style={{
           backgroundImage: `url('/mainImage.png')`,
           backgroundSize: "cover",
