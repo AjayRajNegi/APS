@@ -22,13 +22,13 @@ export function Save() {
         <div className="mt-[10px] mb-[10px] flex w-fit items-center lg:mt-[40px]">
           <Link
             href="/"
-            className="bg-aps-secondary-300 rounded-full px-3 py-2 text-white shadow-2xl"
+            className="bg-aps-secondary-300 border-aps-secondary-400 rounded-full border-[1px] px-3 py-2 text-white shadow-2xl"
           >
             Booking Now
           </Link>
 
           <ArrowDownRight
-            className="bg-aps-secondary-300 animate-bounce-y -z-0 -rotate-90 rounded-full p-1 text-white"
+            className="bg-aps-secondary-300 animate-bounce-y border-aps-secondary-400 -z-0 -rotate-90 rounded-full border-[1px] p-1 text-white"
             size={30}
           />
         </div>

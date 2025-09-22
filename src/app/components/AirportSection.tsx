@@ -46,7 +46,7 @@ const airport = [
 export function AirportSection() {
   const [cat, setCat] = useState("Canada");
   return (
-    <div className="mb-[100px]">
+    <div className="mb-[60px]">
       {/* Country Section */}
       <div className="flex justify-center gap-4 md:gap-5">
         {Country.map((Country) => (

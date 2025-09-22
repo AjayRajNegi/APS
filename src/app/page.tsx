@@ -76,13 +76,13 @@ export default function Home() {
             <div className="mt-4 flex items-center shadow-2xl">
               <Link
                 href="/"
-                className="bg-aps-secondary-300 rounded-full px-3 py-2 text-white text-shadow-xs"
+                className="bg-aps-secondary-300 border-aps-secondary-400 rounded-full border-[1px] px-3 py-2 text-white text-shadow-xs"
               >
                 Booking Now
               </Link>
 
               <ArrowDownRight
-                className="bg-aps-secondary-300 -z-0 -rotate-90 rounded-full p-1 text-white"
+                className="bg-aps-secondary-300 border-aps-secondary-400 -z-0 -rotate-90 rounded-full border-[1px] p-1 text-white"
                 size={30}
               />
             </div>
