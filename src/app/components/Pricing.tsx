@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { ArrowDownRight, Check } from "lucide-react";
-import Link from "next/link";
 
 export default function Pricing() {
   const tiers = [

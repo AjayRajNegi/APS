@@ -1,5 +1,5 @@
-import { BlogsShowcase } from "@/app/components/BlogsShowcase";
 import Image from "next/image";
+import { BlogsShowcase } from "@/app/components/BlogsShowcase";
 
 export default async function IndividualBlogPage({
   params,

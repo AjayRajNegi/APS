@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 const tabs = ["Domestic", "International", "Transit"];
-
 export function TicketForm() {
   const [activeTab, setActiveTab] = useState("Domestic");
 

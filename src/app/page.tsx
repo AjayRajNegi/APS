@@ -1,11 +1,11 @@
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowDownRight, ArrowRight } from "lucide-react";
-import { TicketForm } from "./components/TicketForm";
-import { AirportSection } from "./components/AirportSection";
-import { BlogsShowcase } from "./components/BlogsShowcase";
 import Pricing from "./components/Pricing";
+import { TicketForm } from "./components/TicketForm";
+import { ArrowDownRight, ArrowRight } from "lucide-react";
+import { BlogsShowcase } from "./components/BlogsShowcase";
+import { AirportSection } from "./components/AirportSection";
 import { FullWidthComponent } from "./components/FullWidthComponent";
+
 const airports1: string[] = [
   "Indira Gandhi International Airport (DEL)",
   "Chhatrapati Shivaji Maharaj International Airport (BOM)",

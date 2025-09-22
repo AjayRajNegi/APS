@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { title: "About Us", href: "/about" },

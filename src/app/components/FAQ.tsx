@@ -1,12 +1,12 @@
 import {
   Accordion,
-  AccordionContent,
   AccordionItem,
   AccordionTrigger,
+  AccordionContent,
 } from "@/components/ui/accordion";
 
-import { ArrowDownRight, ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
+import { ArrowDownRight, ChevronDownIcon } from "lucide-react";
 
 const data = [
   {

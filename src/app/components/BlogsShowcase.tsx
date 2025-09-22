@@ -1,9 +1,9 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 const Category = ["Blogs", "Articles", "UGC", "Case Studies"];
 const blogs = [

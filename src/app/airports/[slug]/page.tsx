@@ -1,5 +1,5 @@
-import { AirportSection } from "@/app/components/AirportSection";
 import Image from "next/image";
+import { AirportSection } from "@/app/components/AirportSection";
 
 export default async function IndividualAirportsPage({
   params,

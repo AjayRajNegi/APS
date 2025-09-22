@@ -1,17 +1,16 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "motion/react";
 import type {
-  TargetAndTransition,
-  Transition,
   Variant,
   Variants,
+  Transition,
+  TargetAndTransition,
 } from "motion/react";
 import React from "react";
-
-export type PresetType = "blur" | "fade-in-blur" | "scale" | "fade" | "slide";
+import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "motion/react";
 
 export type PerType = "word" | "char" | "line";
+export type PresetType = "blur" | "fade-in-blur" | "scale" | "fade" | "slide";
 
 export type TextEffectProps = {
   children: string;

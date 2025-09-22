@@ -1,9 +1,9 @@
 "use client";
-import { useRef, useState } from "react";
 import { Cursor } from "./Cursor";
-import { AnimatePresence, motion } from "motion/react";
 import { PlusIcon } from "lucide-react";
+import { useRef, useState } from "react";
 import { Collapsible } from "./Collapsible";
+import { AnimatePresence, motion } from "motion/react";
 
 export function Cursor1() {
   const [isHovering, setIsHovering] = useState(false);

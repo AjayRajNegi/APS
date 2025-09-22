@@ -1,15 +1,14 @@
-// Cursor.tsx
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import {
   motion,
-  AnimatePresence,
-  useMotionValue,
   useSpring,
+  useMotionValue,
+  AnimatePresence,
 } from "framer-motion";
-import type { SpringOptions, Transition, Variant } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { createPortal } from "react-dom";
+import React, { useEffect, useRef, useState } from "react";
+import type { SpringOptions, Transition, Variant } from "framer-motion";
 
 export type CursorProps = {
   children: React.ReactNode;
