@@ -8,15 +8,15 @@ export default function ServicesPage() {
     <>
       {/* Main Section */}
       <article className="mt-[30px] mb-[20px]">
-        <div className="mt-[0px] flex items-center justify-between">
-          <p className="text-6xl font-[500]">
+        <div className="mt-[0px] flex flex-col justify-between md:flex-row md:items-center">
+          <p className="order-1 text-6xl font-[500]">
             OurCompany <br /> Service!
           </p>
 
-          <div className="h-fit w-fit animate-ping rounded-full bg-gray-400 px-3 py-1 text-5xl font-extrabold text-black">
+          <div className="order-3 mx-auto my-4 h-fit w-fit animate-ping rounded-full bg-gray-400 px-3 py-1 text-5xl font-extrabold text-black md:order-2 md:my-0">
             <div className="h-1 w-1.5 rounded-full bg-black" />
           </div>
-          <p className="w-[20%]">
+          <p className="order-2 w-[80%] md:order-3 md:w-[25%]">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur
             accusantium voluptatum adipisci ab dolor provident veniam quasi eos
           </p>

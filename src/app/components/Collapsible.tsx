@@ -46,7 +46,7 @@ export function Collapsible() {
           <div key={idx}>
             <AccordionItem
               value={`item-${idx + 1}`}
-              className={`${idx === 0 ? "rounded-t-4xl" : ""} ${idx === services.length - 1 ? "rounded-b-4xl" : ""} w-full border-none p-4 pl-16`}
+              className={`${idx === 0 ? "rounded-t-4xl" : ""} ${idx === services.length - 1 ? "rounded-b-4xl" : ""} w-full border-none p-4 pl-4 md:pl-10 lg:pl-16`}
               style={{
                 backgroundImage: `${service.imageUrl}`,
                 backgroundPosition: `${service.imagePosition}`,
