@@ -1,7 +1,7 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
 import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 const tabs = ["Domestic", "International", "Transit"];
 export function TicketForm() {

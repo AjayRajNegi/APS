@@ -1,13 +1,13 @@
 import Link from "next/link";
+import Image from "next/image";
 import Pricing from "./components/Pricing";
-import { TicketForm } from "./components/TicketForm";
 import { ArrowDownRight } from "lucide-react";
+import { CarRental } from "./components/CarRental";
+import AirportsList from "./components/AirportList";
+import { TicketForm } from "./components/TicketForm";
 import { BlogsShowcase } from "./components/BlogsShowcase";
 import { AirportSection } from "./components/AirportSection";
 import { FullWidthComponent } from "./components/FullWidthComponent";
-import { CarRental } from "./components/CarRental";
-import Image from "next/image";
-import AirportsList from "./components/AirportList";
 
 export default function Home() {
   return (

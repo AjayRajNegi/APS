@@ -1,8 +1,4 @@
 "use client";
-import Image from "next/image";
-import { useState } from "react";
-import { Car, CreditCard, Plane, ArrowDownRight } from "lucide-react";
-import DateTimePicker from "./DateTimePicker";
 import {
   Dialog,
   DialogContent,
@@ -10,6 +6,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
+import Image from "next/image";
+import { useState } from "react";
+import DateTimePicker from "./DateTimePicker";
+import { Car, CreditCard, Plane, ArrowDownRight } from "lucide-react";
+
 import Link from "next/link";
 
 export function CarRental() {

@@ -1,7 +1,6 @@
 import { FAQ } from "../components/FAQ";
-import { FullWidthComponent } from "../components/FullWidthComponent";
-
 import { Cursor1 } from "../components/Cursor1";
+import { FullWidthComponent } from "../components/FullWidthComponent";
 
 export default function ServicesPage() {
   return (
