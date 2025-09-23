@@ -22,7 +22,6 @@ export function CarRental() {
           src="/carImage.webp"
           objectPosition="center 70%"
           objectFit="cover"
-          loading="lazy"
           fill
           alt="asdfa"
         />
@@ -124,14 +123,16 @@ export function CarRental() {
         </div>
       </article>
       {/* Bottom Section */}
-      <article className="bg-aps-secondary-400 h-fit rounded-b-4xl py-6 text-center text-4xl font-bold text-white text-shadow-2xs md:text-6xl">
-        <p>
-          RENT MOST PREMIUM <br /> CARS AVAILABLE.
-        </p>
-        <p className="mt-1 text-xs md:text-sm">
-          Premium car rental at affordable rates. Worldwide.
-        </p>
-      </article>
+      <div className="rounded-b-4xl bg-black">
+        <article className="via-aps-500 h-fit bg-gradient-to-r from-black to-white bg-clip-text py-6 text-center text-4xl font-bold text-transparent text-shadow-2xs md:text-6xl">
+          <p className="">
+            RENT MOST PREMIUM <br /> CARS AVAILABLE.
+          </p>
+          <p className="mt-1 text-xs md:text-sm">
+            Premium car rental at affordable rates. Worldwide.
+          </p>
+        </article>
+      </div>
     </section>
   );
 }

@@ -89,13 +89,7 @@ export function BlogsShowcase({ href }: { href: string }) {
               key={idx}
             >
               <div className="relative h-1/2 w-full overflow-hidden rounded-2xl">
-                <Image
-                  src={blog.imageUrl}
-                  loading="lazy"
-                  objectFit="cover"
-                  alt="asda"
-                  fill
-                />
+                <Image src={blog.imageUrl} objectFit="cover" alt="asda" fill />
               </div>
               <div className="py-4">
                 <p>

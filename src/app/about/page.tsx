@@ -19,13 +19,7 @@ export default function About() {
         </article>
         <article className="flex w-full flex-col-reverse gap-4 lg:flex-row lg:gap-8">
           <div className="relative h-[50vh] w-full overflow-hidden rounded-4xl border-[1px] border-black transition-shadow duration-300 hover:shadow-[5px_5px_0px_0px_rgba(1,1,1)] lg:h-[min(calc(100vh/1.15),700px)] lg:w-[70%]">
-            <Image
-              src="/mainImage.png"
-              loading="lazy"
-              fill
-              alt="asdaf"
-              objectFit="cover"
-            />
+            <Image src="/mainImage.png" fill alt="asdaf" objectFit="cover" />
             <div className="absolute bottom-[0] left-0 h-fit w-[80%] rounded-4xl bg-white p-4 text-justify lg:w-[45%] lg:max-w-[500px]">
               <TextEffect
                 per="char"

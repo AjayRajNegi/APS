@@ -7,56 +7,7 @@ import { AirportSection } from "./components/AirportSection";
 import { FullWidthComponent } from "./components/FullWidthComponent";
 import { CarRental } from "./components/CarRental";
 import Image from "next/image";
-
-const airports1: string[] = [
-  "Indira Gandhi International Airport (DEL)",
-  "Chhatrapati Shivaji Maharaj International Airport (BOM)",
-  "Kempegowda International Airport (BLR)",
-  "Rajiv Gandhi International Airport (HYD)",
-  "Singapore Changi Airport (SIN)",
-  "Dubai International Airport (DXB)",
-  "Abu Dhabi International Airport (AUH)",
-  "Paris Charles de Gaulle Airport (CDG)",
-  "Paris Orly Airport (ORY)",
-];
-
-const airports2 = [
-  "Frankfurt Airport (FRA)",
-  "Munich Airport (MUC)",
-  "Rome Fiumicino Airport (FCO)",
-  "Sheremetyevo International Airport (SVO)",
-  "Domodedovo International Airport (DME)",
-  "Madrid Barajas Airport (MAD)",
-  "Barcelona El Prat Airport (BCN)",
-  "London Heathrow Airport (LHR)",
-  "London Gatwick Airport (LGW)",
-];
-
-const airports3 = [
-  "Zurich Airport (ZRH)",
-  "Copenhagen Airport (CPH)",
-  "Toronto Pearson International Airport (YYZ)",
-  "Vancouver International Airport (YVR)",
-  "Montréal–Trudeau International Airport (YUL)",
-  "Mexico City International Airport (MEX)",
-  "Cancún International Airport (CUN)",
-  "Hartsfield–Jackson Atlanta International Airport (ATL)",
-  "Los Angeles International Airport (LAX)",
-  "Chicago O'Hare International Airport (ORD)",
-];
-
-const airports4 = [
-  "Dallas/Fort Worth International Airport (DFW)",
-  "John F. Kennedy International Airport (JFK)",
-  "San Francisco International Airport (SFO)",
-  "Miami International Airport (MIA)",
-  "Newark Liberty International Airport (EWR)",
-  "Seattle-Tacoma International Airport (SEA)",
-  "Sydney Airport (SYD)",
-  "Melbourne Airport (MEL)",
-  "Auckland Airport (AKL)",
-  "Ministro Pistarini International Airport (EZE)",
-];
+import AirportsList from "./components/AirportList";
 
 export default function Home() {
   return (
@@ -69,6 +20,8 @@ export default function Home() {
           priority
           fill
           quality={80}
+          placeholder="blur"
+          blurDataURL="/blur.webp"
           className="absolute inset-0 z-10 object-cover object-[center_70%]"
         />
         <div className="relative z-20 flex w-full flex-col justify-between p-4 lg:flex-row">
@@ -147,56 +100,8 @@ export default function Home() {
         <AirportSection />
       </article>
       {/* All Airports Section */}
-      <article className="mb-[50px] flex gap-4 rounded-4xl p-8 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
-        <div className="bg-aps-300 hidden w-[20%] items-center rounded-4xl border-[1px] border-black p-4 text-4xl font-semibold text-white shadow-[5px_5px_0px_0px_rgba(1,1,1)] transition-shadow duration-300 hover:shadow-none">
-          AIRPORT PORTER SERVICES AVAILABLE IN:
-        </div>
-        <div className="mx-auto flex w-[100%] flex-wrap gap-4 text-sm lg:grid lg:grid-cols-4">
-          <div>
-            {airports1.map((airport, index) => (
-              <div
-                key={index}
-                className="flex gap-0.5 transition-transform duration-150 hover:scale-110"
-              >
-                <ArrowRight size={15} />
-                <p>{airport}</p>
-              </div>
-            ))}
-          </div>
-          <div>
-            {airports2.map((airport, index) => (
-              <div
-                key={index}
-                className="flex gap-0.5 transition-transform duration-150 hover:scale-110"
-              >
-                <ArrowRight size={15} />
-                <p>{airport}</p>
-              </div>
-            ))}
-          </div>
-          <div>
-            {airports3.map((airport, index) => (
-              <div
-                key={index}
-                className="flex gap-0.5 transition-transform duration-150 hover:scale-110"
-              >
-                <ArrowRight size={15} />
-                <p>{airport}</p>
-              </div>
-            ))}
-          </div>
-          <div>
-            {airports4.map((airport, index) => (
-              <div
-                key={index}
-                className="flex gap-0.5 transition-transform duration-150 hover:scale-110"
-              >
-                <ArrowRight size={15} />
-                <p>{airport}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+      <article className="mb-[50px] rounded-4xl border-[1px] border-neutral-500 shadow-[5px_5px_0px_0px_rgba(1,1,1)] transition-shadow duration-300 hover:shadow-none">
+        <AirportsList />
       </article>
     </div>
   );

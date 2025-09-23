@@ -21,13 +21,7 @@ export default async function IndividualBlogPage({
           journey.
         </h4>
         <div className="relative h-[min(calc(100vh/2),500px)] w-full overflow-hidden rounded-4xl [mask-image:linear-gradient(to_top,rgb(0,0,0,0.5),black_60%,black)]">
-          <Image
-            src="/mainImage.png"
-            loading="lazy"
-            fill
-            alt="asf"
-            quality={10}
-          />
+          <Image src="/mainImage.png" fill alt="asf" quality={10} />
           <div className="absolute bottom-[4%] left-[4%] flex gap-6 text-white">
             <p className="text-shadow-2xs">Published: Sep 20, 2025</p>
             <p className="text-shadow-2xs">Category: Design</p>
