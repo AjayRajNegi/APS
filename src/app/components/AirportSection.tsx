@@ -53,7 +53,7 @@ export function AirportSection() {
           <p
             key={Country}
             className={cn(
-              "w-fit cursor-pointer rounded-full px-3 py-2 text-base",
+              "w-fit cursor-pointer rounded-full px-3 py-2 text-base shadow-[0_3px_10px_rgb(0,0,0,0.2)] transition-shadow transition-transform duration-300 hover:scale-95 hover:shadow-none",
               `${cat === Country ? "bg-aps-secondary-300 text-white" : "bg-gray-100"}`,
             )}
             onClick={() => setCat(Country)}
@@ -69,7 +69,7 @@ export function AirportSection() {
             <Link
               href={`/airports/${airport.slug}`}
               key={airport.id}
-              className="bg-aps-100 col-span-4 row-span-3 flex items-end justify-between rounded-2xl p-4 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] md:col-span-2 md:row-span-2"
+              className="bg-aps-100 col-span-4 row-span-3 flex items-end justify-between rounded-2xl border-[1px] border-neutral-500 p-4 shadow-[5px_5px_0px_0px_rgba(1,1,1)] transition-shadow duration-300 hover:shadow-none md:col-span-2 md:row-span-2"
               style={{
                 backgroundImage: `url('${airport.imageUrl}')`,
               }}
@@ -89,7 +89,7 @@ export function AirportSection() {
             <Link
               href={`/airports/${airport.slug}`}
               key={airport.id}
-              className="bg-aps-100 col-span-2 row-span-1 flex items-end justify-between rounded-2xl p-2 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] md:col-span-1 md:row-span-1 lg:p-4"
+              className="bg-aps-100 col-span-2 row-span-1 flex items-end justify-between rounded-2xl border-[1px] border-neutral-500 p-2 shadow-[5px_5px_0px_0px_rgba(1,1,1)] transition-shadow duration-300 hover:shadow-none md:col-span-1 md:row-span-1 lg:p-4"
               style={{
                 backgroundImage: `url('${airport.imageUrl}')`,
               }}

@@ -57,7 +57,7 @@ const DateTimePicker = () => {
             type="time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
-            className="h-auto border-0 p-0 text-sm shadow-none focus-visible:ring-0"
+            className="rentalForm h-auto border-0 p-0 text-sm shadow-none focus-visible:ring-0"
           />
         </div>
       </div>

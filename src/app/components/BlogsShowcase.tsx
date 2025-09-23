@@ -71,7 +71,7 @@ export function BlogsShowcase({ href }: { href: string }) {
             <p
               key={category}
               className={cn(
-                "w-fit cursor-pointer rounded-lg px-3 py-2 text-sm md:text-base",
+                "w-fit cursor-pointer rounded-lg px-3 py-2 text-sm shadow-[0_3px_10px_rgb(0,0,0,0.2)] transition-shadow transition-transform duration-300 hover:scale-95 hover:shadow-none md:text-base",
                 `${cat === category ? "bg-aps-secondary-300 text-white" : "bg-gray-100"}`,
               )}
               onClick={() => setCat(category)}
@@ -85,13 +85,13 @@ export function BlogsShowcase({ href }: { href: string }) {
         <div className="scrollbar-hide flex gap-6 px-4 py-4">
           {blogs.map((blog, idx) => (
             <div
-              className="h-[450px] w-[90%] flex-shrink-0 rounded-2xl p-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)] md:w-[45%] lg:w-[42%] xl:w-[32%]"
+              className="h-[450px] w-[90%] flex-shrink-0 overflow-hidden rounded-2xl border-[1px] border-neutral-300 shadow-[0_3px_10px_rgb(0,0,0,0.2)] transition-shadow transition-transform duration-300 hover:scale-95 hover:shadow-none md:w-[45%] lg:w-[42%] xl:w-[32%]"
               key={idx}
             >
-              <div className="relative h-1/2 w-full overflow-hidden rounded-2xl">
+              <div className="relative h-1/2 w-full overflow-hidden">
                 <Image src={blog.imageUrl} objectFit="cover" alt="asda" fill />
               </div>
-              <div className="py-4">
+              <div className="p-4 py-4">
                 <p>
                   <span className="text-aps-secondary-400 border-r-2 border-gray-300 pr-1.5 text-sm">
                     {blog.category}

@@ -65,9 +65,28 @@ export default function Pricing() {
           <div className="mt-2 mb-[10px] flex w-fit items-center md:mt-4">
             <Link
               href="/"
-              className="bg-aps-secondary-300 rounded-full px-3 py-2 text-white shadow-2xl"
+              className="group border-aps-secondary-300 relative inline-flex items-center justify-center overflow-hidden rounded-full border-2 p-4 px-6 py-2 font-medium shadow-md transition duration-300 ease-out"
             >
-              Booking Now
+              <span className="ease bg-aps-secondary-300 absolute inset-0 flex h-full w-full -translate-x-full items-center justify-center text-white duration-300 group-hover:translate-x-0">
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </span>
+              <span className="ease text-aps-secondary-300 absolute flex h-full w-full transform items-center justify-center transition-all duration-300 group-hover:translate-x-full">
+                Book Now
+              </span>
+              <span className="invisible relative">Book Now</span>
             </Link>
 
             <ArrowDownRight
@@ -130,9 +149,31 @@ export default function Pricing() {
             </ul>
 
             {/* Button */}
-            <button className="bg-aps-secondary-500 mt-auto w-fit rounded-full px-4 py-2 font-semibold text-white transition hover:opacity-90">
-              Get Started
-            </button>
+            <Link
+              href="#_"
+              className="group border-aps-secondary-300 relative inline-flex items-center justify-center overflow-hidden rounded-full border-2 p-4 px-6 py-3 font-medium shadow-md transition duration-300 ease-out"
+            >
+              <span className="ease bg-aps-secondary-300 absolute inset-0 flex h-full w-full -translate-x-full items-center justify-center text-white duration-300 group-hover:translate-x-0">
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </span>
+              <span className="ease text-aps-secondary-300 absolute flex h-full w-full transform items-center justify-center transition-all duration-300 group-hover:translate-x-full">
+                Get Started
+              </span>
+              <span className="invisible relative">Get Started</span>
+            </Link>
           </div>
         ))}
       </div>

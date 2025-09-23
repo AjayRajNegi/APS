@@ -87,8 +87,16 @@ export function CarRental() {
               </div>
 
               {/* Submit Button */}
-              <button className="bg-aps-secondary-400 hover:bg-aps-secondary-500 rounded-lg px-8 py-2 text-white transition">
-                Show cars
+              <button className="group relative inline-block text-base">
+                <span className="relative z-10 block overflow-hidden rounded-lg border-2 border-gray-900 px-5 py-3 leading-tight font-medium text-gray-800 transition-colors duration-300 ease-out group-hover:text-white">
+                  <span className="absolute inset-0 h-full w-full rounded-lg bg-gray-50 px-5 py-3"></span>
+                  <span className="ease absolute left-0 -ml-2 h-48 w-48 origin-top-right -translate-x-full translate-y-12 -rotate-90 bg-gray-900 transition-all duration-300 group-hover:-rotate-180"></span>
+                  <span className="relative">Book Now</span>
+                </span>
+                <span
+                  className="absolute right-0 bottom-0 -mr-1 -mb-1 h-12 w-full rounded-lg bg-gray-900 transition-all duration-200 ease-linear group-hover:mr-0 group-hover:mb-0"
+                  data-rounded="rounded-lg"
+                ></span>
               </button>
             </div>
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 const tabs = ["Domestic", "International", "Transit"];
@@ -14,7 +15,7 @@ export function TicketForm() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`border-aps-secondary-400 rounded-full border-[1px] px-4 py-2 text-sm font-medium ${
+              className={`rounded-full border-[1px] px-4 py-2 text-sm font-medium shadow-[0_3px_10px_rgb(0,0,0,0.2)] transition-shadow transition-transform duration-300 hover:scale-95 hover:shadow-none ${
                 activeTab === tab
                   ? "bg-aps-secondary-400 text-white"
                   : "bg-aps-secondary-200 text-gray-700"
@@ -61,9 +62,15 @@ export function TicketForm() {
 
           <button
             type="submit"
-            className="bg-aps-secondary-200 border-aps-secondary-400 hover:bg-aps-secondary-400 rounded-full border-[1px] py-3 font-medium transition md:col-span-2"
+            className="group from-aps-secondary-500 to-aps-secondary-300 flex items-center justify-center gap-1 rounded-full border-[1px] border-white bg-gradient-to-r py-3 font-medium transition duration-300 hover:border-[1px] md:col-span-2"
           >
-            Book Now
+            <p className="transition-transform duration-300 group-hover:-translate-x-[10px] group-hover:text-white">
+              Book Now
+            </p>
+            <ArrowRight
+              size={20}
+              className="transition-transform duration-300 group-hover:translate-x-[10px] group-hover:text-white"
+            />
           </button>
         </form>
       </div>
