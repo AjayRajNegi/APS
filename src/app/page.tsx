@@ -35,7 +35,7 @@ export default function Home() {
             <div className="mt-4 flex items-center shadow-2xl">
               <Link
                 href="#_"
-                className="group border-aps-secondary-300 relative inline-flex items-center justify-center overflow-hidden rounded-full p-4 px-6 py-2 font-medium shadow-md transition duration-300 ease-out"
+                className="group border-aps-secondary-300 relative inline-flex items-center justify-center overflow-hidden rounded-full border-[2px] p-4 px-6 py-2 font-medium shadow-md transition duration-300 ease-out"
               >
                 <span className="ease bg-aps-secondary-300 absolute inset-0 flex h-full w-full -translate-x-full items-center justify-center text-white duration-300 group-hover:translate-x-0">
                   <svg

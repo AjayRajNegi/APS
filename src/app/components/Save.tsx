@@ -21,10 +21,29 @@ export function Save() {
         </p>
         <div className="mt-[10px] mb-[10px] flex w-fit items-center lg:mt-[40px]">
           <Link
-            href="/"
-            className="bg-aps-secondary-300 border-aps-secondary-400 rounded-full border-[1px] px-3 py-2 text-white shadow-2xl"
+            href="/managebookings"
+            className="group bg-aps-secondary-300 relative inline-flex items-center justify-center overflow-hidden rounded-full p-4 px-8 py-2.5 font-medium text-black shadow-md transition duration-300 ease-out"
           >
-            Booking Now
+            <span className="ease text-aps-secondary-300 absolute inset-0 flex h-full w-full -translate-x-full items-center justify-center bg-white duration-300 group-hover:translate-x-0">
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                ></path>
+              </svg>
+            </span>
+            <span className="ease absolute flex h-full w-full transform items-center justify-center text-white transition-all duration-300 group-hover:translate-x-full">
+              Manage Bookings
+            </span>
+            <span className="invisible relative">Button Text</span>
           </Link>
 
           <ArrowDownRight
@@ -34,14 +53,14 @@ export function Save() {
         </div>
       </article>
       <article className="grid w-full gap-2 sm:grid-cols-2 lg:w-1/2 lg:gap-6">
-        <div className="flex flex-col justify-center gap-3 rounded-3xl bg-stone-100 p-6 shadow-md transition hover:shadow-xl">
+        <div className="flex flex-col justify-center gap-3 rounded-3xl bg-stone-100 p-6 shadow-lg transition hover:shadow-none">
           <CalendarHeart size={56} className="text-aps-400" />
           <p className="text-lg font-semibold sm:text-xl">
             Book your service now for hassle-free travelling
           </p>
         </div>
 
-        <div className="flex flex-col justify-center gap-3 rounded-3xl bg-stone-100 p-6 shadow-md transition hover:shadow-xl">
+        <div className="flex flex-col justify-center gap-3 rounded-3xl bg-stone-100 p-6 shadow-lg transition hover:shadow-none">
           <Plane size={56} className="text-aps-400" />
           <p className="text-lg font-semibold sm:text-xl">
             15k+ successful services.
@@ -51,7 +70,7 @@ export function Save() {
           </p>
         </div>
 
-        <div className="bg-aps-200 col-span-1 flex flex-col items-center justify-between gap-6 rounded-3xl p-6 text-center shadow-md transition hover:shadow-xl sm:col-span-2 sm:flex-row sm:text-left">
+        <div className="bg-aps-200 col-span-1 flex flex-col items-center justify-between gap-6 rounded-3xl p-6 text-center shadow-xl transition hover:shadow-none sm:col-span-2 sm:flex-row sm:text-left">
           <p className="text-xl leading-snug font-semibold sm:text-2xl">
             Trusted <span className="font-extrabold">24/7</span>{" "}
             <span className="text-aps-400">
