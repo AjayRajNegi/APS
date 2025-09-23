@@ -22,6 +22,7 @@ export function CarRental() {
           src="/carImage.webp"
           objectPosition="center 70%"
           objectFit="cover"
+          loading="lazy"
           fill
           alt="asdfa"
         />

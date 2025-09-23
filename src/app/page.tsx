@@ -6,6 +6,7 @@ import { BlogsShowcase } from "./components/BlogsShowcase";
 import { AirportSection } from "./components/AirportSection";
 import { FullWidthComponent } from "./components/FullWidthComponent";
 import { CarRental } from "./components/CarRental";
+import Image from "next/image";
 
 const airports1: string[] = [
   "Indira Gandhi International Airport (DEL)",
@@ -61,14 +62,16 @@ export default function Home() {
   return (
     <div className="font-poppins">
       {/* Main Section */}
-      <main
-        className="bg-aps-200 flex h-[min(calc(max(85vh,650px)),800px)] w-full items-end rounded-4xl"
-        style={{
-          backgroundImage: `url('/mainImage.png')`,
-          backgroundSize: "cover",
-        }}
-      >
-        <div className="flex w-full flex-col justify-between p-4 lg:flex-row">
+      <main className="relative flex h-[min(calc(max(85vh,650px)),800px)] w-full items-end overflow-hidden rounded-4xl">
+        <Image
+          src="/mainImage.png"
+          alt="Flight booking background"
+          priority
+          fill
+          quality={80}
+          className="absolute inset-0 z-10 object-cover object-[center_70%]"
+        />
+        <div className="relative z-20 flex w-full flex-col justify-between p-4 lg:flex-row">
           <div className="flex flex-col justify-end pb-5 lg:w-1/5 lg:pb-0">
             <p className="leading-tight text-white">
               Find and book the best flights quickly. Compare prices, select
@@ -83,7 +86,7 @@ export default function Home() {
               </Link>
 
               <ArrowDownRight
-                className="bg-aps-secondary-300 border-aps-secondary-400 -z-0 -rotate-90 rounded-full border-[1px] p-1 text-white"
+                className="bg-aps-secondary-300 border-aps-secondary-400 animate-bounce-y -z-0 -rotate-90 rounded-full border-[1px] p-1 text-white"
                 size={30}
               />
             </div>
