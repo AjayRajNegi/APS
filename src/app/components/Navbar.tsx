@@ -122,7 +122,7 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="from-aps-400 to-aps-200 absolute top-[75px] left-0 z-10 mb-10 h-[90vh] w-full rounded-2xl bg-gradient-to-b p-6 shadow-lg md:hidden"
+            className="from-aps-600 to-aps-200 absolute top-[75px] left-0 z-10 mb-10 h-[89vh] w-full rounded-2xl bg-gradient-to-b p-6 shadow-lg md:hidden"
             variants={containerVariants}
             initial="hidden"
             animate="show"

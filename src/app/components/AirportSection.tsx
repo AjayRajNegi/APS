@@ -69,7 +69,7 @@ export function AirportSection() {
             <Link
               href={`/airports/${airport.slug}`}
               key={airport.id}
-              className="bg-aps-100 col-span-4 row-span-3 flex items-end justify-between rounded-2xl border-[1px] border-neutral-500 p-4 shadow-[5px_5px_0px_0px_rgba(1,1,1)] transition-shadow duration-300 hover:shadow-none md:col-span-2 md:row-span-2"
+              className="bg-aps-100 col-span-4 row-span-3 flex items-end justify-between rounded-2xl border-[1px] border-neutral-500 p-4 transition-shadow duration-300 hover:shadow-none md:col-span-2 md:row-span-2 md:shadow-[5px_5px_0px_0px_rgba(1,1,1)]"
               style={{
                 backgroundImage: `url('${airport.imageUrl}')`,
               }}
@@ -89,7 +89,7 @@ export function AirportSection() {
             <Link
               href={`/airports/${airport.slug}`}
               key={airport.id}
-              className="bg-aps-100 col-span-2 row-span-1 flex items-end justify-between rounded-2xl border-[1px] border-neutral-500 p-2 shadow-[3px_3px_0px_0px_rgba(1,1,1)] transition-shadow duration-300 hover:shadow-none md:col-span-1 md:row-span-1 lg:p-4"
+              className="bg-aps-100 col-span-2 row-span-1 flex items-end justify-between rounded-2xl border-[1px] border-neutral-500 p-2 shadow-[1.5px_1.5px_0px_0px_rgba(1,1,1)] transition-shadow duration-300 hover:shadow-none md:col-span-1 md:row-span-1 md:shadow-[3px_3px_0px_0px_rgba(1,1,1)] lg:p-4"
               style={{
                 backgroundImage: `url('${airport.imageUrl}')`,
               }}

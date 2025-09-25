@@ -134,7 +134,7 @@ export function CarRental() {
       </article>
       {/* Bottom Section */}
       <div className="rounded-b-4xl bg-black">
-        <article className="via-aps-500 h-fit bg-gradient-to-r from-black to-white bg-clip-text py-6 text-center text-4xl font-bold text-transparent text-shadow-2xs md:text-6xl">
+        <article className="via-aps-500 h-fit bg-gradient-to-r from-white to-white bg-clip-text py-6 text-center text-4xl font-bold text-transparent text-shadow-2xs md:from-black md:text-6xl">
           <p className="">
             RENT MOST PREMIUM <br /> CARS AVAILABLE.
           </p>

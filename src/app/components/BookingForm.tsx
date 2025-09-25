@@ -40,10 +40,15 @@ export function BookingForm() {
           {/* Button */}
           <button
             type="submit"
-            className="bg-aps-secondary-200 hover:bg-aps-secondary-400 border-aps-secondary-400 flex items-center justify-center gap-2 rounded-full border-[1px] px-6 py-3 font-medium text-black transition md:self-end"
+            className="group from-aps-secondary-500 to-aps-secondary-300 flex items-center justify-center gap-1 rounded-full border-[1px] border-white bg-gradient-to-r px-6 py-3 font-medium transition duration-300 hover:border-[1px] md:col-span-2"
           >
-            Search Now
-            <ArrowRight size={20} />
+            <p className="transition-transform duration-300 group-hover:-translate-x-[5px] group-hover:text-white">
+              Book Now
+            </p>
+            <ArrowRight
+              size={20}
+              className="transition-transform duration-300 group-hover:translate-x-[5px] group-hover:text-white"
+            />
           </button>
         </form>
       </div>
