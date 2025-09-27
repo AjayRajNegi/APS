@@ -3,9 +3,12 @@ import { BlogsShowcase } from "@/app/components/BlogsShowcase";
 
 async function getBlog(slug: string) {
   try {
-    const res = await fetch(`http://127.0.0.1:8000/api/blogs/${slug}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URI}/api/blogs/${slug}`,
+      {
+        cache: "no-store",
+      },
+    );
     if (!res.ok) throw new Error("Failed to fetch");
     return res.json();
   } catch (error) {
@@ -51,7 +54,7 @@ export default async function IndividualBlogPage({
                   >
                     {block.data.image && (
                       <Image
-                        src={`http://127.0.0.1:8000/storage/${block.data.image}`}
+                        src={`${process.env.NEXT_PUBLIC_BACKEND_URI}/storage/${block.data.image}`}
                         fill
                         alt={block.data.title}
                         className="h-full w-full object-cover"

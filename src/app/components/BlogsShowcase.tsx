@@ -12,7 +12,7 @@ export function BlogsShowcase({ href }: { href: string }) {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_BACKEND_URI}/api/categories`)
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/api/categories`)
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
@@ -22,7 +22,7 @@ export function BlogsShowcase({ href }: { href: string }) {
 
     setLoading(true);
     fetch(
-      `${process.env.NEXT_BACKEND_URI}/api/blogs/category/${selectedCategory}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URI}/api/blogs/category/${selectedCategory}`,
     )
       .then((res) => res.json())
       .then((data) => setBlogs(data))
