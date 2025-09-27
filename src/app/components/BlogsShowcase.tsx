@@ -1,14 +1,54 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
+
+interface HeroBlock {
+  type: "hero";
+  data: {
+    title: string;
+    image: string;
+    image_url: string | null;
+  };
+}
+
+interface HeadingBlock {
+  type: "heading";
+  data: {
+    text: string;
+    level: number;
+  };
+}
+
+interface ParagraphBlock {
+  type: "paragraph";
+  data: {
+    html: string;
+  };
+}
+
+type BlogContentBlock = HeroBlock | HeadingBlock | ParagraphBlock;
+
+interface Blog {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: BlogContentBlock[];
+  status: string;
+  published_at: string;
+  cover_image_path: string | null;
+  created_at: string;
+  updated_at: string;
+  category: string;
+}
 
 export function BlogsShowcase({ href }: { href: string }) {
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("Tech");
-  const [blogs, setBlogs] = useState<any[]>([]);
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {

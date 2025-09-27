@@ -1,16 +1,97 @@
+import { JSX } from "react";
 import Image from "next/image";
 import { BlogsShowcase } from "@/app/components/BlogsShowcase";
 
-async function getBlog(slug: string) {
+interface HeroBlock {
+  type: "hero";
+  data: {
+    title: string;
+    image: string;
+    image_url: string | null;
+  };
+}
+
+interface HeadingBlock {
+  type: "heading";
+  data: {
+    text: string;
+    level: number;
+  };
+}
+
+interface ParagraphBlock {
+  type: "paragraph";
+  data: {
+    html: string;
+  };
+}
+
+interface ListBlock {
+  type: "list";
+  data: {
+    style: "ol" | "ul";
+    items: string[];
+  };
+}
+
+interface QuoteBlock {
+  type: "quote";
+  data: {
+    text: string;
+    author?: string;
+  };
+}
+
+interface CalloutBlock {
+  type: "callout";
+  data: {
+    variant: "success" | "info" | "warning" | "error";
+    html: string;
+  };
+}
+
+interface ProblemSolutionBlock {
+  type: "problem_solution";
+  data: {
+    number: number;
+    title: string;
+    problem: string;
+    solution: string;
+  };
+}
+
+type BlogContentBlock =
+  | HeroBlock
+  | HeadingBlock
+  | ParagraphBlock
+  | ListBlock
+  | QuoteBlock
+  | CalloutBlock
+  | ProblemSolutionBlock;
+
+interface Blog {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: BlogContentBlock[];
+  status: string;
+  published_at: string;
+  cover_image_path: string | null;
+  created_at: string;
+  updated_at: string;
+  category: string;
+}
+
+async function getBlog(slug: string): Promise<Blog | null> {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URI}/api/blogs/${slug}`,
-      {
-        cache: "no-store",
-      },
+      { cache: "no-store" },
     );
     if (!res.ok) throw new Error("Failed to fetch");
-    return res.json();
+    const data: Blog = await res.json();
+    return data;
   } catch (error) {
     console.error(error);
     return null;
@@ -42,9 +123,9 @@ export default async function IndividualBlogPage({
           {blog.excerpt}
         </h4>
 
-        {/* Map content blocks */}
+        {/* Content blocks */}
         <div className="w-full">
-          {blog.content.map((block: any, i: number) => {
+          {blog.content.map((block, i) => {
             switch (block.type) {
               case "hero":
                 return (
@@ -95,7 +176,7 @@ export default async function IndividualBlogPage({
                     key={i}
                     className="my-6 list-decimal pl-6 text-black/80 md:text-lg"
                   >
-                    {block.data.items.map((item: string, idx: number) => (
+                    {block.data.items.map((item, idx) => (
                       <li key={idx}>{item}</li>
                     ))}
                   </ol>
@@ -104,7 +185,7 @@ export default async function IndividualBlogPage({
                     key={i}
                     className="my-6 list-disc pl-6 text-black/80 md:text-lg"
                   >
-                    {block.data.items.map((item: string, idx: number) => (
+                    {block.data.items.map((item, idx) => (
                       <li key={idx}>{item}</li>
                     ))}
                   </ul>
