@@ -52,7 +52,8 @@ export function AirportSection() {
         ) : airports.length === 0 ? (
           <p>No blogs found for {selectedCountry}</p>
         ) : (
-          <div className="scrollbar-hide flex gap-6 px-4 py-4">
+          <>
+            {" "}
             {airports.map((airport, idx) =>
               idx === 0 ? (
                 <Link
@@ -100,7 +101,7 @@ export function AirportSection() {
                 </Link>
               ),
             )}
-          </div>
+          </>
         )}
       </div>
     </div>
