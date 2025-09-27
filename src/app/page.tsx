@@ -70,6 +70,9 @@ export default function Home() {
         </div>
       </main>
 
+      {/* Car Rental Section */}
+      <CarRental />
+
       {/* Pricing Section */}
       <FullWidthComponent>
         <article className="mt-[100px]">
@@ -99,9 +102,6 @@ export default function Home() {
         </article>
       </FullWidthComponent>
 
-      {/* Car Rental Section */}
-      <CarRental />
-
       {/* Blogs Section */}
       <article className="mt-[100px]">
         <h1 className="mx-auto mb-[80px] w-fit px-4 text-center text-4xl font-semibold tracking-tight text-shadow-xs md:text-6xl">
@@ -110,7 +110,7 @@ export default function Home() {
         </h1>
         <div>
           {/* <BlogsSection /> */}
-          <BlogsShowcase href="blog/" />
+          <BlogsShowcase href="blogs/" />
         </div>
       </article>
 

@@ -1,7 +1,7 @@
 import { NotepadText } from "lucide-react";
 import { BlogsShowcase } from "../components/BlogsShowcase";
 
-export default function BlogPage() {
+export default function BlogsPage() {
   return (
     <>
       {/* Hero Section */}
@@ -17,7 +17,7 @@ export default function BlogPage() {
           honest advice to navigate our ecosystem.
         </p>
       </article>
-      <BlogsShowcase href="blog/" />
+      <BlogsShowcase href="blogs/" />
     </>
   );
 }

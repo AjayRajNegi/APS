@@ -11,7 +11,7 @@ const navLinks = [
   { title: "About Us", href: "/about" },
   { title: "Contact", href: "/contact" },
   { title: "Services", href: "/services" },
-  { title: "Blogs", href: "/blog" },
+  { title: "Blogs", href: "/blogs" },
 ];
 
 const containerVariants: Variants = {
