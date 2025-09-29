@@ -87,12 +87,12 @@ export function Footer() {
       </div>
 
       {/* Location (Full Width on Mobile) */}
-      <div className="mt-8">
+      {/* <div className="mt-8">
         <p className="mb-2 font-semibold">Location</p>
         <p className="text-sm text-[#a3a3a3]">
           Elite Estate, Sudhowala, Dehradun
         </p>
-      </div>
+      </div> */}
     </footer>
   );
 }
