@@ -25,7 +25,7 @@ export function AirportSection() {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/api/countries`)
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/api/country`)
       .then((res) => res.json())
       .then((data: string[]) => setCountries(data));
   }, []);
@@ -77,16 +77,14 @@ export function AirportSection() {
                   key={airport.id}
                   className="col-span-4 row-span-3 flex items-end justify-between rounded-2xl border-[1px] border-neutral-500 p-4 transition-shadow duration-300 hover:shadow-none md:col-span-2 md:row-span-2 md:shadow-[5px_5px_0px_0px_rgba(1,1,1)]"
                   style={{
-                    backgroundImage: `url('${airport.image_path ?? "mainImage.png"}')`,
+                    backgroundImage: `url(/mainImage.png)`,
                   }}
                 >
                   <div>
                     <p className="text-4xl font-bold text-white">
-                      {airport.city}
-                    </p>
-                    <p className="font-bold text-gray-300">
                       {airport.location}
                     </p>
+                    <p className="font-bold text-gray-300">{airport.name}</p>
                   </div>
                   <ArrowDownRight
                     className="bg-aps-secondary-300 -z-0 -rotate-90 rounded-full p-1 text-white"

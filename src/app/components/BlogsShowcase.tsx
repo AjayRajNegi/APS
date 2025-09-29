@@ -47,12 +47,12 @@ interface Blog {
 
 export function BlogsShowcase({ href }: { href: string }) {
   const [categories, setCategories] = useState<string[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("Tech");
+  const [selectedCategory, setSelectedCategory] = useState<string>("Service");
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/api/categories`)
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/api/category`)
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
