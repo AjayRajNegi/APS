@@ -1,12 +1,11 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useQuery } from "@tanstack/react-query";
-import { useBookingStore } from "@/store/booking";
+import { useRouter } from "next/navigation";
 import { getDropdownList, getDropdownList5 } from "@/lib/api/common";
 import { savePorterRequestDetails } from "@/lib/api/requestBooking";
-import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useBookingStore } from "@/store/booking";
 
 type FormValues = {
   country: string;
@@ -30,72 +29,97 @@ export default function DomesticForm() {
     formState: { errors },
   } = useForm<FormValues>();
 
+  const [countries, setCountries] = useState<any[]>([]);
+  const [serviceTypes, setServiceTypes] = useState<any[]>([]);
   const [airports, setAirports] = useState<any[]>([]);
   const [terminals, setTerminals] = useState<any[]>([]);
+
   const selectedCountry = watch("country");
   const selectedService = watch("serviceType");
   const selectedOrigin = watch("origin");
 
-  // 🔹 Fetch countries
-  const { data: countries } = useQuery({
-    queryKey: ["countries"],
-    queryFn: () => getDropdownList("Country"),
-  });
+  const airportType = "CVPrBmNfWxtKgaFc3B3oYxzkJF7Il85QIWGvLM09WFg=";
 
-  // 🔹 Fetch services (TravelSector)
-  const { data: services } = useQuery({
-    queryKey: ["services"],
-    queryFn: () => getDropdownList("TravelSector"),
-  });
-
-  // 🔹 Fetch airport list when country & serviceType selected
+  // Initial load: fetch countries
   useEffect(() => {
-    if (selectedCountry && selectedService) {
-      // Example: airportType depends on serviceType (Arrival / Departure)
-      const airportType = selectedService === "Arrival" ? "1" : "2";
+    getDropdownList("Country").then((res) => setCountries(res));
+  }, []);
 
+  // On Country change → fetch ServiceTypes
+  useEffect(() => {
+    if (selectedCountry) {
       getDropdownList5(
-        "AirportServiceLIst",
+        "AirportServiceList",
         "",
         "",
         selectedCountry,
         airportType,
-      ).then((res) => setAirports(res));
+      )
+        .then((res) => setServiceTypes(res || []))
+        .catch(() => setServiceTypes([]));
+    } else {
+      setServiceTypes([]);
+    }
+  }, [selectedCountry]);
+
+  // On ServiceType change → fetch Airports
+  useEffect(() => {
+    if (selectedCountry && selectedService) {
+      getDropdownList5(
+        "OriginDestinationAirport",
+        "",
+        airportType,
+        selectedService,
+        selectedCountry,
+      )
+        .then((res) => setAirports(res || []))
+        .catch(() => setAirports([]));
+    } else {
+      setAirports([]);
     }
   }, [selectedCountry, selectedService]);
 
-  // 🔹 Fetch terminals when serviceType + origin selected
+  // On Origin change → fetch Terminals
   useEffect(() => {
-    if (selectedService && selectedOrigin) {
-      // backend API for terminals could be same as airport fetch or different
+    if (selectedOrigin && selectedService) {
       getDropdownList5(
-        "TerminalList",
-        "",
+        "AirportTerminal",
         "",
         selectedOrigin,
+        airportType,
         selectedService,
-      ).then((res) => setTerminals(res));
+      )
+        .then((res) => setTerminals(res || []))
+        .catch(() => setTerminals([]));
+    } else {
+      setTerminals([]);
     }
   }, [selectedOrigin, selectedService]);
 
   const onSubmit = async (data: FormValues) => {
+    const travelDateUTC = new Date(data.travelDate).toISOString();
     setDomestic(data);
 
     const payload = {
       AirportCode: data.origin,
       DestinationAirportCode: data.destination,
       Terminal: data.terminal,
-      TravelDate: data.travelDate,
+      TravelDate: travelDateUTC,
       PhoneNumber: data.phone,
       PhoneCountryCode: "in",
       ServiceType: data.serviceType,
-      AirportType: "Domestic",
+      AirportType: airportType,
       IsTransit: false,
       Action: 1,
     };
 
-    await savePorterRequestDetails(payload);
-    router.push("/review");
+    try {
+      await savePorterRequestDetails(payload);
+      // router.push("/review");
+      console.log(payload);
+    } catch (err) {
+      console.error("Failed to save booking", err);
+    }
   };
 
   return (
@@ -108,7 +132,7 @@ export default function DomesticForm() {
           className="w-full border p-2"
         >
           <option value="">Select Country</option>
-          {countries?.map((c: any) => (
+          {countries.map((c) => (
             <option key={c.EncyptID} value={c.EncyptID}>
               {c.Name}
             </option>
@@ -125,7 +149,7 @@ export default function DomesticForm() {
           className="w-full border p-2"
         >
           <option value="">Select Service</option>
-          {services?.map((s: any) => (
+          {serviceTypes.map((s) => (
             <option key={s.EncyptID} value={s.EncyptID}>
               {s.Name}
             </option>
@@ -144,7 +168,7 @@ export default function DomesticForm() {
           className="w-full border p-2"
         >
           <option value="">Select Origin</option>
-          {airports?.map((a: any) => (
+          {airports.map((a) => (
             <option key={a.EncyptID} value={a.EncyptID}>
               {a.Name}
             </option>
@@ -163,7 +187,7 @@ export default function DomesticForm() {
           className="w-full border p-2"
         >
           <option value="">Select Destination</option>
-          {airports?.map((a: any) => (
+          {airports.map((a) => (
             <option key={a.EncyptID} value={a.EncyptID}>
               {a.Name}
             </option>
@@ -182,7 +206,7 @@ export default function DomesticForm() {
           className="w-full border p-2"
         >
           <option value="">Select Terminal</option>
-          {terminals?.map((t: any) => (
+          {terminals.map((t) => (
             <option key={t.EncyptID} value={t.EncyptID}>
               {t.Name}
             </option>
