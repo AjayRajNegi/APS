@@ -1,12 +1,19 @@
 import { create } from "zustand";
 
+type BookingResponse = {
+  EncryptID: string;
+  Message?: string;
+  Status?: string;
+  [key: string]: any;
+};
+
 type BookingState = {
-  domestic: any;
-  international: any;
-  transit: any;
-  setDomestic: (data: any) => void;
-  setInternational: (data: any) => void;
-  setTransit: (data: any) => void;
+  domestic: BookingResponse | null;
+  international: BookingResponse | null;
+  transit: BookingResponse | null;
+  setDomestic: (data: BookingResponse) => void;
+  setInternational: (data: BookingResponse) => void;
+  setTransit: (data: BookingResponse) => void;
 };
 
 export const useBookingStore = create<BookingState>((set) => ({

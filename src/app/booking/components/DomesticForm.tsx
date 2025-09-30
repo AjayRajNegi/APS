@@ -98,7 +98,6 @@ export default function DomesticForm() {
 
   const onSubmit = async (data: FormValues) => {
     const travelDateUTC = new Date(data.travelDate).toISOString();
-    setDomestic(data);
 
     const payload = {
       AirportCode: data.origin,
@@ -114,8 +113,12 @@ export default function DomesticForm() {
     };
 
     try {
-      await savePorterRequestDetails(payload);
-      // router.push("/review");
+      const response = await savePorterRequestDetails(payload);
+      console.log(response[0].EncyptID);
+      const slug = encodeURIComponent(response[0].EncyptID);
+      console.log(slug);
+      setDomestic(response);
+      router.push(`/service-request/${slug}`);
       console.log(payload);
     } catch (err) {
       console.error("Failed to save booking", err);
