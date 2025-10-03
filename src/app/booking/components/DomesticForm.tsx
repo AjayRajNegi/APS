@@ -1,20 +1,25 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { getDropdownList, getDropdownList5 } from "@/lib/api/common";
-import { savePorterRequestDetails } from "@/lib/api/requestBooking";
 import { useBookingStore } from "@/store/booking";
+import { Controller, useForm } from "react-hook-form";
+import { savePorterRequestDetails } from "@/lib/api/requestBooking";
+import { getDropdownList, getDropdownList5 } from "@/lib/api/common";
+
+type Airport = {
+  EncyptID: string;
+  Name: string;
+};
 
 type FormValues = {
-  country: string;
-  serviceType: string;
+  phone: string;
   origin: string;
-  destination: string;
+  country: string;
   terminal: string;
   travelDate: string;
-  phone: string;
+  serviceType: string;
+  destination: string;
 };
 
 export default function DomesticForm() {
@@ -22,30 +27,34 @@ export default function DomesticForm() {
   const { setDomestic } = useBookingStore();
 
   const {
+    watch,
+    control,
     register,
     handleSubmit,
-    watch,
-    setValue,
     formState: { errors },
   } = useForm<FormValues>();
 
-  const [countries, setCountries] = useState<any[]>([]);
-  const [serviceTypes, setServiceTypes] = useState<any[]>([]);
   const [airports, setAirports] = useState<any[]>([]);
   const [terminals, setTerminals] = useState<any[]>([]);
+  const [countries, setCountries] = useState<any[]>([]);
+  const [serviceTypes, setServiceTypes] = useState<any[]>([]);
+  const [destinationQuery, setDestinationQuery] = useState("");
+  const [originAirport, setOriginAirport] = useState<string>();
+  const [selectedService, setSelectedService] = useState<string>();
+  const [airportResults, setAirportResults] = useState<Airport[]>([]);
 
   const selectedCountry = watch("country");
-  const selectedService = watch("serviceType");
-  const selectedOrigin = watch("origin");
+  const selectedServiceCode = watch("serviceType");
 
   const airportType = "CVPrBmNfWxtKgaFc3B3oYxzkJF7Il85QIWGvLM09WFg=";
+  const internationalType = "rV28YjgOqTZ94fpbnNVaN8qYMNhZoeIqOelpVDRbctc=";
 
   // Initial load: fetch countries
   useEffect(() => {
     getDropdownList("Country").then((res) => setCountries(res));
   }, []);
 
-  // On Country change → fetch ServiceTypes
+  // On Country change -> fetch ServiceTypes
   useEffect(() => {
     if (selectedCountry) {
       getDropdownList5(
@@ -62,14 +71,14 @@ export default function DomesticForm() {
     }
   }, [selectedCountry]);
 
-  // On ServiceType change → fetch Airports
+  // On ServiceType change -> fetch Airports
   useEffect(() => {
-    if (selectedCountry && selectedService) {
+    if (selectedCountry && selectedServiceCode) {
       getDropdownList5(
         "OriginDestinationAirport",
         "",
         airportType,
-        selectedService,
+        selectedServiceCode,
         selectedCountry,
       )
         .then((res) => setAirports(res || []))
@@ -77,24 +86,53 @@ export default function DomesticForm() {
     } else {
       setAirports([]);
     }
-  }, [selectedCountry, selectedService]);
+  }, [selectedCountry, selectedServiceCode]);
 
-  // On Origin change → fetch Terminals
+  // On Origin change -> fetch Terminals
   useEffect(() => {
-    if (selectedOrigin && selectedService) {
+    if (originAirport && selectedServiceCode) {
       getDropdownList5(
         "AirportTerminal",
         "",
-        selectedOrigin,
+        originAirport,
         airportType,
-        selectedService,
+        selectedServiceCode,
       )
         .then((res) => setTerminals(res || []))
         .catch(() => setTerminals([]));
     } else {
       setTerminals([]);
     }
-  }, [selectedOrigin, selectedService]);
+  }, [originAirport, selectedServiceCode]);
+
+  // On Airport search -> fetches airport
+  useEffect(() => {
+    if (destinationQuery.trim() === "") {
+      setAirportResults([]);
+      return;
+    }
+    const timerId = setTimeout(() => {
+      fetchAirports(destinationQuery);
+    }, 500);
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [destinationQuery]);
+
+  const fetchAirports = async (query: string) => {
+    try {
+      getDropdownList5(
+        "AllAirport",
+        query,
+        airportType,
+        selectedServiceCode,
+        selectedCountry,
+      ).then((res) => setAirportResults(res));
+    } catch (error) {
+      console.error("Failed to fetch airports:", error);
+      setAirportResults([]);
+    }
+  };
 
   const onSubmit = async (data: FormValues) => {
     const travelDateUTC = new Date(data.travelDate).toISOString();
@@ -147,58 +185,170 @@ export default function DomesticForm() {
       {/* Service Type Select */}
       <div>
         <label className="mb-1 block">Service Type</label>
-        <select
-          {...register("serviceType", { required: true })}
-          className="w-full border p-2"
-        >
-          <option value="">Select Service</option>
-          {serviceTypes.map((s) => (
-            <option key={s.EncyptID} value={s.EncyptID}>
-              {s.Name}
-            </option>
-          ))}
-        </select>
-        {errors.serviceType && (
-          <p className="text-red-500">Service type required</p>
-        )}
+        <Controller
+          name="serviceType"
+          control={control}
+          rules={{ required: "Service type required" }}
+          render={({ field }) => (
+            <select
+              className="form-control"
+              value={field.value || ""}
+              onChange={(e) => {
+                field.onChange(e.target.value);
+                const service = serviceTypes.find(
+                  (s) => s.EncyptID === e.target.value,
+                );
+                setSelectedService(service.Name);
+              }}
+            >
+              <option value="">Select Service</option>
+              {serviceTypes.map((service) => (
+                <option key={service.EncyptID} value={service.EncyptID}>
+                  {service.Name}
+                </option>
+              ))}
+            </select>
+          )}
+        />
       </div>
 
       {/* Origin Airport */}
-      <div>
-        <label className="mb-1 block">Origin Airport</label>
-        <select
-          {...register("origin", { required: true })}
-          className="w-full border p-2"
-        >
-          <option value="">Select Origin</option>
-          {airports.map((a) => (
-            <option key={a.EncyptID} value={a.EncyptID}>
-              {a.Name}
-            </option>
-          ))}
-        </select>
-        {errors.origin && (
-          <p className="text-red-500">Origin airport required</p>
-        )}
+      <div className="origin-input-area">
+        <label className="form-label">
+          Origin Airport <i className="fa-solid fa-location-pin"></i>
+        </label>
+
+        <Controller
+          name="origin"
+          control={control}
+          rules={{ required: "Please select origin airport." }}
+          render={({ field }) =>
+            selectedService === "Arrival" ? (
+              <div className="autocomplete-container">
+                <input
+                  type="text"
+                  placeholder="Search destination airport..."
+                  className="form-control"
+                  value={destinationQuery}
+                  onChange={(e) => setDestinationQuery(e.target.value)}
+                />
+
+                {airportResults.length > 0 && (
+                  <ul
+                    className="list-group"
+                    style={{
+                      position: "absolute",
+                      zIndex: 1000,
+                      width: "100%",
+                    }}
+                  >
+                    {airportResults.map((airport) => (
+                      <li
+                        key={airport.EncyptID}
+                        className="list-group-item list-group-item-action"
+                        onClick={() => {
+                          setDestinationQuery(airport.Name);
+                          field.onChange(airport.EncyptID);
+                          setAirportResults([]);
+                        }}
+                      >
+                        {airport.Name}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ) : (
+              <select
+                className="form-control"
+                value={field.value || ""}
+                onChange={(e) => {
+                  field.onChange(e.target.value);
+                  setOriginAirport(e.target.value);
+                }}
+              >
+                <option value="">Origin Airport</option>
+                {airports.map((loc) => (
+                  <option key={loc.EncyptID} value={loc.EncyptID}>
+                    {loc.Name}
+                  </option>
+                ))}
+              </select>
+            )
+          }
+        />
       </div>
 
       {/* Destination Airport */}
-      <div>
-        <label className="mb-1 block">Destination Airport</label>
-        <select
-          {...register("destination", { required: true })}
-          className="w-full border p-2"
-        >
-          <option value="">Select Destination</option>
-          {airports.map((a) => (
-            <option key={a.EncyptID} value={a.EncyptID}>
-              {a.Name}
-            </option>
-          ))}
-        </select>
-        {errors.destination && (
-          <p className="text-red-500">Destination airport required</p>
-        )}
+      <div className="col-md-6 origin-input-area mt-3">
+        <label className="form-label">
+          Destination Airport <i className="fa-solid fa-location-pin"></i>
+        </label>
+
+        <Controller
+          name="destination"
+          control={control}
+          rules={{
+            required: "Please select destination airport.",
+            validate: (val) =>
+              val !== watch("origin") ||
+              "Origin & Destination airport should be different.",
+          }}
+          render={({ field }) =>
+            selectedService === "Arrival" ? (
+              <select
+                className="form-control"
+                value={field.value || ""}
+                onChange={(e) => {
+                  field.onChange(e.target.value);
+                  setOriginAirport(e.target.value);
+                }}
+              >
+                <option value="">Destination Airport</option>
+                {airports.map((loc) => (
+                  <option key={loc.EncyptID} value={loc.EncyptID}>
+                    {loc.Name}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <div className="autocomplete-container">
+                <input
+                  type="text"
+                  placeholder="Search destination airport..."
+                  className="form-control"
+                  value={destinationQuery}
+                  onChange={(e) => setDestinationQuery(e.target.value)}
+                />
+
+                {airportResults.length > 0 && (
+                  <ul
+                    className="list-group"
+                    style={{
+                      position: "absolute",
+                      zIndex: 1000,
+                      width: "100%",
+                    }}
+                  >
+                    {airportResults.map((airport) => (
+                      <li
+                        key={airport.EncyptID}
+                        className="list-group-item list-group-item-action"
+                        onClick={() => {
+                          setDestinationQuery(airport.Name);
+                          field.onChange(airport.EncyptID);
+                          setAirportResults([]);
+                        }}
+                      >
+                        {airport.Name}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )
+          }
+        />
       </div>
 
       {/* Terminal */}
@@ -241,7 +391,7 @@ export default function DomesticForm() {
           type="tel"
           {...register("phone", {
             required: true,
-            pattern: /^[6-9]\d{9}$/, // India mobile format
+            pattern: /^[6-9]\d{9}$/,
           })}
           placeholder="Enter Indian phone number"
           className="w-full border p-2"
