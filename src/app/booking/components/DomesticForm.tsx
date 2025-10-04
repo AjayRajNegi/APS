@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import { useBookingStore } from "@/store/booking";
 import { Controller, useForm } from "react-hook-form";
 import { savePorterRequestDetails } from "@/lib/api/requestBooking";
@@ -47,7 +50,8 @@ export default function DomesticForm() {
   const selectedServiceCode = watch("serviceType");
 
   const airportType = "CVPrBmNfWxtKgaFc3B3oYxzkJF7Il85QIWGvLM09WFg=";
-  const internationalType = "rV28YjgOqTZ94fpbnNVaN8qYMNhZoeIqOelpVDRbctc=";
+
+  // const internationalType = "rV28YjgOqTZ94fpbnNVaN8qYMNhZoeIqOelpVDRbctc=";
 
   // Initial load: fetch countries
   useEffect(() => {
@@ -152,25 +156,23 @@ export default function DomesticForm() {
 
     try {
       const response = await savePorterRequestDetails(payload);
-      console.log(response[0].EncyptID);
-      const slug = encodeURIComponent(response[0].EncyptID);
-      console.log(slug);
+      const orderId = encodeURIComponent(response[0].EncyptID);
       setDomestic(response);
-      router.push(`/service-request/${slug}`);
-      console.log(payload);
+      router.push(`/service-request/${orderId}`);
     } catch (err) {
       console.error("Failed to save booking", err);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {/* Country Select */}
       <div>
-        <label className="mb-1 block">Country</label>
+        <Label htmlFor="country">Country</Label>
         <select
+          id="country"
           {...register("country", { required: true })}
-          className="w-full border p-2"
+          className="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
         >
           <option value="">Select Country</option>
           {countries.map((c) => (
@@ -179,26 +181,29 @@ export default function DomesticForm() {
             </option>
           ))}
         </select>
-        {errors.country && <p className="text-red-500">Country required</p>}
+        {errors.country && (
+          <p className="mt-1 text-sm text-red-500">Country required</p>
+        )}
       </div>
 
       {/* Service Type Select */}
       <div>
-        <label className="mb-1 block">Service Type</label>
+        <Label htmlFor="serviceType">Service Type</Label>
         <Controller
           name="serviceType"
           control={control}
           rules={{ required: "Service type required" }}
           render={({ field }) => (
             <select
-              className="form-control"
+              id="serviceType"
+              className="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
               value={field.value || ""}
               onChange={(e) => {
                 field.onChange(e.target.value);
                 const service = serviceTypes.find(
                   (s) => s.EncyptID === e.target.value,
                 );
-                setSelectedService(service.Name);
+                setSelectedService(service?.Name);
               }}
             >
               <option value="">Select Service</option>
@@ -210,42 +215,34 @@ export default function DomesticForm() {
             </select>
           )}
         />
+        {errors.serviceType && (
+          <p className="mt-1 text-sm text-red-500">Service type required</p>
+        )}
       </div>
 
       {/* Origin Airport */}
-      <div className="origin-input-area">
-        <label className="form-label">
-          Origin Airport <i className="fa-solid fa-location-pin"></i>
-        </label>
-
+      <div>
+        <Label htmlFor="origin">Origin Airport</Label>
         <Controller
           name="origin"
           control={control}
           rules={{ required: "Please select origin airport." }}
           render={({ field }) =>
             selectedService === "Arrival" ? (
-              <div className="autocomplete-container">
-                <input
+              <div className="relative mt-2">
+                <Input
+                  id="origin"
                   type="text"
                   placeholder="Search destination airport..."
-                  className="form-control"
                   value={destinationQuery}
                   onChange={(e) => setDestinationQuery(e.target.value)}
                 />
-
                 {airportResults.length > 0 && (
-                  <ul
-                    className="list-group"
-                    style={{
-                      position: "absolute",
-                      zIndex: 1000,
-                      width: "100%",
-                    }}
-                  >
+                  <ul className="absolute right-0 left-0 mt-2 max-h-48 overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-md">
                     {airportResults.map((airport) => (
                       <li
                         key={airport.EncyptID}
-                        className="list-group-item list-group-item-action"
+                        className="cursor-pointer px-4 py-2 text-sm hover:bg-slate-100"
                         onClick={() => {
                           setDestinationQuery(airport.Name);
                           field.onChange(airport.EncyptID);
@@ -260,7 +257,7 @@ export default function DomesticForm() {
               </div>
             ) : (
               <select
-                className="form-control"
+                className="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
                 value={field.value || ""}
                 onChange={(e) => {
                   field.onChange(e.target.value);
@@ -277,14 +274,14 @@ export default function DomesticForm() {
             )
           }
         />
+        {errors.origin && (
+          <p className="mt-1 text-sm text-red-500">{errors.origin.message}</p>
+        )}
       </div>
 
       {/* Destination Airport */}
-      <div className="col-md-6 origin-input-area mt-3">
-        <label className="form-label">
-          Destination Airport <i className="fa-solid fa-location-pin"></i>
-        </label>
-
+      <div>
+        <Label htmlFor="destination">Destination Airport</Label>
         <Controller
           name="destination"
           control={control}
@@ -297,7 +294,7 @@ export default function DomesticForm() {
           render={({ field }) =>
             selectedService === "Arrival" ? (
               <select
-                className="form-control"
+                className="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
                 value={field.value || ""}
                 onChange={(e) => {
                   field.onChange(e.target.value);
@@ -312,28 +309,20 @@ export default function DomesticForm() {
                 ))}
               </select>
             ) : (
-              <div className="autocomplete-container">
-                <input
+              <div className="relative mt-2">
+                <Input
+                  id="destination"
                   type="text"
                   placeholder="Search destination airport..."
-                  className="form-control"
                   value={destinationQuery}
                   onChange={(e) => setDestinationQuery(e.target.value)}
                 />
-
                 {airportResults.length > 0 && (
-                  <ul
-                    className="list-group"
-                    style={{
-                      position: "absolute",
-                      zIndex: 1000,
-                      width: "100%",
-                    }}
-                  >
+                  <ul className="absolute right-0 left-0 mt-2 max-h-48 overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-md">
                     {airportResults.map((airport) => (
                       <li
                         key={airport.EncyptID}
-                        className="list-group-item list-group-item-action"
+                        className="cursor-pointer px-4 py-2 text-sm hover:bg-slate-100"
                         onClick={() => {
                           setDestinationQuery(airport.Name);
                           field.onChange(airport.EncyptID);
@@ -349,14 +338,20 @@ export default function DomesticForm() {
             )
           }
         />
+        {errors.destination && (
+          <p className="mt-1 text-sm text-red-500">
+            {errors.destination.message}
+          </p>
+        )}
       </div>
 
       {/* Terminal */}
       <div>
-        <label className="mb-1 block">Terminal</label>
+        <Label htmlFor="terminal">Terminal</Label>
         <select
+          id="terminal"
           {...register("terminal", { required: true })}
-          className="w-full border p-2"
+          className="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
         >
           <option value="">Select Terminal</option>
           {terminals.map((t) => (
@@ -365,46 +360,53 @@ export default function DomesticForm() {
             </option>
           ))}
         </select>
-        {errors.terminal && <p className="text-red-500">Terminal required</p>}
+        {errors.terminal && (
+          <p className="mt-1 text-sm text-red-500">Terminal required</p>
+        )}
       </div>
 
       {/* Travel Date & Time */}
       <div>
-        <label className="mb-1 block">Travel Date & Time</label>
-        <input
+        <Label htmlFor="travelDate">Travel Date & Time</Label>
+        <Input
+          id="travelDate"
           type="datetime-local"
           {...register("travelDate", {
             required: true,
             validate: (value) => new Date(value) > new Date(),
           })}
-          className="w-full border p-2"
+          className="mt-2 w-full"
         />
         {errors.travelDate && (
-          <p className="text-red-500">Select a future date/time</p>
+          <p className="mt-1 text-sm text-red-500">Select a future date/time</p>
         )}
       </div>
 
       {/* Phone */}
       <div>
-        <label className="mb-1 block">Phone Number</label>
-        <input
+        <Label htmlFor="phone">Phone Number</Label>
+        <Input
+          id="phone"
           type="tel"
           {...register("phone", {
             required: true,
             pattern: /^[6-9]\d{9}$/,
           })}
           placeholder="Enter Indian phone number"
-          className="w-full border p-2"
+          className="mt-2 w-full"
         />
-        {errors.phone && <p className="text-red-500">Valid phone required</p>}
+        {errors.phone && (
+          <p className="mt-1 text-sm text-red-500">Valid phone required</p>
+        )}
       </div>
 
-      <button
+      {/* CTA */}
+      <Button
         type="submit"
-        className="rounded bg-blue-600 px-4 py-2 text-white"
+        className="w-full rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white transition hover:bg-blue-700"
       >
         Continue
-      </button>
+      </Button>
     </form>
   );
 }
