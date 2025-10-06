@@ -497,13 +497,6 @@ export default function DomesticForm() {
           )}
         />
 
-        {/* hidden input to store country code (if needed like Angular version) */}
-        <Controller
-          name="phoneCountryCode"
-          control={control}
-          render={({ field }) => <input type="hidden" {...field} />}
-        />
-
         <Button type="submit" className="w-full">
           Continue
         </Button>

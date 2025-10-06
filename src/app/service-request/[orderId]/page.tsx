@@ -10,6 +10,23 @@ import {
 } from "@/lib/api/requestBooking";
 import { getDropdownList5 } from "@/lib/api/common";
 
+interface AirportDetails {
+  RequestId: string;
+  AirportCode: string;
+  Terminal: string;
+  ServiceType: string;
+  PhoneNumber: string;
+  TravelDate: string;
+  AirportName: string;
+  City: string;
+  Country: string;
+  Origin: string;
+  OriginAirportName: string;
+  Destination: string;
+  DestinationAirportName: string;
+  AirportType: string;
+}
+
 type Guest = {
   title: string;
   firstName: string;
@@ -44,7 +61,7 @@ export default function ServiceRequest() {
   const [isInclusionOpen, setIsInclusionOpen] = useState(false);
   const [isPriceOpen, setIsPriceOpen] = useState(false);
   const [discountDivDisable, setDiscountDivDisable] = useState(false);
-  const [details, setDetails] = useState({});
+  const [details, setDetails] = useState<AirportDetails | null>(null);
   const [priceList, setPriceList] = useState([]);
 
   const [currentTotalAmount, setCurrentTotalAmount] = useState(0);
@@ -260,7 +277,13 @@ export default function ServiceRequest() {
 
   return (
     <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 shadow-lg">
-      <h1 className="mb-6 text-center text-2xl font-bold">Service Request</h1>
+      {details ? (
+        <h1 className="mb-6 text-center text-2xl font-bold">
+          {details.AirportName} ({details.TravelDate})
+        </h1>
+      ) : (
+        <p>Loading...</p>
+      )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-4">

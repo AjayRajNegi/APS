@@ -52,7 +52,7 @@ type FormValues = {
 
 export default function InternationalForm() {
   const router = useRouter();
-  const { setDomestic } = useBookingStore();
+  const { setInternational } = useBookingStore();
 
   const form = useForm<FormValues>();
   const {
@@ -75,7 +75,6 @@ export default function InternationalForm() {
   const selectedCountry = watch("country");
   const selectedServiceCode = watch("serviceType");
 
-  //const airportType = "CVPrBmNfWxtKgaFc3B3oYxzkJF7Il85QIWGvLM09WFg=";
   const airportType = "rV28YjgOqTZ94fpbnNVaN8qYMNhZoeIqOelpVDRbctc=";
 
   // Load countries
@@ -171,7 +170,7 @@ export default function InternationalForm() {
     try {
       const response = await savePorterRequestDetails(payload);
       const orderId = encodeURIComponent(response[0].EncyptID);
-      setDomestic(response);
+      setInternational(response);
       router.push(`/service-request/${orderId}`);
     } catch (err) {
       console.error("Failed to save booking", err);
@@ -495,13 +494,6 @@ export default function InternationalForm() {
               <FormMessage />
             </FormItem>
           )}
-        />
-
-        {/* hidden input to store country code (if needed like Angular version) */}
-        <Controller
-          name="phoneCountryCode"
-          control={control}
-          render={({ field }) => <input type="hidden" {...field} />}
         />
 
         <Button type="submit" className="w-full">
