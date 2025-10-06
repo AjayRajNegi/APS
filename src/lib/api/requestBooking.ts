@@ -94,34 +94,34 @@ export const updateRazorPaymentDetails = async (objdata: any) => {
   return res.data;
 };
 
-// export const saveFailedTransactionDetails = async (objdata: any) => {
-//   const res = await api.post(
-//     `${API_PATH}/saveFailedTransactionDetails`,
-//     objdata,
-//   );
-//   return res.data;
-// };
+export const saveFailedTransactionDetails = async (objdata: any) => {
+  const res = await api.post(
+    `${API_PATH}/saveFailedTransactionDetails`,
+    objdata,
+  );
+  return res.data;
+};
 
-// export const UpdateCancelPorterBookingDetails = async (
-//   objBookingModel: any,
-// ) => {
-//   const res = await api.post(
-//     `${API_PATH}/updateCancelManageMyBookingDetails`,
-//     objBookingModel,
-//   );
-//   return res.data;
-// };
+export const UpdateCancelPorterBookingDetails = async (
+  objBookingModel: any,
+) => {
+  const res = await api.post(
+    `${API_PATH}/updateCancelManageMyBookingDetails`,
+    objBookingModel,
+  );
+  return res.data;
+};
 
-// //-------------------End Manage My Booking----------------------------------
+//-------------------End Manage My Booking----------------------------------
 
-// export const MakeOfflineBookingPayment = async (
-//   BookingId: string,
-//   GrandTotal: any,
-//   DiscountAmount: any,
-//   CouponCode: any,
-// ) => {
-//   const res = await api.get(
-//     `${API_PATH}/makeOfflineBookingPayment?BookingId=${BookingId}&GrandTotal=${GrandTotal}&DiscountAmount=${DiscountAmount}&CouponCode=${CouponCode}`,
-//   );
-//   return res.data;
-// };
+export const MakeOfflineBookingPayment = async (
+  BookingId: string,
+  GrandTotal: any,
+  DiscountAmount: any,
+  CouponCode: any,
+) => {
+  const res = await api.get(
+    `${API_PATH}/makeOfflineBookingPayment?BookingId=${BookingId}&GrandTotal=${GrandTotal}&DiscountAmount=${DiscountAmount}&CouponCode=${CouponCode}`,
+  );
+  return res.data;
+};

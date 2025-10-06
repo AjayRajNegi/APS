@@ -3,12 +3,35 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useBookingStore } from "@/store/booking";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { savePorterRequestDetails } from "@/lib/api/requestBooking";
 import { getDropdownList, getDropdownList5 } from "@/lib/api/common";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { CalendarIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 
 type Airport = {
   EncyptID: string;
@@ -29,18 +52,19 @@ export default function DomesticForm() {
   const router = useRouter();
   const { setDomestic } = useBookingStore();
 
+  const form = useForm<FormValues>();
   const {
     watch,
     control,
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = form;
 
-  const [airports, setAirports] = useState<any[]>([]);
-  const [terminals, setTerminals] = useState<any[]>([]);
-  const [countries, setCountries] = useState<any[]>([]);
-  const [serviceTypes, setServiceTypes] = useState<any[]>([]);
+  const [airports, setAirports] = useState<Airport[]>([]);
+  const [terminals, setTerminals] = useState<Airport[]>([]);
+  const [countries, setCountries] = useState<Airport[]>([]);
+  const [serviceTypes, setServiceTypes] = useState<Airport[]>([]);
   const [destinationQuery, setDestinationQuery] = useState("");
   const [originAirport, setOriginAirport] = useState<string>();
   const [selectedService, setSelectedService] = useState<string>();
@@ -51,14 +75,12 @@ export default function DomesticForm() {
 
   const airportType = "CVPrBmNfWxtKgaFc3B3oYxzkJF7Il85QIWGvLM09WFg=";
 
-  // const internationalType = "rV28YjgOqTZ94fpbnNVaN8qYMNhZoeIqOelpVDRbctc=";
-
-  // Initial load: fetch countries
+  // Load countries
   useEffect(() => {
     getDropdownList("Country").then((res) => setCountries(res));
   }, []);
 
-  // On Country change -> fetch ServiceTypes
+  // On country change -> fetch service types
   useEffect(() => {
     if (selectedCountry) {
       getDropdownList5(
@@ -70,12 +92,10 @@ export default function DomesticForm() {
       )
         .then((res) => setServiceTypes(res || []))
         .catch(() => setServiceTypes([]));
-    } else {
-      setServiceTypes([]);
-    }
+    } else setServiceTypes([]);
   }, [selectedCountry]);
 
-  // On ServiceType change -> fetch Airports
+  // On service type change -> fetch airports
   useEffect(() => {
     if (selectedCountry && selectedServiceCode) {
       getDropdownList5(
@@ -87,12 +107,10 @@ export default function DomesticForm() {
       )
         .then((res) => setAirports(res || []))
         .catch(() => setAirports([]));
-    } else {
-      setAirports([]);
-    }
+    } else setAirports([]);
   }, [selectedCountry, selectedServiceCode]);
 
-  // On Origin change -> fetch Terminals
+  // On origin change -> fetch terminals
   useEffect(() => {
     if (originAirport && selectedServiceCode) {
       getDropdownList5(
@@ -104,43 +122,36 @@ export default function DomesticForm() {
       )
         .then((res) => setTerminals(res || []))
         .catch(() => setTerminals([]));
-    } else {
-      setTerminals([]);
-    }
+    } else setTerminals([]);
   }, [originAirport, selectedServiceCode]);
 
-  // On Airport search -> fetches airport
+  // Airport search
   useEffect(() => {
     if (destinationQuery.trim() === "") {
       setAirportResults([]);
       return;
     }
-    const timerId = setTimeout(() => {
-      fetchAirports(destinationQuery);
-    }, 500);
-    return () => {
-      clearTimeout(timerId);
-    };
+    const timerId = setTimeout(() => fetchAirports(destinationQuery), 500);
+    return () => clearTimeout(timerId);
   }, [destinationQuery]);
 
   const fetchAirports = async (query: string) => {
     try {
-      getDropdownList5(
+      const res = await getDropdownList5(
         "AllAirport",
         query,
         airportType,
         selectedServiceCode,
         selectedCountry,
-      ).then((res) => setAirportResults(res));
-    } catch (error) {
-      console.error("Failed to fetch airports:", error);
+      );
+      setAirportResults(res);
+    } catch {
       setAirportResults([]);
     }
   };
 
   const onSubmit = async (data: FormValues) => {
     const travelDateUTC = new Date(data.travelDate).toISOString();
-
     const payload = {
       AirportCode: data.origin,
       DestinationAirportCode: data.destination,
@@ -165,248 +176,307 @@ export default function DomesticForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {/* Country Select */}
-      <div>
-        <Label htmlFor="country">Country</Label>
-        <select
-          id="country"
-          {...register("country", { required: true })}
-          className="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
-        >
-          <option value="">Select Country</option>
-          {countries.map((c) => (
-            <option key={c.EncyptID} value={c.EncyptID}>
-              {c.Name}
-            </option>
-          ))}
-        </select>
-        {errors.country && (
-          <p className="mt-1 text-sm text-red-500">Country required</p>
-        )}
-      </div>
-
-      {/* Service Type Select */}
-      <div>
-        <Label htmlFor="serviceType">Service Type</Label>
-        <Controller
-          name="serviceType"
+    <Form {...form}>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {/* Country */}
+        <FormField
           control={control}
-          rules={{ required: "Service type required" }}
+          name="country"
+          rules={{ required: true }}
           render={({ field }) => (
-            <select
-              id="serviceType"
-              className="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
-              value={field.value || ""}
-              onChange={(e) => {
-                field.onChange(e.target.value);
-                const service = serviceTypes.find(
-                  (s) => s.EncyptID === e.target.value,
-                );
-                setSelectedService(service?.Name);
-              }}
-            >
-              <option value="">Select Service</option>
-              {serviceTypes.map((service) => (
-                <option key={service.EncyptID} value={service.EncyptID}>
-                  {service.Name}
-                </option>
-              ))}
-            </select>
+            <FormItem>
+              <FormLabel>Country</FormLabel>
+              <FormControl>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Country" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {countries.map((c) => (
+                      <SelectItem key={c.EncyptID} value={c.EncyptID}>
+                        {c.Name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage>{errors.country && "Country required"}</FormMessage>
+            </FormItem>
           )}
         />
-        {errors.serviceType && (
-          <p className="mt-1 text-sm text-red-500">Service type required</p>
-        )}
-      </div>
 
-      {/* Origin Airport */}
-      <div>
-        <Label htmlFor="origin">Origin Airport</Label>
-        <Controller
-          name="origin"
+        {/* Service Type */}
+        <FormField
           control={control}
-          rules={{ required: "Please select origin airport." }}
-          render={({ field }) =>
-            selectedService === "Arrival" ? (
-              <div className="relative mt-2">
-                <Input
-                  id="origin"
-                  type="text"
-                  placeholder="Search destination airport..."
-                  value={destinationQuery}
-                  onChange={(e) => setDestinationQuery(e.target.value)}
-                />
-                {airportResults.length > 0 && (
-                  <ul className="absolute right-0 left-0 mt-2 max-h-48 overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-md">
-                    {airportResults.map((airport) => (
-                      <li
-                        key={airport.EncyptID}
-                        className="cursor-pointer px-4 py-2 text-sm hover:bg-slate-100"
-                        onClick={() => {
-                          setDestinationQuery(airport.Name);
-                          field.onChange(airport.EncyptID);
-                          setAirportResults([]);
-                        }}
-                      >
-                        {airport.Name}
-                      </li>
+          name="serviceType"
+          rules={{ required: "Service type required" }}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Service Type</FormLabel>
+              <FormControl>
+                <Select
+                  onValueChange={(val) => {
+                    field.onChange(val);
+                    const service = serviceTypes.find(
+                      (s) => s.EncyptID === val,
+                    );
+                    setSelectedService(service?.Name);
+                  }}
+                  defaultValue={field.value}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Service" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {serviceTypes.map((s) => (
+                      <SelectItem key={s.EncyptID} value={s.EncyptID}>
+                        {s.Name}
+                      </SelectItem>
                     ))}
-                  </ul>
-                )}
-              </div>
-            ) : (
-              <select
-                className="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
-                value={field.value || ""}
-                onChange={(e) => {
-                  field.onChange(e.target.value);
-                  setOriginAirport(e.target.value);
-                }}
-              >
-                <option value="">Origin Airport</option>
-                {airports.map((loc) => (
-                  <option key={loc.EncyptID} value={loc.EncyptID}>
-                    {loc.Name}
-                  </option>
-                ))}
-              </select>
-            )
-          }
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage>
+                {errors.serviceType && errors.serviceType.message}
+              </FormMessage>
+            </FormItem>
+          )}
         />
-        {errors.origin && (
-          <p className="mt-1 text-sm text-red-500">{errors.origin.message}</p>
-        )}
-      </div>
 
-      {/* Destination Airport */}
-      <div>
-        <Label htmlFor="destination">Destination Airport</Label>
-        <Controller
-          name="destination"
+        {/* Origin Airport */}
+        <FormField
           control={control}
+          name="origin"
+          rules={{ required: "Please select origin airport." }}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Origin Airport</FormLabel>
+              <FormControl>
+                {selectedService === "Arrival" ? (
+                  <div className="relative">
+                    <Input
+                      placeholder="Search destination airport..."
+                      value={destinationQuery}
+                      onChange={(e) => setDestinationQuery(e.target.value)}
+                    />
+                    {airportResults.length > 0 && (
+                      <ul className="absolute right-0 left-0 mt-2 max-h-48 overflow-y-auto rounded-md border bg-white shadow">
+                        {airportResults.map((airport) => (
+                          <li
+                            key={airport.EncyptID}
+                            className="cursor-pointer px-4 py-2 text-sm hover:bg-slate-100"
+                            onClick={() => {
+                              setDestinationQuery(airport.Name);
+                              field.onChange(airport.EncyptID);
+                              setAirportResults([]);
+                            }}
+                          >
+                            {airport.Name}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ) : (
+                  <Select
+                    onValueChange={(val) => {
+                      field.onChange(val);
+                      setOriginAirport(val);
+                    }}
+                    defaultValue={field.value}
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Origin Airport" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {airports.map((a) => (
+                        <SelectItem key={a.EncyptID} value={a.EncyptID}>
+                          {a.Name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+              </FormControl>
+              <FormMessage>
+                {errors.origin && errors.origin.message}
+              </FormMessage>
+            </FormItem>
+          )}
+        />
+
+        {/* Destination Airport */}
+        <FormField
+          control={control}
+          name="destination"
           rules={{
             required: "Please select destination airport.",
             validate: (val) =>
               val !== watch("origin") ||
               "Origin & Destination airport should be different.",
           }}
-          render={({ field }) =>
-            selectedService === "Arrival" ? (
-              <select
-                className="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
-                value={field.value || ""}
-                onChange={(e) => {
-                  field.onChange(e.target.value);
-                  setOriginAirport(e.target.value);
-                }}
-              >
-                <option value="">Destination Airport</option>
-                {airports.map((loc) => (
-                  <option key={loc.EncyptID} value={loc.EncyptID}>
-                    {loc.Name}
-                  </option>
-                ))}
-              </select>
-            ) : (
-              <div className="relative mt-2">
-                <Input
-                  id="destination"
-                  type="text"
-                  placeholder="Search destination airport..."
-                  value={destinationQuery}
-                  onChange={(e) => setDestinationQuery(e.target.value)}
-                />
-                {airportResults.length > 0 && (
-                  <ul className="absolute right-0 left-0 mt-2 max-h-48 overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-md">
-                    {airportResults.map((airport) => (
-                      <li
-                        key={airport.EncyptID}
-                        className="cursor-pointer px-4 py-2 text-sm hover:bg-slate-100"
-                        onClick={() => {
-                          setDestinationQuery(airport.Name);
-                          field.onChange(airport.EncyptID);
-                          setAirportResults([]);
-                        }}
-                      >
-                        {airport.Name}
-                      </li>
-                    ))}
-                  </ul>
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Destination Airport</FormLabel>
+              <FormControl>
+                {selectedService === "Arrival" ? (
+                  <Select
+                    onValueChange={(val) => {
+                      field.onChange(val);
+                      setOriginAirport(val);
+                    }}
+                    defaultValue={field.value}
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Destination Airport" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {airports.map((a) => (
+                        <SelectItem key={a.EncyptID} value={a.EncyptID}>
+                          {a.Name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                ) : (
+                  <div className="relative">
+                    <Input
+                      placeholder="Search destination airport..."
+                      value={destinationQuery}
+                      onChange={(e) => setDestinationQuery(e.target.value)}
+                    />
+                    {airportResults.length > 0 && (
+                      <ul className="absolute right-0 left-0 mt-2 max-h-48 overflow-y-auto rounded-md border bg-white shadow">
+                        {airportResults.map((airport) => (
+                          <li
+                            key={airport.EncyptID}
+                            className="cursor-pointer px-4 py-2 text-sm hover:bg-slate-100"
+                            onClick={() => {
+                              setDestinationQuery(airport.Name);
+                              field.onChange(airport.EncyptID);
+                              setAirportResults([]);
+                            }}
+                          >
+                            {airport.Name}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 )}
-              </div>
-            )
-          }
+              </FormControl>
+              <FormMessage>
+                {errors.destination && errors.destination.message}
+              </FormMessage>
+            </FormItem>
+          )}
         />
-        {errors.destination && (
-          <p className="mt-1 text-sm text-red-500">
-            {errors.destination.message}
-          </p>
-        )}
-      </div>
 
-      {/* Terminal */}
-      <div>
-        <Label htmlFor="terminal">Terminal</Label>
-        <select
-          id="terminal"
-          {...register("terminal", { required: true })}
-          className="mt-2 w-full rounded-lg border border-slate-300 p-3 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
-        >
-          <option value="">Select Terminal</option>
-          {terminals.map((t) => (
-            <option key={t.EncyptID} value={t.EncyptID}>
-              {t.Name}
-            </option>
-          ))}
-        </select>
-        {errors.terminal && (
-          <p className="mt-1 text-sm text-red-500">Terminal required</p>
-        )}
-      </div>
-
-      {/* Travel Date & Time */}
-      <div>
-        <Label htmlFor="travelDate">Travel Date & Time</Label>
-        <Input
-          id="travelDate"
-          type="datetime-local"
-          {...register("travelDate", {
-            required: true,
-            validate: (value) => new Date(value) > new Date(),
-          })}
-          className="mt-2 w-full"
+        {/* Terminal */}
+        <FormField
+          control={control}
+          name="terminal"
+          rules={{ required: true }}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Terminal</FormLabel>
+              <FormControl>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Terminal" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {terminals.map((t) => (
+                      <SelectItem key={t.EncyptID} value={t.EncyptID}>
+                        {t.Name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage>
+                {errors.terminal && "Terminal required"}
+              </FormMessage>
+            </FormItem>
+          )}
         />
-        {errors.travelDate && (
-          <p className="mt-1 text-sm text-red-500">Select a future date/time</p>
-        )}
-      </div>
 
-      {/* Phone */}
-      <div>
-        <Label htmlFor="phone">Phone Number</Label>
-        <Input
-          id="phone"
-          type="tel"
-          {...register("phone", {
-            required: true,
-            pattern: /^[6-9]\d{9}$/,
-          })}
-          placeholder="Enter Indian phone number"
-          className="mt-2 w-full"
+        {/* Travel Date */}
+        <FormField
+          control={control}
+          name="travelDate"
+          rules={{
+            required: "Please select a date",
+            validate: (value) =>
+              value && new Date(value) > new Date()
+                ? true
+                : "Select a future date",
+          }}
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
+              <FormLabel>Travel Date</FormLabel>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <FormControl>
+                    <Button
+                      variant="outline"
+                      className={cn(
+                        "w-full pl-3 text-left font-normal",
+                        !field.value && "text-muted-foreground",
+                      )}
+                    >
+                      {field.value ? (
+                        format(new Date(field.value), "PPP")
+                      ) : (
+                        <span>Select date</span>
+                      )}
+                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                    </Button>
+                  </FormControl>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={field.value ? new Date(field.value) : undefined}
+                    onSelect={(date) => {
+                      if (date) field.onChange(date.toISOString());
+                    }}
+                    disabled={(date) => date < new Date()}
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.phone && (
-          <p className="mt-1 text-sm text-red-500">Valid phone required</p>
-        )}
-      </div>
 
-      {/* CTA */}
-      <Button
-        type="submit"
-        className="w-full rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white transition hover:bg-blue-700"
-      >
-        Continue
-      </Button>
-    </form>
+        {/* Phone */}
+        <FormItem>
+          <FormLabel>Phone Number</FormLabel>
+          <FormControl>
+            <Input
+              type="tel"
+              placeholder="Enter Indian phone number"
+              {...register("phone", {
+                required: true,
+                pattern: /^[6-9]\d{9}$/,
+              })}
+            />
+          </FormControl>
+          <FormMessage>{errors.phone && "Valid phone required"}</FormMessage>
+        </FormItem>
+
+        <Button type="submit" className="w-full">
+          Continue
+        </Button>
+      </form>
+    </Form>
   );
 }
