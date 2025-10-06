@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import PhoneInput from "react-phone-input-2";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useBookingStore } from "@/store/booking";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { savePorterRequestDetails } from "@/lib/api/requestBooking";
 import { getDropdownList, getDropdownList5 } from "@/lib/api/common";
 import {
@@ -46,9 +47,10 @@ type FormValues = {
   travelDate: string;
   serviceType: string;
   destination: string;
+  phoneCountryCode: string;
 };
 
-export default function DomesticForm() {
+export default function InternationalForm() {
   const router = useRouter();
   const { setDomestic } = useBookingStore();
 
@@ -56,7 +58,6 @@ export default function DomesticForm() {
   const {
     watch,
     control,
-    register,
     handleSubmit,
     formState: { errors },
   } = form;
@@ -69,11 +70,13 @@ export default function DomesticForm() {
   const [originAirport, setOriginAirport] = useState<string>();
   const [selectedService, setSelectedService] = useState<string>();
   const [airportResults, setAirportResults] = useState<Airport[]>([]);
+  const [countryPhoneCode, setCountryPhoneCode] = useState<string>("in");
 
   const selectedCountry = watch("country");
   const selectedServiceCode = watch("serviceType");
 
-  const airportType = "CVPrBmNfWxtKgaFc3B3oYxzkJF7Il85QIWGvLM09WFg=";
+  //const airportType = "CVPrBmNfWxtKgaFc3B3oYxzkJF7Il85QIWGvLM09WFg=";
+  const airportType = "rV28YjgOqTZ94fpbnNVaN8qYMNhZoeIqOelpVDRbctc=";
 
   // Load countries
   useEffect(() => {
@@ -158,7 +161,7 @@ export default function DomesticForm() {
       Terminal: data.terminal,
       TravelDate: travelDateUTC,
       PhoneNumber: data.phone,
-      PhoneCountryCode: "in",
+      PhoneCountryCode: countryPhoneCode,
       ServiceType: data.serviceType,
       AirportType: airportType,
       IsTransit: false,
@@ -458,20 +461,48 @@ export default function DomesticForm() {
         />
 
         {/* Phone */}
-        <FormItem>
-          <FormLabel>Phone Number</FormLabel>
-          <FormControl>
-            <Input
-              type="tel"
-              placeholder="Enter Indian phone number"
-              {...register("phone", {
-                required: true,
-                pattern: /^[6-9]\d{9}$/,
-              })}
-            />
-          </FormControl>
-          <FormMessage>{errors.phone && "Valid phone required"}</FormMessage>
-        </FormItem>
+        <FormField
+          control={control}
+          name="phone"
+          rules={{
+            required: "Phone number required",
+            validate: (value) =>
+              value && value.replace(/\D/g, "").length >= 8
+                ? true
+                : "Enter valid phone number",
+          }}
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <PhoneInput
+                  country={"in"}
+                  value={field.value}
+                  onChange={(phone, countryData) => {
+                    field.onChange(phone);
+                    if (countryData && "countryCode" in countryData) {
+                      setCountryPhoneCode(countryData.countryCode);
+                    }
+                  }}
+                  inputClass={cn(
+                    "w-full border rounded-md px-3 py-2 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200",
+                  )}
+                  buttonClass="!border-none"
+                  enableSearch
+                  disableDropdown={false}
+                  placeholder="Enter phone number"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* hidden input to store country code (if needed like Angular version) */}
+        <Controller
+          name="phoneCountryCode"
+          control={control}
+          render={({ field }) => <input type="hidden" {...field} />}
+        />
 
         <Button type="submit" className="w-full">
           Continue
