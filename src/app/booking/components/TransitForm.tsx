@@ -64,8 +64,6 @@ export default function TransitForm() {
   const [destinationAirports, setDestinationAirports] = useState<Airport[]>([]);
   const [countryPhoneCode, setCountryPhoneCode] = useState<string>("in");
 
-  const airportType = "NYDFGXYDXD2jnCxL1YUo1w==";
-
   // Fetch all the services
   useEffect(() => {
     getDropdownList("TravelSector").then((res) => {
@@ -86,7 +84,6 @@ export default function TransitForm() {
       setQueryAirports([]);
       return;
     }
-
     const timerId = setTimeout(() => fetchOriginAirports(originQuery), 500);
     return () => clearTimeout(timerId);
   }, [originQuery]);
@@ -144,14 +141,18 @@ export default function TransitForm() {
       DestinationAirportCode: data.destinationAirport,
       PhoneCountryCode: countryPhoneCode,
       ServiceType: data.serviceType,
-      AirportType: airportType,
+      AirportType: data.serviceType,
       IsTransit: true,
       Action: 1,
     };
 
-    await savePorterRequestDetails(payload);
-    console.log("asdf");
-    //router.push("/");
+    try {
+      const response = await savePorterRequestDetails(payload);
+      const orderId = encodeURIComponent(response[0].EncyptID);
+      router.push(`/transit-service-request/${orderId}`);
+    } catch (err) {
+      console.error("Failed to save booking", err);
+    }
   };
 
   return (

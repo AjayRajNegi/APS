@@ -279,7 +279,8 @@ export default function ServiceRequest() {
     <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 shadow-lg">
       {details ? (
         <h1 className="mb-6 text-center text-2xl font-bold">
-          {details.AirportName} ({details.TravelDate})
+          {details.AirportName} {details.ServiceType} Service (
+          {details.TravelDate})
         </h1>
       ) : (
         <p>Loading...</p>
@@ -538,20 +539,6 @@ export default function ServiceRequest() {
               APPLY
             </button>
           </div>
-
-          <div className="flex items-end">
-            <button
-              type="button"
-              onClick={() => {
-                /* Save + redirect or open payment */ alert(
-                  "Make payment - implement",
-                );
-              }}
-              className="rounded bg-green-600 px-4 py-2 text-white"
-            >
-              MAKE PAYMENT
-            </button>
-          </div>
         </div>
 
         <div>
@@ -652,3 +639,7 @@ export default function ServiceRequest() {
     </div>
   );
 }
+
+// {"RequestId":"Fra9DS/I9yTxXlN+znmtlsPKZJxm8Uf6IK2b11MjYbA=","FlightNo":"AI-101","FlightTimeHour":"2","FlightTimeMinute":"10","GuestFirstName":"ajay","GuestLastName":"raj","GuestEmailId":"ajayraj@gmail.com","GuestContactNo":"8433038283","GuestAge":"34","NumberPorterRequired":1,"Price":"5900.00","Plan":"NYDFGXYDXD2jnCxL1YUo1w==","PNR":"asdf24","Title":"Mr.","CouponCode":"","DiscountAmount":0,"cardDisplayName":"","TravelDate":"2025-10-09","DestinationTravelDate":"2025-10-13","AdultGuestDetail":[{"Title":"Mr.","FirstName":"ajay","LastName":"raj","ContactNo":"8433038283","Age":"34","EmailId":"ajayraj@gmail.com","PNR":"asdf24","mobileCountryCode":"in","DefaultGuest":true}],"DestinationFlightNo":"AI-103","DestinationFlightTimeHour":"3","DestinationFlightTimeMinute":"10","IsTransit":true,"Action":2}
+
+("http://localhost:3000/payment-response/Fra9DS/I9yTxXlN+znmtlnZHRu+XPHx4ZkZmvoD6YRg=/qME/dw7FrWVOatUYHAKqHOownySIeg6GjCHWp1rbogi/tnywvuwMf8J7f23XOO7U");

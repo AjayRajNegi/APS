@@ -58,7 +58,7 @@ export default function PaymentInProgressPage() {
       try {
         const data = await getRazorPaymentDetails(requestId, orderId);
         if (!data?.[0]) {
-          router.push("/home");
+          router.push("/");
           return;
         }
         console.log("getRazorPaymentDetails", data);
@@ -126,13 +126,17 @@ export default function PaymentInProgressPage() {
       try {
         const res = await updateRazorPaymentDetails(payload);
         if (typeof res === "string" && res.toLowerCase() === "updated") {
-          router.push(`/payment-response/${requestId}/${orderId}`);
+          router.push(
+            `/payment-response/${encodeURIComponent(requestId)}/${encodeURIComponent(orderId)}`,
+          );
         } else {
           router.push("/");
         }
       } catch (error) {
         console.error("Payment update failed:", error);
-        router.push(`/payment-response/${requestId}/${orderId}`);
+        router.push(
+          `/payment-response/${encodeURIComponent(requestId)}/${encodeURIComponent(orderId)}`,
+        );
       }
     };
 
@@ -153,12 +157,16 @@ export default function PaymentInProgressPage() {
       try {
         const res = await saveFailedTransactionDetails(payload);
         if (typeof res === "string" && res.toLowerCase() === "updated") {
-          router.push(`/payment-response/${requestId}/${orderId}`);
+          router.push(
+            `/payment-response/${encodeURIComponent(requestId)}/${encodeURIComponent(orderId)}`,
+          );
         } else {
           router.push("/");
         }
       } catch {
-        router.push(`/payment-response/${requestId}/${orderId}`);
+        router.push(
+          `/payment-response/${encodeURIComponent(requestId)}/${encodeURIComponent(orderId)}`,
+        );
       }
     };
 
