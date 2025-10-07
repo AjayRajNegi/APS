@@ -47,7 +47,7 @@ interface Blog {
 
 export function BlogsShowcase({ href }: { href: string }) {
   const [categories, setCategories] = useState<string[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("Service");
+  const [selectedCategory, setSelectedCategory] = useState<string>("Blog");
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
