@@ -24,6 +24,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import PhoneInput from "react-phone-input-2";
 import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
 
 type Airport = {
   EncyptID: string;
@@ -157,7 +158,10 @@ export default function TransitForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="grid max-w-5xl grid-cols-1 gap-3 md:grid-cols-3"
+      >
         {/* Service Type */}
         <FormField
           control={control}
@@ -165,17 +169,14 @@ export default function TransitForm() {
           rules={{ required: "Service type required" }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Service Type</FormLabel>
               <FormControl>
                 <Select
                   onValueChange={(val) => {
                     field.onChange(val);
-                    // const service = services.find((s) => s.EncyptID === val);
-                    // setSelectedService(service?.Name);
                   }}
                   defaultValue={field.value}
                 >
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                     <SelectValue placeholder="Select Service" />
                   </SelectTrigger>
                   <SelectContent>
@@ -201,10 +202,10 @@ export default function TransitForm() {
           rules={{ required: "Please select origin airport." }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Origin Airport</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
+                    className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none"
                     placeholder="Search destination airport..."
                     value={originQuery}
                     onChange={(e) => setOriginQuery(e.target.value)}
@@ -241,7 +242,6 @@ export default function TransitForm() {
           name="serviceAirport"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Services Airport</FormLabel>
               <FormControl>
                 <Select
                   onValueChange={(val) => {
@@ -250,7 +250,7 @@ export default function TransitForm() {
                   }}
                   defaultValue={field.value}
                 >
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                     <SelectValue placeholder="Destination Airport" />
                   </SelectTrigger>
                   <SelectContent>
@@ -276,16 +276,16 @@ export default function TransitForm() {
           rules={{ required: "Please select destination airport." }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Destination Airport</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
+                    className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none"
                     placeholder="Search destination airport..."
                     value={destinationQuery}
                     onChange={(e) => setDestinationQuery(e.target.value)}
                   />
                   {destinationAirports.length > 0 && (
-                    <ul className="absolute right-0 left-0 mt-2 max-h-48 overflow-y-auto rounded-md border bg-white shadow">
+                    <ul className="absolute right-0 left-0 mt-2 max-h-48 w-full overflow-y-auto rounded-full border border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                       {destinationAirports.map((origin) => (
                         <li
                           key={origin.EncyptID}
@@ -333,13 +333,12 @@ export default function TransitForm() {
                       setCountryPhoneCode(countryData.countryCode);
                     }
                   }}
-                  inputClass={cn(
-                    "w-full border rounded-md px-3 py-2 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200",
-                  )}
+                  inputClass="w-full rounded-full border-none bg-white px-4 py-2 text-sm shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none"
                   buttonClass="!border-none"
                   enableSearch
                   disableDropdown={false}
                   placeholder="Enter phone number"
+                  containerClass="[&_.special-label]:hidden"
                 />
               </FormControl>
               <FormMessage />
@@ -347,8 +346,17 @@ export default function TransitForm() {
           )}
         />
 
-        <Button type="submit" className="w-full">
-          Continue
+        <Button
+          type="submit"
+          className="group from-aps-secondary-500 to-aps-secondary-300 flex w-full items-center justify-center gap-1 rounded-full border-[1px] border-white bg-gradient-to-r py-3 font-medium transition duration-300 hover:border-[1px]"
+        >
+          <p className="transition-transform duration-300 group-hover:-translate-x-[10px] group-hover:text-white">
+            Book Now
+          </p>
+          <ArrowRight
+            size={20}
+            className="transition-transform duration-300 group-hover:translate-x-[10px] group-hover:text-white"
+          />
         </Button>
       </form>
     </Form>

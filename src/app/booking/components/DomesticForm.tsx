@@ -30,7 +30,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
-import { CalendarIcon } from "lucide-react";
+import { ArrowRight, CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 
@@ -58,7 +58,6 @@ export default function DomesticForm() {
   const {
     watch,
     control,
-    register,
     handleSubmit,
     formState: { errors },
   } = form;
@@ -180,21 +179,23 @@ export default function DomesticForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="grid max-w-5xl grid-cols-1 gap-3 md:grid-cols-3"
+      >
         {/* Country */}
         <FormField
           control={control}
           name="country"
           rules={{ required: true }}
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Country</FormLabel>
+            <FormItem className="col-span-1">
               <FormControl>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                     <SelectValue placeholder="Select Country" />
                   </SelectTrigger>
                   <SelectContent>
@@ -206,7 +207,7 @@ export default function DomesticForm() {
                   </SelectContent>
                 </Select>
               </FormControl>
-              <FormMessage>{errors.country && "Country required"}</FormMessage>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -218,7 +219,6 @@ export default function DomesticForm() {
           rules={{ required: "Service type required" }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Service Type</FormLabel>
               <FormControl>
                 <Select
                   onValueChange={(val) => {
@@ -230,7 +230,7 @@ export default function DomesticForm() {
                   }}
                   defaultValue={field.value}
                 >
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                     <SelectValue placeholder="Select Service" />
                   </SelectTrigger>
                   <SelectContent>
@@ -242,9 +242,7 @@ export default function DomesticForm() {
                   </SelectContent>
                 </Select>
               </FormControl>
-              <FormMessage>
-                {errors.serviceType && errors.serviceType.message}
-              </FormMessage>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -256,7 +254,6 @@ export default function DomesticForm() {
           rules={{ required: "Please select origin airport." }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Origin Airport</FormLabel>
               <FormControl>
                 {selectedService === "Arrival" ? (
                   <div className="relative">
@@ -264,6 +261,7 @@ export default function DomesticForm() {
                       placeholder="Search destination airport..."
                       value={destinationQuery}
                       onChange={(e) => setDestinationQuery(e.target.value)}
+                      className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none"
                     />
                     {airportResults.length > 0 && (
                       <ul className="absolute right-0 left-0 mt-2 max-h-48 overflow-y-auto rounded-md border bg-white shadow">
@@ -291,7 +289,7 @@ export default function DomesticForm() {
                     }}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="w-full">
+                    <SelectTrigger className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                       <SelectValue placeholder="Origin Airport" />
                     </SelectTrigger>
                     <SelectContent>
@@ -304,9 +302,7 @@ export default function DomesticForm() {
                   </Select>
                 )}
               </FormControl>
-              <FormMessage>
-                {errors.origin && errors.origin.message}
-              </FormMessage>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -323,7 +319,6 @@ export default function DomesticForm() {
           }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Destination Airport</FormLabel>
               <FormControl>
                 {selectedService === "Arrival" ? (
                   <Select
@@ -333,7 +328,7 @@ export default function DomesticForm() {
                     }}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="w-full">
+                    <SelectTrigger className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                       <SelectValue placeholder="Destination Airport" />
                     </SelectTrigger>
                     <SelectContent>
@@ -350,6 +345,7 @@ export default function DomesticForm() {
                       placeholder="Search destination airport..."
                       value={destinationQuery}
                       onChange={(e) => setDestinationQuery(e.target.value)}
+                      className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none"
                     />
                     {airportResults.length > 0 && (
                       <ul className="absolute right-0 left-0 mt-2 max-h-48 overflow-y-auto rounded-md border bg-white shadow">
@@ -371,9 +367,7 @@ export default function DomesticForm() {
                   </div>
                 )}
               </FormControl>
-              <FormMessage>
-                {errors.destination && errors.destination.message}
-              </FormMessage>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -385,13 +379,12 @@ export default function DomesticForm() {
           rules={{ required: true }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Terminal</FormLabel>
               <FormControl>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                     <SelectValue placeholder="Select Terminal" />
                   </SelectTrigger>
                   <SelectContent>
@@ -403,9 +396,7 @@ export default function DomesticForm() {
                   </SelectContent>
                 </Select>
               </FormControl>
-              <FormMessage>
-                {errors.terminal && "Terminal required"}
-              </FormMessage>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -422,39 +413,40 @@ export default function DomesticForm() {
                 : "Select a future date",
           }}
           render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Travel Date</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant="outline"
-                      className={cn(
-                        "w-full pl-3 text-left font-normal",
-                        !field.value && "text-muted-foreground",
-                      )}
-                    >
-                      {field.value ? (
-                        format(new Date(field.value), "PPP")
-                      ) : (
-                        <span>Select date</span>
-                      )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={field.value ? new Date(field.value) : undefined}
-                    onSelect={(date) => {
-                      if (date) field.onChange(date.toISOString());
-                    }}
-                    disabled={(date) => date < new Date()}
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
+            <FormItem>
+              <FormControl>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-full rounded-2xl rounded-full border-none bg-white px-4 py-2 pl-3 text-left font-normal shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none",
+                          !field.value && "text-muted-foreground",
+                        )}
+                      >
+                        {field.value ? (
+                          format(new Date(field.value), "PPP")
+                        ) : (
+                          <span>Select date</span>
+                        )}
+                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={field.value ? new Date(field.value) : undefined}
+                      onSelect={(date) => {
+                        if (date) field.onChange(date.toISOString());
+                      }}
+                      disabled={(date) => date < new Date()}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
@@ -483,13 +475,12 @@ export default function DomesticForm() {
                       setCountryPhoneCode(countryData.countryCode);
                     }
                   }}
-                  inputClass={cn(
-                    "w-full border rounded-md px-3 py-2 text-sm focus:border-blue-500 focus:ring focus:ring-blue-200",
-                  )}
+                  inputClass="w-full rounded-full border-none bg-white px-4 py-2 text-sm shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none"
                   buttonClass="!border-none"
                   enableSearch
                   disableDropdown={false}
                   placeholder="Enter phone number"
+                  containerClass="[&_.special-label]:hidden"
                 />
               </FormControl>
               <FormMessage />
@@ -497,9 +488,21 @@ export default function DomesticForm() {
           )}
         />
 
-        <Button type="submit" className="w-full">
-          Continue
-        </Button>
+        {/* Submit */}
+        <div className="md:col-span-2">
+          <Button
+            type="submit"
+            className="group from-aps-secondary-500 to-aps-secondary-300 flex w-full items-center justify-center gap-1 rounded-full border-[1px] border-white bg-gradient-to-r py-3 font-medium transition duration-300 hover:border-[1px]"
+          >
+            <p className="transition-transform duration-300 group-hover:-translate-x-[10px] group-hover:text-white">
+              Book Now
+            </p>
+            <ArrowRight
+              size={20}
+              className="transition-transform duration-300 group-hover:translate-x-[10px] group-hover:text-white"
+            />
+          </Button>
+        </div>
       </form>
     </Form>
   );
