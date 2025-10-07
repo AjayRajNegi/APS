@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function TicketForm() {
   const [activeTab, setActiveTab] = useState("domestic");
+
   return (
     <div className="w-full max-w-5xl text-black">
       <div className="flex flex-col gap-6 rounded-2xl bg-gray-100 p-4 shadow-xl md:p-6">
@@ -30,33 +31,34 @@ export function TicketForm() {
             ))}
           </TabsList>
 
-          {/* Animated Tab Content */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              layout
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25, ease: "easeInOut" }}
-            >
-              {activeTab === "domestic" && (
-                <TabsContent value="domestic">
-                  <DomesticForm />
-                </TabsContent>
-              )}
-              {activeTab === "international" && (
-                <TabsContent value="international">
-                  <InternationalForm />
-                </TabsContent>
-              )}
-              {activeTab === "transit" && (
-                <TabsContent value="transit">
-                  <TransitForm />
-                </TabsContent>
-              )}
-            </motion.div>
-          </AnimatePresence>
+          {/* Animate only when switching tabs */}
+          <div className="relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                {activeTab === "domestic" && (
+                  <TabsContent value="domestic">
+                    <DomesticForm />
+                  </TabsContent>
+                )}
+                {activeTab === "international" && (
+                  <TabsContent value="international">
+                    <InternationalForm />
+                  </TabsContent>
+                )}
+                {activeTab === "transit" && (
+                  <TabsContent value="transit">
+                    <TransitForm />
+                  </TabsContent>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </Tabs>
       </div>
     </div>

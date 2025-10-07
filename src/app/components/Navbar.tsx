@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "motion/react";
 
 const navLinks = [
   { title: "About Us", href: "/about" },
@@ -52,10 +52,21 @@ export default function Navbar() {
   }, [pathname]);
 
   useEffect(() => {
-    if (menuOpen) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
+    if (window.innerWidth < 768) {
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+      if (menuOpen) {
+        document.body.style.overflow = "hidden";
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      } else {
+        document.body.style.overflow = "";
+        document.body.style.paddingRight = "";
+      }
+    }
+
     return () => {
       document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     };
   }, [menuOpen]);
 
