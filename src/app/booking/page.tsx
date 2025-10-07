@@ -1,8 +1,8 @@
 "use client";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import TransitForm from "./components/TransitForm";
 import DomesticForm from "./components/DomesticForm";
 import InternationalForm from "./components/InternationalForm";
-import TransitForm from "./components/TransitForm";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function BookingPage() {
   return (

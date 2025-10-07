@@ -1,30 +1,28 @@
 "use client";
-import { useForm } from "react-hook-form";
-import { useBookingStore } from "@/store/booking";
-import { savePorterRequestDetails } from "@/lib/api/requestBooking";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { getDropdownList, getDropdownList5 } from "@/lib/api/common";
 import {
   Form,
-  FormControl,
-  FormField,
   FormItem,
-  FormLabel,
+  FormField,
+  FormControl,
   FormMessage,
 } from "@/components/ui/form";
 import {
   Select,
-  SelectContent,
   SelectItem,
-  SelectTrigger,
   SelectValue,
+  SelectTrigger,
+  SelectContent,
 } from "@/components/ui/select";
+
+import { useForm } from "react-hook-form";
+import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import PhoneInput from "react-phone-input-2";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import PhoneInput from "react-phone-input-2";
-import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
+import { savePorterRequestDetails } from "@/lib/api/requestBooking";
+import { getDropdownList, getDropdownList5 } from "@/lib/api/common";
 
 type Airport = {
   EncyptID: string;

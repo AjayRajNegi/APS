@@ -1,38 +1,38 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import PhoneInput from "react-phone-input-2";
-import { useRouter } from "next/navigation";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useBookingStore } from "@/store/booking";
-import { Controller, useForm } from "react-hook-form";
-import { savePorterRequestDetails } from "@/lib/api/requestBooking";
-import { getDropdownList, getDropdownList5 } from "@/lib/api/common";
 import {
   Form,
-  FormControl,
-  FormField,
   FormItem,
-  FormLabel,
+  FormField,
+  FormControl,
   FormMessage,
 } from "@/components/ui/form";
 import {
   Select,
-  SelectContent,
   SelectItem,
-  SelectTrigger,
   SelectValue,
+  SelectTrigger,
+  SelectContent,
 } from "@/components/ui/select";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { ArrowRight, CalendarIcon } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import PhoneInput from "react-phone-input-2";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useBookingStore } from "@/store/booking";
+import { Calendar } from "@/components/ui/calendar";
+import { ArrowRight, CalendarIcon } from "lucide-react";
+import { savePorterRequestDetails } from "@/lib/api/requestBooking";
+import { getDropdownList, getDropdownList5 } from "@/lib/api/common";
 
 type Airport = {
   EncyptID: string;

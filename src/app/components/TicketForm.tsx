@@ -1,11 +1,11 @@
 "use client";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import DomesticForm from "../booking/components/DomesticForm";
-import InternationalForm from "../booking/components/InternationalForm";
-import TransitForm from "../booking/components/TransitForm";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import TransitForm from "../booking/components/TransitForm";
+import DomesticForm from "../booking/components/DomesticForm";
+import InternationalForm from "../booking/components/InternationalForm";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function TicketForm() {
   const [activeTab, setActiveTab] = useState("domestic");
