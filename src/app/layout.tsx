@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import Container from "./components/Container";
 import { Geist, Geist_Mono } from "next/font/google";
+import LenisProvider from "./components/LenisProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,9 +36,11 @@ export default function RootLayout({
           "font-poppins",
         )}
       >
-        <Navbar />
-        <Container>{children}</Container>
-        <Footer />
+        <LenisProvider>
+          <Navbar />
+          <Container>{children}</Container>
+          <Footer />
+        </LenisProvider>
       </body>
     </html>
   );
