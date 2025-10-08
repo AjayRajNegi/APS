@@ -1,38 +1,39 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import PhoneInput from "react-phone-input-2";
-import { useRouter } from "next/navigation";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { useBookingStore } from "@/store/booking";
-import { Controller, useForm } from "react-hook-form";
-import { savePorterRequestDetails } from "@/lib/api/requestBooking";
-import { getDropdownList, getDropdownList5 } from "@/lib/api/common";
 import {
   Form,
-  FormControl,
-  FormField,
   FormItem,
-  FormLabel,
+  FormField,
   FormMessage,
+  FormControl,
 } from "@/components/ui/form";
 import {
   Select,
-  SelectContent,
   SelectItem,
-  SelectTrigger,
   SelectValue,
+  SelectTrigger,
+  SelectContent,
 } from "@/components/ui/select";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { ArrowRight, CalendarIcon } from "lucide-react";
+
+import "../../globals.css";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
+import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import PhoneInput from "react-phone-input-2";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useBookingStore } from "@/store/booking";
+import { Calendar } from "@/components/ui/calendar";
+import { ArrowRight, CalendarIcon } from "lucide-react";
+import { savePorterRequestDetails } from "@/lib/api/requestBooking";
+import { getDropdownList, getDropdownList5 } from "@/lib/api/common";
 
 type Airport = {
   EncyptID: string;
@@ -292,7 +293,7 @@ export default function DomesticForm() {
                     <SelectTrigger className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                       <SelectValue placeholder="Origin Airport" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent aria-modal={false}>
                       {airports.map((a) => (
                         <SelectItem key={a.EncyptID} value={a.EncyptID}>
                           {a.Name}

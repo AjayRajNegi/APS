@@ -108,8 +108,29 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-body {
+/* global.css */
+body[data-scroll-locked] {
+  margin-right: 0px !important; /* For LTR layout */
+  margin-left: 0px !important; /* For RTL layout */
+  overflow: visible !important;
+}
+
+/*OR Use more specific selectors:*/
+html body[data-scroll-locked] {
+  margin-right: 0px !important; /* For LTR layout */
+  margin-left: 0px !important; /* For RTL layout */
+  overflow: visible !important;
+}
+html {
+  overflow-x: hidden;
   background: transparent;
+}
+
+body[style*="pointer-events: none"] {
+  pointer-events: auto !important;
+}
+body[data-scroll-locked] {
+  pointer-events: auto !important;
 }
 
 .scrollbar-hide {
