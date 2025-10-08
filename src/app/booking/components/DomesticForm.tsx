@@ -196,7 +196,7 @@ export default function DomesticForm() {
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
-                  <SelectTrigger className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
+                  <SelectTrigger className="w-full min-w-0 rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                     <SelectValue placeholder="Select Country" />
                   </SelectTrigger>
                   <SelectContent>
@@ -231,7 +231,7 @@ export default function DomesticForm() {
                   }}
                   defaultValue={field.value}
                 >
-                  <SelectTrigger className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
+                  <SelectTrigger className="w-full min-w-0 rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                     <SelectValue placeholder="Select Service" />
                   </SelectTrigger>
                   <SelectContent>
@@ -290,7 +290,7 @@ export default function DomesticForm() {
                     }}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
+                    <SelectTrigger className="w-full min-w-0 rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                       <SelectValue placeholder="Origin Airport" />
                     </SelectTrigger>
                     <SelectContent aria-modal={false}>
@@ -329,7 +329,7 @@ export default function DomesticForm() {
                     }}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
+                    <SelectTrigger className="w-full min-w-0 rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                       <SelectValue placeholder="Destination Airport" />
                     </SelectTrigger>
                     <SelectContent>
@@ -385,7 +385,7 @@ export default function DomesticForm() {
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
-                  <SelectTrigger className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
+                  <SelectTrigger className="w-full min-w-0 rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                     <SelectValue placeholder="Select Terminal" />
                   </SelectTrigger>
                   <SelectContent>

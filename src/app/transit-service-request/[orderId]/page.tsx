@@ -8,7 +8,8 @@ import {
   GetPlanInculsionDetailForTransit,
   savePorterRequestDetails,
 } from "@/lib/api/requestBooking";
-import { getDropdownList4, getDropdownList5 } from "@/lib/api/common";
+import { getDropdownList4 } from "@/lib/api/common";
+import { InfoIcon } from "lucide-react";
 
 interface AirportDetails {
   RequestId: string;
@@ -63,16 +64,15 @@ export default function ServiceRequest() {
   const [inclusionData, setInclusionData] = useState<any>(null);
   const [isInclusionOpen, setIsInclusionOpen] = useState(false);
   const [isPriceOpen, setIsPriceOpen] = useState(false);
-  const [discountDivDisable, setDiscountDivDisable] = useState(false);
+  const [discountDivDisable] = useState(false);
   const [details, setDetails] = useState<AirportDetails | null>(null);
   const [priceList, setPriceList] = useState<any[]>([]);
-  const [planId, setPlanId] = useState();
 
   const [currentTotalAmount, setCurrentTotalAmount] = useState(0);
   const [grandTotalAmount, setGrandTotalAmount] = useState(0);
   const [perPersonPrice, setPerPersonPrice] = useState(0);
   const [totalVATAmount, setTotalVATAmount] = useState(0);
-  const [numberOfGuest, setNumberOfGuest] = useState(1);
+  const [numberOfGuest] = useState(1);
   const [couponValue, setCouponValue] = useState(0);
 
   const hours = Array.from({ length: 24 }).map((_, i) =>
@@ -475,10 +475,10 @@ export default function ServiceRequest() {
                 </option>
               ))}
             </select>
-            <img
-              src="/assets/images/inclusionicon.png"
-              alt="inclusion"
-              className="h-8 w-8 cursor-pointer"
+            <InfoIcon
+              size={45}
+              stroke="#e95158"
+              className="cursor-pointer"
               onClick={openInclusionDetails}
             />
           </div>

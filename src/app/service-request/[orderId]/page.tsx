@@ -9,6 +9,7 @@ import {
   savePorterRequestDetails,
 } from "@/lib/api/requestBooking";
 import { getDropdownList5 } from "@/lib/api/common";
+import { ArrowRight, InfoIcon } from "lucide-react";
 
 interface AirportDetails {
   RequestId: string;
@@ -60,7 +61,7 @@ export default function ServiceRequest() {
   const [inclusionData, setInclusionData] = useState<any>(null);
   const [isInclusionOpen, setIsInclusionOpen] = useState(false);
   const [isPriceOpen, setIsPriceOpen] = useState(false);
-  const [discountDivDisable, setDiscountDivDisable] = useState(false);
+  const [discountDivDisable] = useState(false);
   const [details, setDetails] = useState<AirportDetails | null>(null);
   const [priceList, setPriceList] = useState([]);
 
@@ -68,7 +69,7 @@ export default function ServiceRequest() {
   const [grandTotalAmount, setGrandTotalAmount] = useState(0);
   const [perPersonPrice, setPerPersonPrice] = useState(0);
   const [totalVATAmount, setTotalVATAmount] = useState(0);
-  const [numberOfGuest, setNumberOfGuest] = useState(1);
+  const [numberOfGuest] = useState(1);
   const [couponValue, setCouponValue] = useState(0);
 
   const hours = Array.from({ length: 24 }).map((_, i) =>
@@ -213,16 +214,13 @@ export default function ServiceRequest() {
   const closePrice = () => setIsPriceOpen(false);
 
   const applyDiscount = () => {
-    // demo: simple flat discount logic, replace with API call
     const code = (watch("couponCode") || "").trim();
     if (!code) return;
-    // naive validation
     if (code === "FLAT10") {
       setCouponValue(10);
     } else if (code === "PERCENT5") {
       setCouponValue((perPersonPrice * numberOfGuest + totalVATAmount) * 0.05);
     } else {
-      // invalid coupon
       setCouponValue(0);
     }
   };
@@ -275,11 +273,11 @@ export default function ServiceRequest() {
   };
 
   return (
-    <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 shadow-lg">
+    <div className="mx-auto my-2 max-w-7xl rounded-2xl border-[1px] border-neutral-200 bg-white p-6 shadow-xl md:my-10">
       {details ? (
-        <h1 className="mb-6 text-center text-2xl font-bold">
-          {details.AirportName} {details.ServiceType} Service (
-          {details.TravelDate})
+        <h1 className="bg-aps-300 mb-6 rounded-2xl p-4 text-center text-base font-bold shadow-lg text-shadow-2xs md:text-2xl">
+          <span className="text-2xl md:text-3xl">{details.AirportName}</span>{" "}
+          <br /> {details.ServiceType} Service ({details.TravelDate})
         </h1>
       ) : (
         <p>Loading...</p>
@@ -356,10 +354,11 @@ export default function ServiceRequest() {
                   </option>
                 ))}
               </select>
-              <img
-                src="/assets/images/inclusionicon.png"
-                alt="inclusion"
-                className="h-8 w-8 cursor-pointer"
+
+              <InfoIcon
+                size={45}
+                stroke="#e95158"
+                className="cursor-pointer"
                 onClick={openInclusionDetails}
               />
             </div>
@@ -464,7 +463,6 @@ export default function ServiceRequest() {
                   </div>
 
                   <div>
-                    {/* Phone number: you can swap this with an intl phone input component like react-phone-input-2 */}
                     <input
                       {...register(
                         `guestDetails.${index}.phoneNumber` as const,
@@ -502,7 +500,7 @@ export default function ServiceRequest() {
             <button
               type="button"
               onClick={addGuest}
-              className="text-sm font-medium text-blue-600"
+              className="text-aps-400 text-sm font-medium"
             >
               + Add Guest
             </button>
@@ -527,85 +525,107 @@ export default function ServiceRequest() {
               disabled={!watch("plan") || discountDivDisable}
             />
           </div>
-
-          <div className="flex items-end">
+          <div className="mt-6 flex items-start">
             <button
               type="button"
               onClick={applyDiscount}
               disabled={!watch("plan") || discountDivDisable}
-              className="rounded bg-blue-600 px-4 py-2 text-white"
+              className="bg-aps-300 cursor-pointer rounded px-4 py-2 text-black"
             >
               APPLY
             </button>
+          </div>
+          {/* Price Breakup */}
+          <div className="mt-8 rounded border bg-gray-50 p-4">
+            <h3 className="mb-3 text-lg font-semibold">Price Breakup</h3>
+            <table className="w-full text-sm">
+              <tbody>
+                <tr>
+                  <td>Price Per Porter (Adult)</td>
+                  <td className="text-right">{perPersonPrice}</td>
+                </tr>
+                <tr>
+                  <td>No. of Porter (Adult)</td>
+                  <td className="text-right">{numberOfGuest}</td>
+                </tr>
+                <tr>
+                  <td>Total Amount</td>
+                  <td className="text-right">{currentTotalAmount}</td>
+                </tr>
+                <tr>
+                  <td>GST (18%)</td>
+                  <td className="text-right">{totalVATAmount}</td>
+                </tr>
+                <tr>
+                  <td>Discount</td>
+                  <td className="text-right">{couponValue}</td>
+                </tr>
+                <tr className="font-semibold">
+                  <td>Grand Total</td>
+                  <td className="text-right">{grandTotalAmount}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div className="mt-3 flex gap-2">
+              <button
+                onClick={openPriceBreakup}
+                className="rounded bg-slate-600 px-3 py-1 text-white"
+              >
+                TOTAL AMOUNT : {grandTotalAmount}
+              </button>
+            </div>
           </div>
         </div>
 
         <div>
           <button
             type="submit"
-            className="w-full rounded bg-indigo-600 px-4 py-2 text-white"
+            className="group from-aps-secondary-500 to-aps-secondary-300 flex w-full items-center justify-center gap-1 rounded-2xl border-[1px] border-white bg-gradient-to-r py-3 font-medium transition duration-300 hover:border-[1px]"
           >
-            Save / Submit
+            <p className="transition-transform duration-300 group-hover:-translate-x-[10px] group-hover:text-white">
+              Book Now
+            </p>
+            <ArrowRight
+              size={20}
+              className="transition-transform duration-300 group-hover:translate-x-[10px] group-hover:text-white"
+            />
           </button>
         </div>
       </form>
 
-      {/* Price Breakup */}
-      <div className="mt-8 rounded border bg-gray-50 p-4">
-        <h3 className="mb-3 text-lg font-semibold">Price Breakup</h3>
-        <table className="w-full text-sm">
-          <tbody>
-            <tr>
-              <td>Price Per Porter (Adult)</td>
-              <td className="text-right">{perPersonPrice}</td>
-            </tr>
-            <tr>
-              <td>No. of Porter (Adult)</td>
-              <td className="text-right">{numberOfGuest}</td>
-            </tr>
-            <tr>
-              <td>Total Amount</td>
-              <td className="text-right">{currentTotalAmount}</td>
-            </tr>
-            <tr>
-              <td>GST (18%)</td>
-              <td className="text-right">{totalVATAmount}</td>
-            </tr>
-            <tr>
-              <td>Discount</td>
-              <td className="text-right">{couponValue}</td>
-            </tr>
-            <tr className="font-semibold">
-              <td>Grand Total</td>
-              <td className="text-right">{grandTotalAmount}</td>
-            </tr>
-          </tbody>
-        </table>
-        <div className="mt-3 flex gap-2">
-          <button
-            onClick={openPriceBreakup}
-            className="rounded bg-slate-600 px-3 py-1 text-white"
-          >
-            TOTAL AMOUNT : {grandTotalAmount}
-          </button>
-        </div>
-      </div>
-
       {/* Inclusion modal (simple) */}
-      {isInclusionOpen && (
-        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/40">
-          <div className="max-w-2xl rounded bg-white p-6">
-            <h4 className="mb-2 text-lg font-semibold">Inclusion Details</h4>
-            <pre className="text-sm whitespace-pre-wrap">
-              {JSON.stringify(inclusionData, null, 2)}
-            </pre>
-            <div className="mt-4 text-right">
-              <button
-                onClick={closeInclusion}
-                className="rounded bg-gray-300 px-3 py-1"
-              >
-                Close
-              </button>
+      {isInclusionOpen && inclusionData && (
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="animate-fadeIn w-full max-w-2xl rounded-lg border-t-4 border-red-600 bg-white p-6 shadow-xl">
+            <div className="mx-auto mb-4 flex w-fit items-center justify-between text-center">
+              <h4 className="text-4xl font-bold text-red-700">
+                Inclusion Details
+              </h4>
+            </div>
+
+            <div
+              className="prose prose-sm max-w-none leading-relaxed text-gray-700"
+              dangerouslySetInnerHTML={{
+                __html:
+                  inclusionData?.Inclusion ||
+                  "<p>No inclusion details available.</p>",
+              }}
+            />
+
+            <div className="mt-5 flex justify-center text-sm">
+              <p>
+                Note: To avail seamless Porter service, please confirm your
+                location to Porter Supervisor whose details will be shared with
+                the booking confirmation.
+              </p>
+              <div className="mt- text-right">
+                <button
+                  onClick={closeInclusion}
+                  className="rounded-md bg-red-600 px-5 py-2 font-medium text-white transition-all hover:bg-red-700 active:bg-red-800"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -638,7 +658,3 @@ export default function ServiceRequest() {
     </div>
   );
 }
-
-// {"RequestId":"Fra9DS/I9yTxXlN+znmtlsPKZJxm8Uf6IK2b11MjYbA=","FlightNo":"AI-101","FlightTimeHour":"2","FlightTimeMinute":"10","GuestFirstName":"ajay","GuestLastName":"raj","GuestEmailId":"ajayraj@gmail.com","GuestContactNo":"8433038283","GuestAge":"34","NumberPorterRequired":1,"Price":"5900.00","Plan":"NYDFGXYDXD2jnCxL1YUo1w==","PNR":"asdf24","Title":"Mr.","CouponCode":"","DiscountAmount":0,"cardDisplayName":"","TravelDate":"2025-10-09","DestinationTravelDate":"2025-10-13","AdultGuestDetail":[{"Title":"Mr.","FirstName":"ajay","LastName":"raj","ContactNo":"8433038283","Age":"34","EmailId":"ajayraj@gmail.com","PNR":"asdf24","mobileCountryCode":"in","DefaultGuest":true}],"DestinationFlightNo":"AI-103","DestinationFlightTimeHour":"3","DestinationFlightTimeMinute":"10","IsTransit":true,"Action":2}
-
-("http://localhost:3000/payment-response/Fra9DS/I9yTxXlN+znmtlnZHRu+XPHx4ZkZmvoD6YRg=/qME/dw7FrWVOatUYHAKqHOownySIeg6GjCHWp1rbogi/tnywvuwMf8J7f23XOO7U");
