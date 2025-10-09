@@ -72,7 +72,6 @@ export default function ManageBookings() {
       </main>
       {/* Section 2 */}
       <Save />
-      <ManageBooking />
     </>
   );
 }

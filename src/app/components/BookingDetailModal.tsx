@@ -11,55 +11,65 @@ interface Props {
 export default function BookingDetailsModal({
   bookingData,
   onCancelClick,
-  onClose,
 }: Props) {
   if (!bookingData) return null;
 
   return (
-    <div>
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-xl font-bold">Booking Details</h2>
-        <Button variant="ghost" onClick={onClose}>
-          Close
-        </Button>
-      </div>
-
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse border border-gray-200 text-sm">
+    <div className="w-fit">
+      {/* Table Container (scrollable on small screens) */}
+      <div className="w-fit overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-sm">
+        <table className="w-fit border-collapse text-sm md:text-base">
+          <thead>
+            <tr className="bg-gray-100 text-left font-semibold text-gray-700">
+              <th className="border-b border-gray-200 p-3">Booking ID</th>
+              <th className="border-b border-gray-200 p-3">Guest Name</th>
+              <th className="border-b border-gray-200 p-3">Phone No</th>
+              <th className="border-b border-gray-200 p-3">Email ID</th>
+              <th className="border-b border-gray-200 p-3">Age</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr className="bg-gray-100 font-medium">
-              <td>Booking Id</td>
-              <td>Guest Name</td>
-              <td>Phone No</td>
-              <td>Email ID</td>
-              <td>Age</td>
+            <tr className="transition-colors hover:bg-gray-50">
+              <td className="border-b border-gray-100 p-3">
+                {bookingData.RequestId}
+              </td>
+              <td className="border-b border-gray-100 p-3">
+                {bookingData.GuestName}
+              </td>
+              <td className="border-b border-gray-100 p-3">
+                {bookingData.PhoneNumber}
+              </td>
+              <td className="border-b border-gray-100 p-3">
+                {bookingData.GuestEmailId}
+              </td>
+              <td className="border-b border-gray-100 p-3">
+                {bookingData.GuestAge}
+              </td>
             </tr>
-            <tr>
-              <td>{bookingData.RequestId}</td>
-              <td>{bookingData.GuestName}</td>
-              <td>{bookingData.PhoneNumber}</td>
-              <td>{bookingData.GuestEmailId}</td>
-              <td>{bookingData.GuestAge}</td>
-            </tr>
-            {/* Add other table rows like in Angular */}
           </tbody>
         </table>
       </div>
 
-      <div className="mt-6 flex justify-end gap-3">
+      {/* Footer Actions */}
+      <div className="mt-6 flex flex-col-reverse items-center justify-end gap-3 sm:flex-row">
         {bookingData.InvoiceNumber && (
           <a
             href={`http://admin.airportporterservice.ae/uploaddata/EmailPDFupload/${bookingData.RequestId}_Invoice.pdf`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 underline"
+            className="text-blue-600 underline transition hover:text-blue-700"
           >
-            Invoice Download
+            Download Invoice
           </a>
         )}
 
         {bookingData.CancelStatus && (
-          <Button onClick={onCancelClick}>Cancel My Booking</Button>
+          <Button
+            onClick={onCancelClick}
+            className="rounded-full bg-red-600 px-5 py-2 text-white transition hover:bg-red-700"
+          >
+            Cancel My Booking
+          </Button>
         )}
       </div>
     </div>

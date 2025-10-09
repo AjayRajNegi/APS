@@ -51,8 +51,6 @@ export default function CancelBookingModal({
 
   return (
     <div>
-      <h2 className="mb-4 text-xl font-bold">Service Cancellation Request</h2>
-
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <Textarea
           {...register("cancelReason", { required: "Enter cancel reason" })}
