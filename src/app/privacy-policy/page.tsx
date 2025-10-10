@@ -1,9 +1,7 @@
-import "../globals.css";
-
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-6xl">
         {/* Header */}
         <div className="mb-12 text-center">
           <h1 className="mb-4 text-3xl font-bold text-gray-900">
