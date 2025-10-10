@@ -240,6 +240,7 @@ export default function ServiceRequest() {
         GuestContactNo: firstGuest.phoneNumber,
         GuestAge: firstGuest.age,
         NumberPorterRequired: numberOfGuest,
+        //Price: 1,
         Price: grandTotalAmount,
         Plan: data.plan,
         PNR: firstGuest.pnr,
