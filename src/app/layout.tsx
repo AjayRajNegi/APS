@@ -33,7 +33,7 @@ export default function RootLayout({
         className={cn(
           `${geistSans.variable} ${geistMono.variable} antialiased`,
           "relative overflow-x-hidden",
-          "font-poppins",
+          "font-poppins bg-[#f7f9fa]",
         )}
       >
         <LenisProvider>

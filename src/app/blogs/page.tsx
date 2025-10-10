@@ -5,7 +5,7 @@ export default function BlogsPage() {
   return (
     <>
       {/* Hero Section */}
-      <article className="my-[50px] flex w-full flex-col items-center">
+      <article className="my-[50px] flex w-full flex-col items-center bg-[#f7f9fa]">
         <p className="flex w-fit items-center gap-0.5 rounded-lg border-[1px] border-gray-300 bg-gray-100 px-2 py-1 text-sm">
           <NotepadText size={15} /> Blog
         </p>

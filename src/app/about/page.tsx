@@ -6,9 +6,9 @@ import { TextEffect } from "../components/TextEffect";
 
 export default function About() {
   return (
-    <div className="font-poppins">
+    <div className="font-poppins bg-[#f7f9fa]">
       {/* Hero section */}
-      <section className="my-[40px] w-full">
+      <section className="mb-[40px] w-full pt-[40px]">
         <article>
           <div className="mb-10 flex items-end text-7xl font-semibold tracking-tight text-shadow-2xs">
             <p>

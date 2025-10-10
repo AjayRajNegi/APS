@@ -33,7 +33,7 @@ export default async function IndividualAirportsPage({
 
   return (
     <>
-      <article className="my-[50px] flex max-w-[1500px] flex-col items-center">
+      <article className="my-[50px] flex max-w-[1500px] flex-col items-center bg-[#f7f9fa]">
         <h1 className="w-[90%] text-center text-4xl font-semibold tracking-tight text-shadow-2xs md:w-[65%] md:text-5xl">
           {airport.name}
         </h1>

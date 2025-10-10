@@ -6,7 +6,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Main Section */}
-      <article className="mt-[30px] mb-[20px]">
+      <article className="mt-[30px] mb-[20px] bg-[#f7f9fa]">
         <div className="mt-[0px] flex flex-col justify-between md:flex-row md:items-center">
           <p className="order-1 text-6xl font-[500]">
             OurCompany <br /> Service!

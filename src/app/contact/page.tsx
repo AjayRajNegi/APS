@@ -3,7 +3,7 @@ import { TextEffect } from "../components/TextEffect";
 
 export default function Contact() {
   return (
-    <section className="mx-auto my-8 flex max-w-7xl flex-col-reverse gap-12 px-6 md:flex-row md:gap-16 lg:px-12">
+    <section className="mx-auto my-8 flex max-w-7xl flex-col-reverse gap-12 bg-[#f7f9fa] px-6 md:flex-row md:gap-16 lg:px-12">
       {/* Left */}
       <article className="flex w-full flex-col items-start md:w-1/2">
         <h1 className="text-5xl font-bold tracking-tighter lg:text-7xl">

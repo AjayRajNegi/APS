@@ -37,7 +37,7 @@ export default function PaymentResponsePage() {
   const status = response.paymentStatus?.toLowerCase();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
+    <div className="flex min-h-screen items-center justify-center bg-[#f7f9fa]">
       <div className="w-full max-w-lg rounded-lg bg-white p-8 shadow">
         <h1
           className={`mb-4 text-center text-2xl font-bold ${

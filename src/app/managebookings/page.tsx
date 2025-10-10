@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Save } from "../components/Save";
 import { ArrowDownRight } from "lucide-react";
 import { BookingForm } from "../components/BookingForm";
-import ManageBooking from "../components/ManageBooking";
 
 export default function ManageBookings() {
   return (

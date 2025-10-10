@@ -72,7 +72,7 @@ export default function Navbar() {
   }, [menuOpen]);
 
   return (
-    <nav className="gradient-background fixed left-1/2 z-30 mx-auto mt-1 flex h-[70px] w-[98%] max-w-[1540px] -translate-x-1/2 items-center justify-between rounded-full border-[0.5px] border-neutral-300 px-4 shadow-2xl md:mt-1.5 md:w-[95%]">
+    <nav className="gradient-background fixed left-1/2 z-30 mx-auto mt-1 flex h-[70px] w-[98%] max-w-[1540px] -translate-x-1/2 items-center justify-between rounded-full border-[0.5px] border-neutral-300 bg-[#f7f9fa] px-4 shadow-2xl md:mt-1.5 md:w-[95%]">
       <Link
         href="/"
         className="rounded-full bg-white px-2 py-1 shadow-2xl transition-transform duration-300 hover:scale-110"

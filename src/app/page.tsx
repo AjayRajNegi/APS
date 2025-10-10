@@ -12,7 +12,7 @@ import { FullWidthComponent } from "./components/FullWidthComponent";
 
 export default function Home() {
   return (
-    <div className="font-poppins">
+    <div className="font-poppins bg-[#f7f9fa]">
       {/* Main Section */}
       <main className="animate-fade-up relative flex h-[min(calc(max(85vh,650px)),800px)] w-full items-end overflow-hidden rounded-4xl">
         <Image

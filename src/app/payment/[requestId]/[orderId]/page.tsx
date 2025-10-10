@@ -180,7 +180,7 @@ export default function PaymentInProgressPage() {
   }, [requestId, orderId, router]);
 
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex h-screen items-center justify-center bg-[#f7f9fa]">
       {loading ? (
         <p>Initializing payment... please wait.</p>
       ) : (
