@@ -280,7 +280,7 @@ export default function TransitForm() {
                     onChange={(e) => setDestinationQuery(e.target.value)}
                   />
                   {destinationAirports.length > 0 && (
-                    <ul className="absolute right-0 left-0 mt-2 max-h-48 w-full overflow-y-auto rounded-full border border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
+                    <ul className="absolute right-0 left-0 mt-2 max-h-48 w-full overflow-y-auto rounded-lg border border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
                       {destinationAirports.map((origin) => (
                         <li
                           key={origin.EncyptID}

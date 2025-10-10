@@ -272,7 +272,7 @@ export default function ServiceRequest() {
   return (
     <div className="mx-auto my-2 max-w-[1350px] rounded-2xl border-[1px] border-neutral-200 bg-white p-6 shadow-xl md:my-10">
       {details ? (
-        <h1 className="bg-aps-300 mb-6 rounded-2xl p-4 text-center text-base font-bold shadow-lg text-shadow-2xs md:text-2xl">
+        <h1 className="from-aps-500 to-aps-400/70 border-aps-600 mb-6 rounded-2xl border-[1px] bg-gradient-to-b p-4 text-center text-base font-bold text-white shadow-lg text-shadow-2xs md:text-2xl">
           <span className="text-2xl md:text-3xl">{details.AirportName}</span>{" "}
           <br /> {details.ServiceType} Service ({details.TravelDate})
         </h1>
@@ -401,8 +401,8 @@ export default function ServiceRequest() {
             <label className="mb-1 block text-sm font-medium text-gray-700">
               Price Breakup
             </label>
-            <div className="w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2.5">
-              <span className="text-sm font-medium text-gray-900">
+            <div className="bg-aps-400 border-aps-600 w-full rounded-lg border px-3 py-2.5 text-white">
+              <span className="text-sm font-medium">
                 Total Amount: {grandTotalAmount}
               </span>
             </div>
@@ -541,7 +541,7 @@ export default function ServiceRequest() {
             <button
               type="button"
               onClick={addGuest}
-              className="text-aps-400 text-sm font-medium"
+              className="bg-aps-400 rounded px-3 py-1 text-sm font-medium text-white"
             >
               + Add Guest
             </button>
@@ -573,7 +573,7 @@ export default function ServiceRequest() {
                   type="button"
                   onClick={applyDiscount}
                   disabled={!watch("plan") || discountDivDisable}
-                  className="bg-aps-300 w-full cursor-pointer rounded-xl px-4 py-3 text-black"
+                  className="bg-aps-400 border-aps-600 w-full cursor-pointer rounded-xl border-[1px] px-4 py-3 text-white"
                 >
                   APPLY
                 </button>
@@ -582,14 +582,14 @@ export default function ServiceRequest() {
               <div className="mt-4 w-1/2">
                 <button
                   type="submit"
-                  className="group from-aps-secondary-500 to-aps-secondary-300 flex w-full items-center justify-center gap-1 rounded-xl border-[1px] border-white bg-gradient-to-r py-3 font-medium transition duration-300 hover:border-[1px]"
+                  className="group from-aps-secondary-500 to-aps-secondary-300 border-aps-secondary-400 flex w-full items-center justify-center gap-1 rounded-xl border-[1px] bg-gradient-to-r py-3 font-medium transition duration-300 hover:border-[1px]"
                 >
-                  <p className="transition-transform duration-300 group-hover:-translate-x-[10px] group-hover:text-white">
+                  <p className="text-white transition-transform duration-300 group-hover:-translate-x-[10px] group-hover:text-black">
                     Book Now
                   </p>
                   <ArrowRight
                     size={20}
-                    className="transition-transform duration-300 group-hover:translate-x-[10px] group-hover:text-white"
+                    className="text-white transition-transform duration-300 group-hover:translate-x-[10px] group-hover:text-black"
                   />
                 </button>
               </div>

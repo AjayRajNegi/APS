@@ -1,11 +1,10 @@
-import { MoveRight } from "lucide-react";
 import { TextEffect } from "../components/TextEffect";
 
 export default function Contact() {
   return (
     <section className="mx-auto my-8 flex max-w-7xl flex-col-reverse gap-12 bg-[#f7f9fa] px-6 md:flex-row md:gap-16 lg:px-12">
       {/* Left */}
-      <article className="flex w-full flex-col items-start md:w-1/2">
+      <article className="flex w-full flex-col items-start justify-center md:w-1/2">
         <h1 className="text-5xl font-bold tracking-tighter lg:text-7xl">
           Let&apos;s get <br /> in touch
         </h1>
@@ -25,13 +24,13 @@ export default function Contact() {
             <p className="font-semibold">hello@aps.com</p>
           </div>
 
-          <div>
+          {/* <div>
             <p className="text-sm text-gray-400">Office</p>
             <p className="font-semibold">Elite Estates</p>
             <p className="flex items-center gap-1 font-semibold underline">
               See on Google Map <MoveRight className="-rotate-45" size={18} />
             </p>
-          </div>
+          </div> */}
         </div>
       </article>
 

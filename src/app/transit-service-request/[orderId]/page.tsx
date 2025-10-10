@@ -26,6 +26,7 @@ interface AirportDetails {
   Destination: string;
   DestinationAirportName: string;
   AirportType: string;
+  TravelSector: string;
 }
 
 interface FormValues {
@@ -300,9 +301,9 @@ export default function ServiceRequest() {
   return (
     <div className="mx-auto my-2 max-w-[1350px] rounded-2xl border-[1px] border-neutral-200 bg-white p-6 shadow-xl md:my-10">
       {details ? (
-        <h1 className="bg-aps-300 mb-6 rounded-2xl p-4 text-center text-base font-bold shadow-lg text-shadow-2xs md:text-2xl">
+        <h1 className="from-aps-500 to-aps-400/70 border-aps-600 mb-6 rounded-2xl border-[1px] bg-gradient-to-b p-4 text-center text-base font-bold text-white shadow-lg text-shadow-2xs md:text-2xl">
           <span className="text-2xl md:text-3xl">{details.AirportName}</span>{" "}
-          <br /> {details.ServiceType} Service ({details.TravelDate})
+          <br /> {details.TravelSector} Service ({details.TravelDate})
         </h1>
       ) : (
         <p>Loading...</p>
@@ -310,11 +311,11 @@ export default function ServiceRequest() {
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Origin Airport Details */}
-        <h1 className="text-3xl text-shadow-2xs">Origin Airport Details</h1>
+        <h1 className="text-xl text-shadow-2xs">Origin Airport Details:</h1>
         <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-5">
           {details ? (
-            <h3 className="mb-2 text-base font-bold text-red-600">
-              {details.OriginAirportName}:
+            <h3 className="mb-2 text-sm font-bold text-red-600">
+              {details.OriginAirportName}
             </h3>
           ) : (
             <h3 className="mb-2">Loading...</h3>
@@ -383,13 +384,13 @@ export default function ServiceRequest() {
         </div>
 
         {/* Destination Airport Details */}
-        <h1 className="mt-8 mb-4 text-3xl text-shadow-2xs">
-          Destination Airport Details
+        <h1 className="mt-8 mb-4 text-xl text-shadow-2xs">
+          Destination Airport Details:
         </h1>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-5">
           {details ? (
-            <h3 className="mb-2 text-base font-bold text-red-600">
-              {details.DestinationAirportName}:
+            <h3 className="mb-2 text-sm font-bold text-red-600">
+              {details.DestinationAirportName}
             </h3>
           ) : (
             <h3 className="mb-2">Loading...</h3>
@@ -593,7 +594,7 @@ export default function ServiceRequest() {
             <button
               type="button"
               onClick={addGuest}
-              className="text-sm font-medium text-red-600"
+              className="bg-aps-400 rounded px-3 py-1 text-sm font-medium text-white"
             >
               + Add Guest
             </button>
@@ -669,7 +670,7 @@ export default function ServiceRequest() {
                 type="button"
                 onClick={applyDiscount}
                 disabled={!watch("plan") || discountDivDisable}
-                className="bg-aps-300 w-full cursor-pointer rounded-xl px-4 py-3 text-black"
+                className="bg-aps-400 border-aps-600 w-full cursor-pointer rounded-xl border-[1px] px-4 py-3 text-white"
               >
                 APPLY
               </button>
@@ -677,14 +678,14 @@ export default function ServiceRequest() {
             <div className="mt-4 w-1/2">
               <button
                 type="submit"
-                className="group from-aps-secondary-500 to-aps-secondary-300 flex w-full items-center justify-center gap-1 rounded-xl border-[1px] border-white bg-gradient-to-r py-3 font-medium transition duration-300 hover:border-[1px]"
+                className="group from-aps-secondary-500 to-aps-secondary-300 border-aps-secondary-400 flex w-full items-center justify-center gap-1 rounded-xl border-[1px] bg-gradient-to-r py-3 font-medium transition duration-300 hover:border-[1px]"
               >
-                <p className="transition-transform duration-300 group-hover:-translate-x-[10px] group-hover:text-white">
+                <p className="text-white transition-transform duration-300 group-hover:-translate-x-[10px] group-hover:text-black">
                   Book Now
                 </p>
                 <ArrowRight
                   size={20}
-                  className="transition-transform duration-300 group-hover:translate-x-[10px] group-hover:text-white"
+                  className="text-white transition-transform duration-300 group-hover:translate-x-[10px] group-hover:text-black"
                 />
               </button>
             </div>

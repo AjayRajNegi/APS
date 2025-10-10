@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="font-poppins bg-[#f7f9fa]">
       {/* Main Section */}
-      <main className="animate-fade-up relative flex h-[min(calc(max(85vh,650px)),800px)] w-full items-end overflow-hidden rounded-4xl">
+      <main className="animate-fade-up relative flex h-[min(calc(max(85vh,650px)),800px)] w-full items-end rounded-4xl">
         <Image
           src="/mainImage.png"
           alt="Flight booking background"
@@ -23,7 +23,7 @@ export default function Home() {
           quality={80}
           placeholder="blur"
           blurDataURL="/blur.webp"
-          className="absolute inset-0 z-10 object-cover object-[center_70%]"
+          className="absolute inset-0 z-10 rounded-4xl object-cover object-[center_70%]"
         />
 
         <div className="relative z-20 flex w-full flex-col justify-between p-4 lg:flex-row">
