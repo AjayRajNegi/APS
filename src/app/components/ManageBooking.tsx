@@ -117,8 +117,8 @@ export default function ManageBooking() {
 
       {/* Booking details modal */}
       <Dialog open={showBookingModal} onOpenChange={setShowBookingModal}>
-        <DialogContent className="w-fit max-w-5xl rounded-xl p-6 md:p-8">
-          <DialogTitle className="mb-4 text-2xl font-semibold">
+        <DialogContent className="w-fit max-w-5xl overflow-scroll rounded-xl pb-0 md:p-6 md:pb-6">
+          <DialogTitle className="text-2xl font-semibold md:mb-4">
             Booking Details
           </DialogTitle>
           <BookingDetailsModal
