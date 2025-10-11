@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
-import { useParams, useRouter } from "next/navigation";
 import {
   getAirportPorterDetail,
   GetPlanInculsionDetailForTransit,
   savePorterRequestDetails,
 } from "@/lib/api/requestBooking";
+import React, { useEffect, useState } from "react";
 import { getDropdownList4 } from "@/lib/api/common";
 import { ArrowRight, InfoIcon } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
+import { useForm, useFieldArray } from "react-hook-form";
 
 interface AirportDetails {
   RequestId: string;
@@ -136,6 +136,11 @@ export default function ServiceRequest() {
 
   // Route protection
   useEffect(() => {
+    const hasRun = sessionStorage.getItem("serviceEffectRan");
+    if (hasRun) return;
+
+    sessionStorage.setItem("serviceEffectRan", "true");
+
     const fromServicePage = sessionStorage.getItem("fromForm");
     if (!fromServicePage) {
       router.replace("/");

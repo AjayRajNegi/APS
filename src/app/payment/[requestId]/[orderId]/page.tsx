@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
 import {
   getRazorPaymentDetails,
   updateRazorPaymentDetails,
   saveFailedTransactionDetails,
 } from "@/lib/api/requestBooking";
+import React, { useEffect, useRef, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 
 declare global {
   interface Window {
@@ -30,15 +30,19 @@ export default function PaymentInProgressPage() {
 
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [loading, setLoading] = useState(true);
+  const hasChecked = useRef(false);
 
   // Route protection
   useEffect(() => {
+    if (hasChecked.current) return;
+    hasChecked.current = true;
+
     const fromServicePage = sessionStorage.getItem("fromServicePage");
     if (!fromServicePage) {
       router.replace("/");
     } else {
-      sessionStorage.removeItem("fromServicePage");
       setIsAuthorized(true);
+      sessionStorage.removeItem("fromServicePage");
     }
   }, [router]);
 

@@ -72,6 +72,7 @@ export default function DomesticForm() {
   const [selectedService, setSelectedService] = useState<string>();
   const [airportResults, setAirportResults] = useState<Airport[]>([]);
   const [countryPhoneCode, setCountryPhoneCode] = useState<string>("in");
+  const [countryDialCode, setCountryDialCode] = useState<string>();
 
   const selectedCountry = watch("country");
   const selectedServiceCode = watch("serviceType");
@@ -153,14 +154,26 @@ export default function DomesticForm() {
     }
   };
 
+  function extractLocalNumber(
+    fullNumber: string,
+    dialCode: string | undefined,
+  ): string {
+    if (!fullNumber || !dialCode) return fullNumber;
+    const cleaned = fullNumber.replace(/\D/g, "");
+    return cleaned.startsWith(dialCode)
+      ? cleaned.slice(dialCode.length)
+      : cleaned;
+  }
+
   const onSubmit = async (data: FormValues) => {
     const travelDateUTC = new Date(data.travelDate).toISOString();
+    const localNumber = extractLocalNumber(data.phone, countryDialCode);
     const payload = {
       AirportCode: data.origin,
       DestinationAirportCode: data.destination,
       Terminal: data.terminal,
       TravelDate: travelDateUTC,
-      PhoneNumber: data.phone,
+      PhoneNumber: localNumber,
       PhoneCountryCode: countryPhoneCode,
       ServiceType: data.serviceType,
       AirportType: airportType,
@@ -475,6 +488,7 @@ export default function DomesticForm() {
                     field.onChange(phone);
                     if (countryData && "countryCode" in countryData) {
                       setCountryPhoneCode(countryData.countryCode);
+                      setCountryDialCode(countryData.dialCode);
                     }
                   }}
                   inputClass="w-full rounded-full border-none bg-white px-4 py-2 text-sm shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none"
