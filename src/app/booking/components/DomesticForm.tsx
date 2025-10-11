@@ -172,7 +172,8 @@ export default function DomesticForm() {
       const response = await savePorterRequestDetails(payload);
       const orderId = encodeURIComponent(response[0].EncyptID);
       setDomestic(response);
-      router.push(`/service-request/${orderId}`);
+      sessionStorage.setItem("fromForm", "true");
+      router.replace(`/service-request/${orderId}`);
     } catch (err) {
       console.error("Failed to save booking", err);
     }

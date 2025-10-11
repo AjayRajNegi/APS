@@ -149,7 +149,7 @@ export default function Pricing() {
             </ul>
 
             {/* Button */}
-            <Link
+            {/* <Link
               href="#_"
               className="group border-aps-secondary-300 relative inline-flex items-center justify-center overflow-hidden rounded-full border-2 p-4 px-6 py-3 font-medium shadow-md transition duration-300 ease-out"
             >
@@ -173,7 +173,7 @@ export default function Pricing() {
                 Get Started
               </span>
               <span className="invisible relative">Get Started</span>
-            </Link>
+            </Link> */}
           </div>
         ))}
       </div>

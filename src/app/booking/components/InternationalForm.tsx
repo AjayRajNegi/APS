@@ -171,6 +171,7 @@ export default function InternationalForm() {
       const response = await savePorterRequestDetails(payload);
       const orderId = encodeURIComponent(response[0].EncyptID);
       setInternational(response);
+      sessionStorage.setItem("fromForm", "true");
       router.push(`/service-request/${orderId}`);
     } catch (err) {
       console.error("Failed to save booking", err);

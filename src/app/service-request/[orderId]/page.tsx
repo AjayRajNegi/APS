@@ -51,11 +51,11 @@ type FormValues = {
 
 export default function ServiceRequest() {
   const params = useParams();
+  const router = useRouter();
   const orderId = Array.isArray(params.orderId)
     ? params.orderId.join("/")
     : params.orderId || "";
   const requestID = decodeURIComponent(orderId || "");
-  const router = useRouter();
 
   const [planList, setPlanList] = useState<any[]>([]);
   const [inclusionData, setInclusionData] = useState<any>(null);
@@ -126,6 +126,17 @@ export default function ServiceRequest() {
     control,
     name: "guestDetails",
   });
+
+  // Route protection
+  useEffect(() => {
+    const fromServicePage = sessionStorage.getItem("fromForm");
+    if (!fromServicePage) {
+      router.replace("/");
+    } else {
+      sessionStorage.removeItem("fromForm");
+      sessionStorage.setItem("fromServicePage", "true");
+    }
+  }, [router]);
 
   // Fetch initial data
   useEffect(() => {

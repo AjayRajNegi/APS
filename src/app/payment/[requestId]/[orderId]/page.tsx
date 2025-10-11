@@ -17,6 +17,7 @@ declare global {
 export default function PaymentInProgressPage() {
   const router = useRouter();
   const params = useParams();
+
   const reqId = Array.isArray(params.requestId)
     ? params.requestId[0]
     : params.requestId;
@@ -27,26 +28,37 @@ export default function PaymentInProgressPage() {
   const requestId = decodeURIComponent(reqId || "");
   const orderId = decodeURIComponent(ordId || "");
 
-  console.log(requestId, "Hello \n", orderId);
-
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Load Razorpay script
-  const loadRazorpayScript = async () =>
-    new Promise<boolean>((resolve) => {
-      if (window.Razorpay) return resolve(true);
-      const script = document.createElement("script");
-      script.src = "https://checkout.razorpay.com/v1/checkout.js";
-      script.onload = () => resolve(true);
-      script.onerror = () => resolve(false);
-      document.body.appendChild(script);
-    });
+  // Route protection
+  useEffect(() => {
+    const fromServicePage = sessionStorage.getItem("fromServicePage");
+    if (!fromServicePage) {
+      router.replace("/");
+    } else {
+      sessionStorage.removeItem("fromServicePage");
+      setIsAuthorized(true);
+    }
+  }, [router]);
 
   useEffect(() => {
+    if (!isAuthorized) return;
     if (!requestId || !orderId) {
       router.push("/");
       return;
     }
+
+    // Load Razorpay script
+    const loadRazorpayScript = async () =>
+      new Promise<boolean>((resolve) => {
+        if (window.Razorpay) return resolve(true);
+        const script = document.createElement("script");
+        script.src = "https://checkout.razorpay.com/v1/checkout.js";
+        script.onload = () => resolve(true);
+        script.onerror = () => resolve(false);
+        document.body.appendChild(script);
+      });
 
     const initPayment = async () => {
       const scriptLoaded = await loadRazorpayScript();
@@ -61,19 +73,16 @@ export default function PaymentInProgressPage() {
           router.push("/");
           return;
         }
-        console.log("getRazorPaymentDetails", data);
 
         const info = data[0];
-        console.log("info", info);
 
-        // Payment not done yet
         if (info.PaymentStatus !== 4 && info.PaymentFailId === 0) {
           const options = {
             key: "rzp_live_kqH36Q7RmIIwDx",
             amount: info.amount,
             currency: info.currency,
             name: info.name,
-            description: info.descirpiton,
+            description: info.description,
             image:
               "https://www.airportporterservice.com/assert/images/airportlogo.png",
             order_id: info.orderId,
@@ -110,7 +119,7 @@ export default function PaymentInProgressPage() {
     };
 
     initPayment();
-  }, [requestId, orderId, router]);
+  }, [isAuthorized, requestId, orderId, router]);
 
   // Success Handler
   useEffect(() => {

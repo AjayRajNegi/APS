@@ -82,7 +82,7 @@ export function AirportSection() {
                 >
                   <div>
                     <p className="text-4xl font-bold text-white">
-                      {airport.location}
+                      {airport.city}
                     </p>
                     <p className="font-bold text-gray-300">{airport.name}</p>
                   </div>

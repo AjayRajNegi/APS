@@ -134,6 +134,17 @@ export default function ServiceRequest() {
     name: "guestDetails",
   });
 
+  // Route protection
+  useEffect(() => {
+    const fromServicePage = sessionStorage.getItem("fromForm");
+    if (!fromServicePage) {
+      router.replace("/");
+    } else {
+      sessionStorage.removeItem("fromForm");
+      sessionStorage.setItem("fromServicePage", "true");
+    }
+  }, [router]);
+
   // Fetch initial data
   useEffect(() => {
     if (!requestID) {
