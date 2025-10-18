@@ -87,14 +87,33 @@ async function getBlog(slug: string): Promise<Blog | null> {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URI}/api/blogs/${slug}`,
-      { cache: "no-store" },
+      { cache: "force-cache" },
     );
-    if (!res.ok) throw new Error("Failed to fetch");
+    if (!res.ok) throw new Error("Failed to fetch blog");
     const data: Blog = await res.json();
     return data;
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching blog:", error);
     return null;
+  }
+}
+
+export async function generateStaticParams() {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URI}/api/blogs`,
+      { cache: "force-cache" },
+    );
+    if (!res.ok) throw new Error("Failed to fetch blog list");
+
+    const blogs: Blog[] = await res.json();
+
+    return blogs.map((b) => ({
+      slug: b.slug,
+    }));
+  } catch (error) {
+    console.error("Error fetching static params:", error);
+    return [];
   }
 }
 

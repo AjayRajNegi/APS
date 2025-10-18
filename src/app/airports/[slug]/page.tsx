@@ -2,20 +2,34 @@ import Image from "next/image";
 import { AirportSection } from "@/app/components/AirportSection";
 
 async function getAirport(slug: string) {
-  console.log(slug);
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URI}/api/airport/country/${slug}`,
-      {
-        cache: "no-store",
-      },
+      { cache: "force-cache" },
     );
-    if (!res.ok) throw new Error("Failed to fetch");
-    console.log("asdfas");
+    if (!res.ok) throw new Error("Failed to fetch airport");
     return res.json();
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching airport:", error);
     return null;
+  }
+}
+
+export async function generateStaticParams() {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URI}/api/airport/country-list`,
+      { cache: "force-cache" },
+    );
+    if (!res.ok) throw new Error("Failed to fetch slugs");
+    const countries = await res.json();
+
+    return countries.map((c: { slug: string }) => ({
+      slug: c.slug,
+    }));
+  } catch (error) {
+    console.error("Error fetching static params:", error);
+    return [];
   }
 }
 

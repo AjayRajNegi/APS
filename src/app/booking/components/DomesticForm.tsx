@@ -63,6 +63,8 @@ export default function DomesticForm() {
     formState: { errors },
   } = form;
 
+  console.log(errors);
+
   const [airports, setAirports] = useState<Airport[]>([]);
   const [terminals, setTerminals] = useState<Airport[]>([]);
   const [countries, setCountries] = useState<Airport[]>([]);

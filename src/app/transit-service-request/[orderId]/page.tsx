@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import {
   getAirportPorterDetail,
   GetPlanInculsionDetailForTransit,
@@ -9,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import { getDropdownList4 } from "@/lib/api/common";
 import { ArrowRight, InfoIcon } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, useWatch } from "react-hook-form";
 
 interface AirportDetails {
   RequestId: string;
@@ -127,9 +129,13 @@ export default function ServiceRequest() {
   });
 
   const selectedPlan = watch("plan");
-  const guestDetails = watch("guestDetails");
 
   const { fields, append, remove } = useFieldArray({
+    control,
+    name: "guestDetails",
+  });
+
+  const guestDetails = useWatch({
     control,
     name: "guestDetails",
   });
@@ -217,7 +223,6 @@ export default function ServiceRequest() {
         `${firstGuest.firstName || ""} ${firstGuest.lastName || ""}`.trim();
       setValue("cardDisplayName", displayName, { shouldValidate: true });
     }
-    setNumberOfGuest(guestDetails?.length ?? 1);
   }, [guestDetails, setValue]);
 
   // recalc totals when numberOfGuest or perPersonPrice changes
