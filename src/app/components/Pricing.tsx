@@ -5,50 +5,53 @@ import { ArrowDownRight, Check } from "lucide-react";
 export default function Pricing() {
   const tiers = [
     {
-      name: "Standard",
-      price: "$999",
-      period: "/mo",
+      name: "Basic",
+      price: "₹1,000*",
+      period: "/person +GST",
       description:
-        "Experience the excellence of our services with a handful of small projects.",
+        "Perfect for travelers who need smooth airport assistance at an affordable price.",
       features: [
-        "One request at a time",
-        "Two weeks design sprint",
-        "Unlimited requests & revisions",
-        "Up to 1 meeting per week",
-        "Dev ready Figma files",
-        "Unlimited Stock Photos",
+        "Assistance with hand baggage",
+        "Assistance with check-in baggage",
+        "Airline check-in process support",
+        "Post-customs baggage assist (Int. Arrivals)",
+        "Escort from arrival hall to car park",
+        "Escort till exit gate for departing passengers",
       ],
       standard: true,
     },
     {
       name: "Premium",
-      price: "$2,999",
-      period: "/mo",
+      price: "₹2,500*",
+      period: "/person +GST",
       description:
-        "Ideal for burgeoning startups seeking continuous design assistance.",
+        "Ideal for frequent flyers who want comfort, lounge access & faster processing.",
       features: [
-        "One request at a time",
-        "3 - 5 business days delivery",
-        "Unlimited requests & revisions",
-        "Up to 1 meeting per week",
-        "Dev ready Figma files",
-        "Unlimited Stock Photos",
+        "Dedicated curbside meet & greet",
+        "Golf cart / buggy facility (as per terminal)",
+        "Complimentary porter",
+        "Hand or check-in baggage",
+        "Fast track airline check-in",
+        "Immigration priority support (INTL)",
+        "Security checks queue support",
+        "Escort till lounge / boarding gate",
       ],
       popular: true,
     },
     {
-      name: "Premium +",
-      price: "$3,499",
-      period: "/mo",
+      name: "Elite",
+      price: "₹4,000*",
+      period: "/person +GST",
       description:
-        "Ideal choice for agencies that are committed to providing top-notch service to their clients.",
+        "The ultimate luxury service with lounge, VIP car & rescheduling benefits.",
       features: [
-        "Two requests at a time",
-        "3 - 5 business days delivery",
-        "Unlimited requests & revisions",
-        "Flexible weekly meetings",
-        "Dev ready Figma files",
-        "Unlimited Stock Photos",
+        "All Premium benefits included",
+        "Complimentary lounge access (2 hrs)",
+        "One-time free rescheduling",
+        "Immigration priority support (INTL)",
+        "Full baggage & porter service",
+        "Escort till lounge / boarding gate",
+        "Personalized meet & greet assistance",
       ],
       premium: true,
     },
@@ -130,12 +133,12 @@ export default function Pricing() {
             {/* Price */}
             <p className="mb-6 text-4xl font-bold">
               {tier.price}
-              <span className="text-lg font-normal text-gray-400">
+              <span className="text-base font-normal text-gray-400">
                 {tier.period}
               </span>
             </p>
             <p className="mb-6 text-sm text-gray-400">
-              Pause or cancel anytime. <br /> 7 days money-back guarantee
+              Available at major airports across India
             </p>
 
             {/* Features */}

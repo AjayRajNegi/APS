@@ -136,10 +136,11 @@ export function CarRental() {
       <div className="rounded-b-4xl bg-black">
         <article className="via-aps-500 h-fit bg-gradient-to-r from-white to-white bg-clip-text py-6 text-center text-4xl font-bold text-transparent text-shadow-2xs md:from-black md:text-6xl">
           <p className="">
-            RENT MOST PREMIUM <br /> CARS AVAILABLE.
+            BOOK RELIABLE
+            <br /> CABS INSTANTLY.
           </p>
           <p className="mt-1 text-xs md:text-sm">
-            Premium car rental at affordable rates. Worldwide.
+            Comfortable cab booking at affordable rates. Anytime, anywhere.{" "}
           </p>
         </article>
       </div>

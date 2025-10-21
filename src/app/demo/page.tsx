@@ -24,7 +24,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { ArrowRight, CalendarIcon } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -46,7 +46,10 @@ export default function Demo() {
     formState: { errors },
   } = form;
 
-  const onSubmit = () => {};
+  const onSubmit = async (data: FormValues) => {
+    console.log("Hello");
+    console.log(data);
+  };
 
   return (
     <>
@@ -68,124 +71,139 @@ export default function Demo() {
           ))}
         </TabsList>
 
-        <TabsContent value="Airport Transfer">
-          <Form {...form}>
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="my-10 grid grid-cols-5 gap-4"
-            >
-              {/* Service Type */}
-              <FormField
-                control={control}
-                name="serviceType"
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <FormItem className="col-span-1">
-                    <FormControl>
-                      <Select defaultValue={field.value}>
-                        <SelectTrigger className="w-full min-w-0 rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
-                          <SelectValue placeholder="Service Type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="from">From</SelectItem>
-                          <SelectItem value="to">To</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              {/* Pickup Location */}
-              <FormField
-                control={control}
-                name="pickupLocation"
-                rules={{ required: true }}
-                render={() => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter Pickup Location"
-                        className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none"
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              {/* Drop Location */}
-              <FormField
-                control={control}
-                name="dropLocation"
-                rules={{ required: true }}
-                render={() => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter Pickup Location"
-                        className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none"
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              {/* Travel Date */}
-              <FormField
-                control={control}
-                name="pickupDate"
-                rules={{
-                  required: "Please select a date",
-                  validate: (value) =>
-                    value && new Date(value) > new Date()
-                      ? true
-                      : "Select a future date",
-                }}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant="outline"
-                              className={cn(
-                                "w-full rounded-2xl rounded-full border-none bg-white px-4 py-2 pl-3 text-left font-normal shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none",
-                                !field.value && "text-muted-foreground",
-                              )}
-                            >
-                              {field.value ? (
-                                format(new Date(field.value), "PPP")
-                              ) : (
-                                <span>Select date</span>
-                              )}
-                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={
-                              field.value ? new Date(field.value) : undefined
-                            }
-                            onSelect={(date) => {
-                              if (date) field.onChange(date.toISOString());
-                            }}
-                            disabled={(date) => date < new Date()}
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </form>
-          </Form>
-        </TabsContent>
+        <TabsContent value="Airport Transfer"></TabsContent>
       </Tabs>
+      <Form {...form}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="my-10 grid grid-cols-5 gap-4"
+        >
+          {/* Service Type */}
+          <FormField
+            control={control}
+            name="serviceType"
+            rules={{ required: true }}
+            render={({ field }) => (
+              <FormItem className="col-span-1">
+                <FormControl>
+                  <Select defaultValue={field.value}>
+                    <SelectTrigger className="w-full min-w-0 rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none">
+                      <SelectValue placeholder="Service Type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="from">From</SelectItem>
+                      <SelectItem value="to">To</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          {/* Pickup Location */}
+          <FormField
+            control={control}
+            name="pickupLocation"
+            rules={{ required: true }}
+            render={() => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    placeholder="Enter Pickup Location"
+                    className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none"
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          {/* Drop Location */}
+          <FormField
+            control={control}
+            name="dropLocation"
+            rules={{ required: true }}
+            render={() => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    placeholder="Enter Pickup Location"
+                    className="w-full rounded-full border-none bg-white px-4 py-2 shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none"
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          {/* Travel Date */}
+          <FormField
+            control={control}
+            name="pickupDate"
+            rules={{
+              required: "Please select a date",
+              validate: (value) =>
+                value && new Date(value) > new Date()
+                  ? true
+                  : "Select a future date",
+            }}
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant="outline"
+                          className={cn(
+                            "w-full rounded-2xl rounded-full border-none bg-white px-4 py-2 pl-3 text-left font-normal shadow-[0_0_0_1px_rgba(0,0,0,0.15)] focus:outline-none active:outline-none",
+                            !field.value && "text-muted-foreground",
+                          )}
+                        >
+                          {field.value ? (
+                            format(new Date(field.value), "PPP")
+                          ) : (
+                            <span>Select date</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={
+                          field.value ? new Date(field.value) : undefined
+                        }
+                        onSelect={(date) => {
+                          if (date) field.onChange(date.toISOString());
+                        }}
+                        disabled={(date) => date < new Date()}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Submit */}
+          <div className="col-span-1">
+            <Button
+              type="submit"
+              className="group from-aps-secondary-500 to-aps-secondary-300 flex w-full items-center justify-center gap-1 rounded-full border-[1px] border-white bg-gradient-to-r py-3 font-medium transition duration-300 hover:border-[1px]"
+            >
+              <p className="transition-transform duration-300 group-hover:-translate-x-[10px] group-hover:text-white">
+                Book Now
+              </p>
+              <ArrowRight
+                size={20}
+                className="transition-transform duration-300 group-hover:translate-x-[10px] group-hover:text-white"
+              />
+            </Button>
+          </div>
+        </form>
+      </Form>
     </>
   );
 }
