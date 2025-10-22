@@ -74,17 +74,22 @@ export default function About() {
             <div className="mb-[100px] flex">
               <p className="w-1/2 text-2xl font-semibold">Our Vision</p>
               <p className="w-1/2 text-[#807e7e]">
-                To redefine the travel norm within Canada by equipping
-                personalized airport assistance as a necessary and inclusive
-                component of all travel.
+                To reshape the way Canada travels by making personalized airport
+                assistance an essential and inclusive part of every journey. We
+                aim to ensure that every traveler - from families and seniors to
+                business professionals and international guests experiences
+                comfort, convenience, and care at every step.
               </p>
             </div>
             <div className="mb-[100px] flex">
               <p className="w-1/2 text-2xl font-semibold">Our Mission</p>
               <p className="w-1/2 text-[#807e7e]">
-                Our mission is to deliver effortless and dignified travel
-                experiences through professional, pre-arranged porter and
-                assistance services at every major Canadian airport.
+                Our mission is to create effortless, dignified, and stress-free
+                travel experiences for everyone. Through professionally trained
+                and pre-arranged porter services available at major airports
+                across Canada, we&apos;re dedicated to helping passengers move
+                with confidence, comfort, and peace of mind every time they
+                travel.
               </p>
             </div>
           </div>

@@ -16,8 +16,10 @@ export default function ServicesPage() {
             <div className="h-1 w-1.5 rounded-full bg-black" />
           </div>
           <p className="order-2 w-[80%] md:order-3 md:w-[25%]">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur
-            accusantium voluptatum adipisci ab dolor provident veniam quasi eos
+            Our friendly customer support team is available to answer your
+            queries and provide guidance on selecting the right service for your
+            travel needs. We strive to respond promptly and ensure your journey
+            is smooth from start to finish
           </p>
         </div>
       </article>
