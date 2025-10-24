@@ -29,8 +29,10 @@ export default function Home() {
         <div className="relative z-20 flex w-full flex-col justify-between p-4 lg:flex-row">
           <div className="flex flex-col justify-end pb-5 lg:w-1/5 lg:pb-0">
             <p className="leading-tight text-white">
-              Find and book the best flights quickly. Compare prices, select
-              your airline, and book with confidence—all in one place.
+              Experience effortless travel with our premium airport porter
+              service in Canada. Enjoy seamless luggage assistance, quick
+              transfers, and professional support, all designed to make your
+              airport journey stress-free.
             </p>
 
             <div className="mt-4 flex items-center shadow-2xl">
@@ -83,15 +85,15 @@ export default function Home() {
               Cheap Flights of APS
             </p>
             <h1 className="mt-[30px] w-[85%] max-w-[1000px] text-center text-3xl font-semibold md:w-[55%] md:text-4xl">
-              APS makes finding and booking cheap, premium porters simple and
-              fast. We offer great{" "}
+              APS makes finding and booking reliable, premium airport porters
+              simple and fast. We offer great{" "}
               <span className="bg-aps-600 inline-block -rotate-6 rounded-full px-3 py-1 text-xl text-white md:text-2xl">
-                Discounts
+                Deals
               </span>{" "}
               on
               <span className="text-aps-400">
                 {" "}
-                one-way, return, International, and multi-city trips.
+                arrival, departure, domestic, and international assistance.
               </span>
             </h1>
           </div>

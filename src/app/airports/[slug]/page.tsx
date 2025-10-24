@@ -15,23 +15,23 @@ async function getAirport(slug: string) {
   }
 }
 
-export async function generateStaticParams() {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URI}/api/airport/country-list`,
-      { cache: "force-cache" },
-    );
-    if (!res.ok) throw new Error("Failed to fetch slugs");
-    const countries = await res.json();
+// export async function generateStaticParams() {
+//   try {
+//     const res = await fetch(
+//       `${process.env.NEXT_PUBLIC_BACKEND_URI}/api/airport/country-list`,
+//       { cache: "force-cache" },
+//     );
+//     if (!res.ok) throw new Error("Failed to fetch slugs");
+//     const countries = await res.json();
 
-    return countries.map((c: { slug: string }) => ({
-      slug: c.slug,
-    }));
-  } catch (error) {
-    console.error("Error fetching static params:", error);
-    return [];
-  }
-}
+//     return countries.map((c: { slug: string }) => ({
+//       slug: c.slug,
+//     }));
+//   } catch (error) {
+//     console.error("Error fetching static params:", error);
+//     return [];
+//   }
+// }
 
 export default async function IndividualAirportsPage({
   params,

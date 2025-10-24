@@ -16,12 +16,12 @@ export default function Contact() {
         <div className="space-y-6 text-base sm:text-lg">
           <div>
             <p className="text-sm text-gray-400">Phone</p>
-            <p className="font-semibold">+91 9824688721</p>
+            <p className="font-semibold">+91 95999 93820</p>
           </div>
 
           <div>
             <p className="text-sm text-gray-400">Email</p>
-            <p className="font-semibold">hello@aps.com</p>
+            <p className="font-semibold">info@airportporterservice.ca</p>
           </div>
 
           {/* <div>
@@ -38,8 +38,9 @@ export default function Contact() {
       <article className="flex w-full flex-col md:w-1/2">
         <div className="mb-8 text-sm text-gray-600 md:ml-auto md:w-3/4 lg:w-2/3">
           <TextEffect>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-            autem corporis quo illo aperiam consequuntur eveniet ipsam.
+            We&apos;d love to hear from you! Whether you have questions about
+            our airport porter services, want to make a booking, or need
+            assistance during your travel, our team is always ready to help
           </TextEffect>
         </div>
 

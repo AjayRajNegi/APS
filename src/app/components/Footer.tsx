@@ -69,9 +69,9 @@ export function Footer() {
           {/* Contact & Company Info */}
           <div>
             <p className="mb-4 font-semibold text-white">Contact Us</p>
-            <p className="text-sm text-[#a3a3a3]">+91 93472944830</p>
+            <p className="text-sm text-[#a3a3a3]">+91 95999 93820</p>
             <p className="text-sm break-words text-[#a3a3a3]">
-              airportporterservice123@gmail.com
+              info@airportporterservice.ca
             </p>
 
             <p className="mt-6 mb-2 font-semibold text-white">

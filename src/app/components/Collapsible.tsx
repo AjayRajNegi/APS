@@ -9,25 +9,25 @@ import { ChevronDownIcon } from "lucide-react";
 const services = [
   {
     title: "TROLLEY",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, obcaecati? Maiores totam porro facere, quam explicabo recusandae vero? Enim, aspernatur accusamus expedita laborum quam sapiente dolore fuga labore rerum debitis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores fuga necessitatibus maxime quod consectetur rem, officia quas harum dignissimos, ut ducimus cumque quos nesciunt consequuntur cupiditate nemo minus itaque soluta?",
+    desc: "Traveling with heavy luggage can be stressful, but our trolley service makes it effortless. Our trained porters will handle your bags, wheel them through the airport, and ensure they reach your check-in or gate safely. From arrivals to departures, enjoy a smooth, hands-free experience so you can focus on your journey.",
     imageUrl: `url('/mainImage.png')`,
     imagePosition: "bottom",
   },
   {
     title: "MEET & ASSIST",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, obcaecati? Maiores totam porro facere, quam explicabo recusandae vero? Enim, aspernatur accusamus expedita laborum quam sapiente dolore fuga labore rerum debitis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores fuga necessitatibus maxime quod consectetur rem, officia quas harum dignissimos, ut ducimus cumque quos nesciunt consequuntur cupiditate nemo minus itaque soluta?",
+    desc: "Skip the airport stress with our personalized Meet & Assist service. A professional porter will greet you at the terminal, guide you through check-in, security, and immigration, and even help you with lounge access if needed. Perfect for first-time travelers, business trips, or anyone looking for a seamless airport experience.",
     imageUrl: `url('/mainImage.png')`,
     imagePosition: "top",
   },
   {
     title: "LUGGAGE",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, obcaecati? Maiores totam porro facere, quam explicabo recusandae vero? Enim, aspernatur accusamus expedita laborum quam sapiente dolore fuga labore rerum debitis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores fuga necessitatibus maxime quod consectetur rem, officia quas harum dignissimos, ut ducimus cumque quos nesciunt consequuntur cupiditate nemo minus itaque soluta?",
+    desc: "Say goodbye to the hassle of managing multiple bags. Our luggage assistance service covers carrying, transferring, and organizing your bags with care. Whether you're connecting flights, arriving, or departing, our porters ensure your belongings are safe, secure, and delivered right to your destination.",
     imageUrl: `url('/mainImage.png')`,
     imagePosition: "center",
   },
   {
     title: "LAUNGE",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, obcaecati? Maiores totam porro facere, quam explicabo recusandae vero? Enim, aspernatur accusamus expedita laborum quam sapiente dolore fuga labore rerum debitis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores fuga necessitatibus maxime quod consectetur rem, officia quas harum dignissimos, ut ducimus cumque quos nesciunt consequuntur cupiditate nemo minus itaque soluta?",
+    desc: "Relax in style with our lounge access service. While our porters handle your luggage and airport navigation, you can unwind in comfort, enjoy refreshments, and catch up on work or rest before your flight. Combine convenience and luxury for a truly stress-free airport experience.",
     imageUrl: `url('/mainImage.png')`,
     imagePosition: "top",
   },

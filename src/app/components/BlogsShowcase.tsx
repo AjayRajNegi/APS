@@ -77,9 +77,11 @@ export function BlogsShowcase({ href }: { href: string }) {
           {selectedCategory}
         </h2>
         <p className="my-2.5 w-[90%] text-black/60 md:w-1/2">
-          Find or list tools that will help designers build to last. Simplify
-          design with our comprehensive and carefully vetted library from the
-          start.
+          Discover expert travel tips, airport insights, and luggage-handling
+          guides from APS - Canada&apos;s trusted airport porter service. Our
+          blogs help you travel smarter, stress-free, and with confidence. Learn
+          how professional porters make every journey smoother, from check-in to
+          arrival.
         </p>
         <div className="flex justify-between gap-0 md:justify-start md:gap-5">
           {categories.map((category) => (
